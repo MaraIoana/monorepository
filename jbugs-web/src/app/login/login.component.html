@@ -1,0 +1,31 @@
+<form #form='ngForm'>
+  <div class="form-group">
+    <label for="firstName"> FirstName </label>
+    <input class="form-control"
+           type="text"
+           id="firstName"
+           name="firstName"
+           required
+           #firstName="ngModel"
+           ngModel>
+    <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid">
+      <div *ngIf="firstName.errors.required">The field is required</div>
+      <div *ngIf="firstName.errors.pattern">The pattern is invalid.</div>
+    </div>
+
+  </div>
+
+  <div class="form-group">
+    <label> LastName </label>
+    <input class="form-control"
+           type="text"
+           id="lastName"
+           name="lastName"
+           required
+           #lastName="ngModel"
+           ngModel>
+    <div *ngIf="lastName.touched && lastName.invalid" class="alert alert-danger">Last name is required</div>
+  </div>
+
+  <button (click)="login(form)" [disabled]="form.invalid" class="btn btn-primary">Login</button>
+</form>
