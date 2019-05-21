@@ -37,6 +37,12 @@ public class UserFacade {
          this.userControl.createUser(user);
     }
 
+    @RolesAllowed(Permission.USER_MANAGEMENT)
+    public void updateUser(UserInputDTO user) {
+    }
+
+    ;
+
     public List<UserDTO> getAll(){
         return userControl.getAll();
     }

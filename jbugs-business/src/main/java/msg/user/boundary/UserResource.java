@@ -31,6 +31,15 @@ public class UserResource {
 //       return null;
    }
 
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateUser(UserInputDTO inputDTO) {
+        userFacade = null;
+        userFacade.updateUser(inputDTO);
+        return Response.ok().build();
+
+    }
+
    @GET
    @Produces(MediaType.APPLICATION_JSON)
     public Response getAll(){
