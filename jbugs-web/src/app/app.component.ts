@@ -29,14 +29,14 @@ export class AppComponent {
       roles: [Roles.DELETE_BUG]
     },
     {
-      firstname: "f2",
-      lastname: "l2",
+      firstname: "Marian",
+      lastname: "Pop",
       age: 11,
       roles: [Roles.CREATE_BUG, Roles.DELETE_BUG]
     },
     {
-      firstname: "f3",
-      lastname: "l3",
+      firstname: "Dan",
+      lastname: "Popescu",
       age: 28,
       roles: [Roles.CREATE_BUG]
     }
