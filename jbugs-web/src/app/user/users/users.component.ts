@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {RestUser} from "../models/restUser.models";
-import {UserService} from "../user/services/user.service";
+import {RestUser} from "../../models/restUser.models";
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-users',
