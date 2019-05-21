@@ -1,4 +1,5 @@
-package edu.msg.ro.persistence.entity;
+package msg.bug.entity;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
