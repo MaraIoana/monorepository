@@ -1,11 +1,9 @@
-package msg.role.entity;
+package msg.permission.entity;
 
 import edu.msg.ro.persistence.entity.BaseEntity;
 
 import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * The permission entity.
@@ -15,7 +13,14 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="permission")
-public class Permission extends BaseEntity<Long> {
+@NamedQueries({
+        @NamedQuery(name= PermissionEntity.QUERY_GET_PERMISSIONS_BY_TYPE_LIST,
+                query= "select r from PermissionEntity r "
+                        + "where r.type in :" + PermissionEntity.INPUT_TYPE_LIST )})
+public class PermissionEntity extends BaseEntity<Long> {
+
+    public static final String QUERY_GET_PERMISSIONS_BY_TYPE_LIST = "getPermissionsByTypeList";
+    public static final String INPUT_TYPE_LIST = "type";
 
     @Column(name="type", nullable = false)
     private String type;
@@ -23,10 +28,10 @@ public class Permission extends BaseEntity<Long> {
     private String description;
 
 
-    public Permission() {
+    public PermissionEntity() {
     }
 
-    public Permission(String type, String description) {
+    public PermissionEntity(String type, String description) {
         this.type = type;
         this.description = description;
     }
@@ -51,7 +56,7 @@ public class Permission extends BaseEntity<Long> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Permission that = (Permission) o;
+        PermissionEntity that = (PermissionEntity) o;
         return Objects.equals(type, that.type) &&
                 Objects.equals(description, that.description);
     }
