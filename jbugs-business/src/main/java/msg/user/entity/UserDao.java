@@ -31,6 +31,20 @@ public class UserDao {
     }
 
     /**
+     * Find user with username
+     *
+     * @param username to be found
+     * @return user associated with username.
+     */
+    // TODO: 22.05.2019 exeption handling need to be implemented if user not found
+    public UserEntity findUserByUsername(String username) {
+        UserEntity user = em.createNamedQuery(UserEntity.USER_COUNT_BY_EMAIL, UserEntity.class)
+                .setParameter(UserEntity.USERNAME, username)
+                .getSingleResult();
+        return (user);
+    }
+
+    /**
      * Persists a user entity.
      *
      * @param user the input entity to be saved.
