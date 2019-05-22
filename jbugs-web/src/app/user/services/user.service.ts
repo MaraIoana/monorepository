@@ -25,6 +25,11 @@ export class UserService {
          ,email:"CalinMalinas@msg.group"
          ,mobileNumber:"0723456777"}]);*/
   }
+
+  public addUser(user: RestUser){
+    //return this.backendService.post('http://localhost:8080/jbugs/jbugs-api/users',user);
+    return "User added";
+  }
 }
 
 // export class UserService {

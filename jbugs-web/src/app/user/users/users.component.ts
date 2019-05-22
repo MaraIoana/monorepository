@@ -20,27 +20,14 @@ export class UsersComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log("initialize userList with backend stuff");
     this.userService.getAllUsers()
       .subscribe((userList) => {
         this.userList = userList;
       });
-    console.log(this.userList);
   }
 
   alertUser(person: RestUser) {
     this.output.emit(person);
   }
-
-  //
-  // users = [
-  //   {id:1, name:'a'},
-  //   {id:2, name:'b'},
-  //   {id:3, name:'c'}
-  // ];
-  // constructor() { }
-  //
-  // ngOnInit() {
-  // }
 
 }
