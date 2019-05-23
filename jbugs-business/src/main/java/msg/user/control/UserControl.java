@@ -11,15 +11,14 @@ import msg.notifications.boundary.notificationParams.NotificationParamsWelcomeUs
 import msg.notifications.entity.NotificationType;
 import msg.role.entity.Role;
 import msg.user.MessageCatalog;
-import msg.user.entity.dto.UserDTO;
-import msg.user.entity.dto.UserInputDTO;
+import msg.user.entity.UserDao;
 import msg.user.entity.UserEntity;
 import msg.user.entity.dto.UserConverter;
-import msg.user.entity.UserDao;
+import msg.user.entity.dto.UserDTO;
+import msg.user.entity.dto.UserInputDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -66,6 +65,29 @@ public class UserControl {
                 new NotificationParamsWelcomeUser(userFullName, newUserEntity.getUsername()));
 
         return newUserEntity.getUsername();
+    }
+
+    /**
+     * Update a userDTO based on the {@link UserInputDTO}.
+     *
+     * @param userDTO the input User DTO. mandatory
+     * @return the username of the updated  user.
+     * todo Message for updating the user (showing them on the UI is belongs to anther User Stroy)
+     * todo Exception handling if username does not exist
+     */
+    public String updateUser(final UserDTO userDTO) {
+        //userDTO = null;
+       /* if (userDao.existsEmail(userDTO.getEmail())){
+            throw new BusinessException(MessageCatalog.USER_WITH_SAME_MAIL_EXISTS);
+        }*/
+
+        UserEntity updateUserEntity = userConverter.convertDTOToEntity(userDTO);
+        System.out.println("kicsikutyatarka:" + updateUserEntity.getUsername());
+        //userDao.findUserByUsername(updateUserEntity.getUsername());
+        userDao.updateUser(updateUserEntity);
+
+
+        return updateUserEntity.getUsername();
     }
 
     /**

@@ -33,12 +33,14 @@ public class UserFacade {
      */
     @PermitAll
     @RolesAllowed(Permission.USER_MANAGEMENT)
-    public void createUser(UserInputDTO user){
-         this.userControl.createUser(user);
+    public String createUser(UserInputDTO user) {
+        return this.userControl.createUser(user);
     }
 
+    @PermitAll
     @RolesAllowed(Permission.USER_MANAGEMENT)
-    public void updateUser(UserInputDTO user) {
+    public String updateUser(UserDTO user) {
+        return this.userControl.updateUser(user);
     }
 
     ;

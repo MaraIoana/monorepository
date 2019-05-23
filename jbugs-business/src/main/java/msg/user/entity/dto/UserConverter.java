@@ -6,9 +6,9 @@ package msg.user.entity.dto;
 import msg.role.control.RoleControl;
 import msg.user.entity.UserEntity;
 
-import java.util.ArrayList;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.ArrayList;
 
 /**
  * Converts different DOs to UserEntity and vice-versa.
@@ -49,6 +49,19 @@ public class UserConverter {
         u.setLastName(userEntity.getLastName());
         u.setEmail(userEntity.getEmail());
         u.setMobileNumber(userEntity.getMobileNumber());
+        u.setUsername(userEntity.getUsername());
+        return u;
+    }
+
+    public UserEntity convertDTOToEntity(UserDTO userDTO) {
+        final UserEntity u = new UserEntity();
+        System.out.println("insideconverter" + userDTO.getUsername());
+        u.setUsername(userDTO.getUsername());
+        u.setFirstName(userDTO.getFirstName());
+        u.setLastName(userDTO.getLastName());
+        u.setEmail(userDTO.getEmail());
+        u.setMobileNumber(userDTO.getMobileNumber());
+
         return u;
     }
 

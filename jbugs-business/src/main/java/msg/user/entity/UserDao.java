@@ -36,9 +36,9 @@ public class UserDao {
      * @param username to be found
      * @return user associated with username.
      */
-    // TODO: 22.05.2019 exeption handling need to be implemented if user not found
+    // TODO: 22.05.2019 exception handling need to be implemented if user not found
     public UserEntity findUserByUsername(String username) {
-        UserEntity user = em.createNamedQuery(UserEntity.USER_COUNT_BY_EMAIL, UserEntity.class)
+        UserEntity user = em.createNamedQuery(UserEntity.USER_FIND_BY_USERNAME, UserEntity.class)
                 .setParameter(UserEntity.USERNAME, username)
                 .getSingleResult();
         return (user);
@@ -53,6 +53,20 @@ public class UserDao {
     public UserEntity createUser(UserEntity user){
         em.persist(user);
         return user;
+    }
+
+    public UserEntity updateUser(UserEntity user) {
+
+        UserEntity updateUser = findUserByUsername(user.getUsername());
+        updateUser.setFirstName(user.getFirstName());
+        updateUser.setLastName(user.getLastName());
+        updateUser.setEmail(user.getEmail());
+        updateUser.setMobileNumber(user.getMobileNumber());
+        System.out.println("new Firstname: " + user.getFirstName());
+        em.merge(updateUser);
+
+
+        return updateUser;
     }
 
     public List<UserEntity> getAll(){

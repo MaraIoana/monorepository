@@ -7,11 +7,13 @@ package msg.user.entity.dto;
  * @since 19.1.2
  */
 public class UserDTO {
+
+    private String username;
     private String firstName;
     private String lastName;
     private String email;
     private String mobileNumber;
-    private String username;
+
 
     public UserDTO() {
     }
