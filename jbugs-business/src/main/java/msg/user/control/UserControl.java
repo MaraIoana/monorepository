@@ -82,8 +82,6 @@ public class UserControl {
         }*/
 
         UserEntity updateUserEntity = userConverter.convertDTOToEntity(userDTO);
-        System.out.println("kicsikutyatarka:" + updateUserEntity.getUsername());
-        //userDao.findUserByUsername(updateUserEntity.getUsername());
         userDao.updateUser(updateUserEntity);
 
 

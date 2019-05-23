@@ -55,7 +55,6 @@ public class UserConverter {
 
     public UserEntity convertDTOToEntity(UserDTO userDTO) {
         final UserEntity u = new UserEntity();
-        System.out.println("insideconverter" + userDTO.getUsername());
         u.setUsername(userDTO.getUsername());
         u.setFirstName(userDTO.getFirstName());
         u.setLastName(userDTO.getLastName());

@@ -62,7 +62,6 @@ public class UserDao {
         updateUser.setLastName(user.getLastName());
         updateUser.setEmail(user.getEmail());
         updateUser.setMobileNumber(user.getMobileNumber());
-        System.out.println("new Firstname: " + user.getFirstName());
         em.merge(updateUser);
 
 
