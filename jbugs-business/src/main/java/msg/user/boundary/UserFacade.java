@@ -44,7 +44,7 @@ public class UserFacade {
         }
     }
 
-    public List<UserDTO> getAll(){
+    public List<UserInputDTO> getAll(){
         return userControl.getAll();
     }
 
