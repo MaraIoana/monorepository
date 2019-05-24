@@ -5,12 +5,12 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {UserModule} from "./user/user.module";
 import {HttpClientModule} from "@angular/common/http";
-import {UserManagementComponent} from './user-management/user-management.component';
+import {UserManagementComponent} from './user/user-management/user-management.component';
 import {FormsModule} from "@angular/forms";
 import {SummaryPipe} from "./summary.pipe";
 import {LoginComponent} from './login/login.component';
-import {UserEditComponent} from './user-edit/user-edit.component';
-import {UsersComponent} from './users/users.component';
+import {UserEditComponent} from './user/user-edit/user-edit.component';
+import {UsersComponent} from './user/users/users.component';
 import {BugsComponent} from './bugs/bugs.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 
