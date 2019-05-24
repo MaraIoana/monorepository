@@ -48,15 +48,17 @@ public class UserControl {
      * @param userDTO the input User DTO. mandatory
      * @return the username of the newly created user.
      */
-    public String createUser(final UserInputDTO userDTO){
+    public UserInputDTO createUser(final UserInputDTO userDTO){
         //userDTO = null;
         if (userDao.existsEmail(userDTO.getEmail())){
             throw new BusinessException(MessageCatalog.USER_WITH_SAME_MAIL_EXISTS);
         }
 
         final UserEntity newUserEntity = userConverter.convertInputDTOtoEntity(userDTO);
-
-        newUserEntity.setUsername(this.createUserName(userDTO.getFirstName(), userDTO.getLastName()));
+        boolean used=false;
+        newUserEntity.setUsername(this.createUserName(userDTO.getFirstName(), userDTO.getLastName(),used));
+        //TODO
+        //Check if username exists, if so -> createUserName with bool true
         newUserEntity.setPassword("DEFAULT_PASSWORD");
         userDao.createUser(newUserEntity);
 
@@ -64,8 +66,9 @@ public class UserControl {
         this.notificationFacade.createNotification(
                 NotificationType.WELCOME_NEW_USER,
                 new NotificationParamsWelcomeUser(userFullName, newUserEntity.getUsername()));
-
-        return newUserEntity.getUsername();
+        UserInputDTO responseUser = new UserInputDTO();
+        responseUser.setFirstName(newUserEntity.getUsername());
+        return responseUser;
     }
 
     /**
@@ -76,15 +79,21 @@ public class UserControl {
      * @return a unique identifier for the input user.
      */
     //TODO Replace with logic based on the specification
-    private String createUserName(final String firstName, final String lastName){
-        String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        int count = 8;
-        StringBuilder builder = new StringBuilder();
-        while (count-- != 0) {
-            int character = (int)(Math.random()*ALPHA_NUMERIC_STRING.length());
-            builder.append(ALPHA_NUMERIC_STRING.charAt(character));
+    private String createUserName(final String firstName, final String lastName, boolean ok){
+//        String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+//        int count = 8;
+//        StringBuilder builder = new StringBuilder();
+//        while (count-- != 0) {
+//            int character = (int)(Math.random()*ALPHA_NUMERIC_STRING.length());
+//            builder.append(ALPHA_NUMERIC_STRING.charAt(character));
+//        }
+//        return builder.toString();
+        if(ok==false) {
+            return firstName.substring(0, 5).toUpperCase() + lastName.substring(lastName.length() - 1).toUpperCase();
         }
-        return builder.toString();
+        else {
+            return firstName.substring(0, 4).toUpperCase() + lastName.substring(lastName.length() - 2,lastName.length() - 1).toUpperCase();
+        }
     }
 
     public List<UserDTO> getAll(){

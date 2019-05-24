@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {RestUser} from "../../models/restUser.models";
 import {UserService} from "../services/user.service";
+import {addUser} from "../../models/addUser.model";
 
 @Component({
   selector: 'app-user-list',
@@ -8,9 +9,9 @@ import {UserService} from "../services/user.service";
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  public userList: RestUser[];
+  public userList: addUser[];
   @Output()
-  public output = new EventEmitter<RestUser>();
+  public output = new EventEmitter<addUser>();
   public showList = true;
 
   constructor(private userService: UserService) {
@@ -24,46 +25,10 @@ export class UserListComponent implements OnInit {
       })
   }
 
-  alertUser(person: RestUser) {
+  alertUser(person: addUser) {
     alert(person.mobileNumber);
     this.output.emit(person);
   }
 
 
 }
-
-//import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-//import {User} from "../../models/user.model";
-// import {UserService} from "../services/user.service";
-// import {RestUser} from "../../models/restUser.models";
-//
-//
-// @Component({
-//   selector: 'app-user-list',
-//   templateUrl: './user-list.component.html',
-//   styleUrls: ['./user-list.component.css']
-// })
-// export class UserListComponent implements OnInit {
-//
-//   public userlist: RestUser[];
-//
-//   @Output()
-//   public output = new EventEmitter<User>();
-//
-//   public showlist = true;
-//
-//
-//   constructor(private userService: UserService) { }
-//
-//   ngOnInit() {
-//     this.userService.getAllUsers()
-//       .subscribe((userList) => {
-//         this.userlist = userList;
-//       });
-//   }
-//
-//   alertUser(person: User){
-//       this.output.emit(person);
-//   }
-//
-// }

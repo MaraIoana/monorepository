@@ -5,7 +5,7 @@
 <!--  </li>-->
 <!--</ul>-->
 <ul *ngIf="showList">
-  <li *ngFor="let person of userList"> {{person.firstName}} , {{person.lastName}}
+  <li *ngFor="let person of userList"> {{person.firstName}} , {{person.mobileNumber}}
     <button (click)="alertUser(person)"> alert{{person.firstName}}</button>
 
   </li>
