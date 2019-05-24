@@ -1,3 +1,49 @@
-<p>
-  user-edit works!
-</p>
+<form #form='ngForm' (ngSubmit)="submit(form)">
+  <div class="form-group">
+    <label> First Name </label>
+    <input class="form-control"
+           type="text"
+           id="firstName"
+           name="firstName"
+           required
+           #firstName="ngModel"
+           ngModel>
+    <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid">Required field</div>
+  </div>
+  <div class="form-group">
+    <label> Last Name </label>
+    <input class="form-control"
+           type="text"
+           id="lastName"
+           name="lastName"
+           required
+           #lastName="ngModel"
+           ngModel>
+    <div class="alert alert-danger" *ngIf="lastName.touched && lastName.invalid">Required field</div>
+  </div>
+  <div class="form-group">
+    <label> Email </label>
+    <input class="form-control"
+           type="text"
+           id="email"
+           name="email"
+           required
+           #email="ngModel"
+           ngModel>
+    <div class="alert alert-danger" *ngIf="email.touched && email.invalid">Required field</div>
+  </div>
+  <div class="form-group">
+    <label> Phone Number </label>
+    <input class="form-control"
+           type="text"
+           id="phoneNumber"
+           name="phoneNumber"
+           required
+           #phoneNumber="ngModel"
+           ngModel>
+    <div class="alert alert-danger" *ngIf="phoneNumber.touched && phoneNumber.invalid">Required field</div>
+  </div>
+  <button class="btn btn-primary" [disabled]="form.invalid">Update</button>
+
+
+</form>

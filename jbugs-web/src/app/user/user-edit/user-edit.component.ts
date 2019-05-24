@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+import {RestUser} from "../../models/restUser.models";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-user-edit',
@@ -7,13 +9,22 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./user-edit.component.css']
 })
 export class UserEditComponent implements OnInit {
+  public user: RestUser;
+
   constructor(private activatedRoute: ActivatedRoute) {
   }
 
-  ngOnInit() {
-    this.activatedRoute.paramMap.subscribe(params => {
-      console.log("Params", params)
-    });
+  submit(form: NgForm) {
+
   }
+
+     ngOnInit() {
+    //   this.userService.getUser()
+    //     .subscribe((user) => {
+    //       this.user = user;
+    //     });
+    //
+     }
+
 
 }

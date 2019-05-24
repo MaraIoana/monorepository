@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {BackendService} from "./backend.service";
 import {Observable} from "rxjs";
 import {RestUser} from "../../models/restUser.models";
+import {User} from "../../models/user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class UserService {
     //return this.backendService.get('localhost:8080/jbugs/jbugs-api/users');
     return this.backendService.get('http://localhost:8080/jbugs/jbugs-api/users');
 
+
     /* return of([{firstName:"Harry"
        , lastName:"Potter"
        ,email:"potter@hogworts.com"
@@ -25,6 +27,9 @@ export class UserService {
          ,email:"CalinMalinas@msg.group"
          ,mobileNumber:"0723456777"}]);*/
   }
+ /* public updateUser(): Observable<RestUser[]>{
+    return this.backendService.put(user ,'http://localhost:8080/jbugs/jbugs-api/users/edit');
+  }*/
 }
 
 // export class UserService {
