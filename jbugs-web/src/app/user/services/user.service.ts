@@ -32,7 +32,7 @@ export class UserService {
  /* public updateUser(): Observable<RestUser[]>{
     return this.backendService.put(user ,'http://localhost:8080/jbugs/jbugs-api/users/edit');
   }*/
-}
+
 
 
   public addUser(user: addUser){

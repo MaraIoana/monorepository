@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {addUser} from "../../models/addUser.model";
-import {RestUser} from "../../models/restUser.models";
 import {UserService} from "../services/user.service";
 import {Router} from "@angular/router";
 

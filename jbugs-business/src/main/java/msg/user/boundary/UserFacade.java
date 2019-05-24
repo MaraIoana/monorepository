@@ -35,10 +35,7 @@ public class UserFacade {
      */
     @PermitAll
     @RolesAllowed(Permission.USER_MANAGEMENT)
-<<<<<<< HEAD
-    public String createUser(UserInputDTO user) {
-        return this.userControl.createUser(user);
-=======
+
     public Object createUser(UserInputDTO user){
         try{
             return this.userControl.createUser(user);
@@ -46,7 +43,7 @@ public class UserFacade {
         catch (BusinessException e){
          return e.getExceptionMessage();
         }
->>>>>>> 5d06dff5b821bbe3933dc655b0cd14a91e8e8ba9
+
     }
 
     @PermitAll
