@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {RestUser} from "../../models/restUser.models";
 import {UserService} from "../services/user.service";
+import {addUser} from "../../models/addUser.model";
 
 @Component({
   selector: 'app-users',
@@ -9,10 +10,10 @@ import {UserService} from "../services/user.service";
 })
 export class UsersComponent implements OnInit {
 
-  public userList: RestUser[];
+  public userList: addUser[];
 
   @Output()
-  public output = new EventEmitter<RestUser>();
+  public output = new EventEmitter<addUser>();
   public showList = true;
 
   constructor(private userService: UserService) {
@@ -26,7 +27,7 @@ export class UsersComponent implements OnInit {
       });
   }
 
-  alertUser(person: RestUser) {
+  alertUser(person: addUser) {
     this.output.emit(person);
   }
 

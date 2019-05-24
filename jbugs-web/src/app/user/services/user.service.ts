@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {BackendService} from "./backend.service";
 import {Observable} from "rxjs";
 import {RestUser} from "../../models/restUser.models";
+import {addUser} from "../../models/addUser.model";
 
 @Injectable({
   providedIn: 'root'
@@ -26,25 +27,8 @@ export class UserService {
          ,mobileNumber:"0723456777"}]);*/
   }
 
-  public addUser(user: RestUser){
-    //return this.backendService.post('http://localhost:8080/jbugs/jbugs-api/users',user);
-    return "User added";
+  public addUser(user: addUser){
+    return this.backendService.post('http://localhost:8080/jbugs/jbugs-api/users',user, {responseType: 'text'});
   }
 }
-
-// export class UserService {
-//
-//   constructor(private backendService: BackendService) { }
-//
-//   public getAllUsers(): Observable<RestUser[]>{
-//     return this.backendService.get('http://localhost:8080/jbugs/jbugs-api/users');
-//     // return of([
-//     //   {
-//     //     firstName: "a",
-//     //     lastName: "b",
-//     //     email: "c",
-//     //     mobileNumber: "d"
-//     //   }]).pipe(delay(5000));
-//   }
-// }
 

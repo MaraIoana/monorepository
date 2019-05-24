@@ -13,8 +13,8 @@ export class RbtnDirective implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (this.role.includes(Roles.DELETE_BUG))
-      this.el.nativeElement.disabled = true;
+    // if (this.role.includes(Roles.DELETE_BUG))
+    //   this.el.nativeElement.disabled = true;
   }
 
 

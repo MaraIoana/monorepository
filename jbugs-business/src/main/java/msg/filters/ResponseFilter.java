@@ -27,6 +27,7 @@ public class ResponseFilter implements Filter {
         if (response instanceof HttpServletResponse) {
             log.info("Adding headers");
             HttpServletResponse http = (HttpServletResponse) response;
+            http.addHeader("Access-Control-Allow-Headers","*");
             http.addHeader("Access-Control-Allow-Origin", "*");
             http.addHeader("Access-Control-Allow-Credentials", "true");
             http.addHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
