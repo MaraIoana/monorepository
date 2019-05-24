@@ -23,23 +23,13 @@ public class UserResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-<<<<<<< HEAD
-   public Response createUser(UserInputDTO inputDTO){
-        //userFacade = null;
-        //userFacade.createUser(inputDTO);
-        //return Response.ok().build();
-        return Response.status(200).entity(userFacade.createUser(inputDTO)).build();
 
-//       userFacade.createUser(inputDTO);
-//       return null;
-=======
     @Produces(MediaType.APPLICATION_JSON)
     public Response createUser(UserInputDTO inputDTO){
         return Response
                 .status(200)
                 .entity(userFacade.createUser(inputDTO))
                 .build();
->>>>>>> 5d06dff5b821bbe3933dc655b0cd14a91e8e8ba9
    }
 
     @PUT

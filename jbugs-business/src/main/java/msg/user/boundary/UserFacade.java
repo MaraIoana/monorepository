@@ -3,7 +3,6 @@
 // =================================================================================================
 package msg.user.boundary;
 
-import com.sun.org.apache.xpath.internal.operations.String;
 import msg.exeptions.BusinessException;
 import msg.right.Permission;
 import msg.user.control.UserControl;
