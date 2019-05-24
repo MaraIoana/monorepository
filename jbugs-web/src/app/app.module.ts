@@ -13,6 +13,7 @@ import {UserEditComponent} from './user/user-edit/user-edit.component';
 import {UsersComponent} from './user/users/users.component';
 import {BugsComponent} from './bugs/bugs.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import { UserAddComponent } from './user/user-add/user-add.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {DashboardComponent} from './dashboard/dashboard.component';
     UserEditComponent,
     UsersComponent,
     BugsComponent,
-    DashboardComponent
+    DashboardComponent,
+    UserAddComponent
   ],
   imports: [
     BrowserModule,
