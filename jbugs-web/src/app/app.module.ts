@@ -11,8 +11,9 @@ import {SummaryPipe} from "./summary.pipe";
 import {LoginComponent} from './login/login.component';
 import {UserEditComponent} from './user/user-edit/user-edit.component';
 import {UsersComponent} from './user/users/users.component';
-import {BugsComponent} from './bugs/bugs.component';
+import {BugsComponent} from './bug/bugs/bugs.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import { AgGridModule } from 'ag-grid-angular';
 import { UserAddComponent } from './user/user-add/user-add.component';
 
 @NgModule({
@@ -32,10 +33,12 @@ import { UserAddComponent } from './user/user-add/user-add.component';
     AppRoutingModule,
     UserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AgGridModule.withComponents([])
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }
 
