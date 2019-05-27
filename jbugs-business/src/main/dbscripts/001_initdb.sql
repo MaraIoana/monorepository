@@ -100,9 +100,9 @@ create table comment
 
 
 -- insert data
-INSERT INTO msg_training.bugs (ID, title, description, version, targetDate,status, fixedVersion, severity,createdByUser, assignedTo) VALUES (20, 'Bug1', 'prima descriere', 'A001', '2019/03/09', 'FIXED', 'A002', 'HIGH',5,1);
-INSERT INTO msg_training.bugs (ID, title, description, version, targetDate,status, fixedVersion, severity,createdByUser, assignedTo) VALUES (21, 'Bug2', 'alta descriere', 'X001', '2018/05/09', 'CLOSED', 'K1002', 'LOW',9,10);
-INSERT INTO msg_training.bugs (ID, title, description, version, targetDate,status, fixedVersion, severity,createdByUser, assignedTo) VALUES (22, 'Bug3', 'tot aia', 'P001','2019/03/04', 'INPROGRESS', 'O019', 'NEW',1,7);
+INSERT INTO msg_training.bugs (ID, title, description, version, targetDate,status, fixedVersion, severity,createdByUser, assignedTo) VALUES (20, 'Bug1', 'prima descriere', 'A001', '2019-03-09', 'FIXED', 'A002', 'HIGH',5,1);
+INSERT INTO msg_training.bugs (ID, title, description, version, targetDate,status, fixedVersion, severity,createdByUser, assignedTo) VALUES (21, 'Bug2', 'alta descriere', 'X001', '2018-05-09', 'CLOSED', 'K1002', 'LOW',9,10);
+INSERT INTO msg_training.bugs (ID, title, description, version, targetDate,status, fixedVersion, severity,createdByUser, assignedTo) VALUES (22, 'Bug3', 'tot aia', 'P001','2019-03-04', 'INPROGRESS', 'O019', 'HIGH',1,7);
 
 INSERT INTO msg_training.users (ID, counter, email, first_name, last_name, mobile_number, password, username) VALUES (1, 0, 'admin@admin.com', 'Viorica', 'Administrator', '0700000000', 'admin', 'admin');
 INSERT INTO msg_training.users (ID, counter, email, first_name, last_name, mobile_number, password, username) VALUES (5, 0, 'pm@pm.com', 'Serban', 'Manager', '0700000000', 'pm', 'pm');
