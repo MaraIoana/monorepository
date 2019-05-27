@@ -13,34 +13,6 @@ export class AppComponent {
   public inputListViewChild;
 
   title = 'jbugs-web';
-  title2 = 'training-app';
-
-  public user: User = {
-    firstname: "Zsombor",
-    lastname: "l2",
-    age: 48,
-    roles: [Roles.CREATE_BUG]
-  };
-  public users: User[] = [
-    {
-      firstname: "Zsosmbor",
-      lastname: "l2",
-      age: 48,
-      roles: [Roles.DELETE_BUG]
-    },
-    {
-      firstname: "Marian",
-      lastname: "Pop",
-      age: 11,
-      roles: [Roles.CREATE_BUG, Roles.DELETE_BUG]
-    },
-    {
-      firstname: "Dan",
-      lastname: "Popescu",
-      age: 28,
-      roles: [Roles.CREATE_BUG]
-    }
-  ]
 
   alertUserFromList(user: User) {
     alert(user.firstname);

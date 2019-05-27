@@ -22,7 +22,6 @@ export class UserComponent implements OnInit {
 
   alertUser(person: User) {
     this.output.emit(person);
-
   }
 
   ngOnInit() {

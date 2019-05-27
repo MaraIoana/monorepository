@@ -95,6 +95,7 @@ public class UserControl {
 
     }
 
+
     public String authenticateUser(UserInputDTO userInputDTO) {
         UserEntity byEmail = userDao.findByEmail(userInputDTO.getEmail());
         if (byEmail != null) {
@@ -108,4 +109,8 @@ public class UserControl {
             throw new BusinessException(MessageCatalog.INVALID_CREDENTIALS);
         }
     }
+
+
+
+
 }

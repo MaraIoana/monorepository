@@ -27,5 +27,5 @@
     <div *ngIf="lastName.touched && lastName.invalid" class="alert alert-danger">Last name is required</div>
   </div>
 
-  <button (click)="login(form)" [disabled]="form.invalid" class="btn btn-primary">Login</button>
+  <button (click)="onSubmit(form)" [disabled]="form.invalid" class="btn btn-primary">Login</button>
 </form>

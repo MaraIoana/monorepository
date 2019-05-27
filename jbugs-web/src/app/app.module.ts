@@ -13,6 +13,9 @@ import {UserEditComponent} from './user/user-edit/user-edit.component';
 import {UsersComponent} from './user/users/users.component';
 import {BugsComponent} from './bugs/bugs.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import {UserService} from "./user/services/user.service";
+import {LoggedInGuard} from "./logged-in.guard";
+
 
 @NgModule({
   declarations: [
@@ -32,10 +35,11 @@ import {DashboardComponent} from './dashboard/dashboard.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [UserService, LoggedInGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
 
 
 

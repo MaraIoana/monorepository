@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <form action="j_security_check" method="POST">
+
+        <div>
+            <label for="j_username"> Username </label>
+            <input name="j_username"
+                   type="text"
+                   required = "true"
+                   id="j_username"/>
+        </div>
+        <br/>
+        <div>
+            <label for="j_password"/> Password </label>
+            <input name="j_password"
+                   type="password"
+                   required = "true"
+                   id="j_password">
+        </div>
+        <br/>
+        <input type="submit" value="Login" />
+    </form>
+</body>
+</html>

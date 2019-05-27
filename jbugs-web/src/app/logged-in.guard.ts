@@ -3,6 +3,7 @@ import {Injectable} from "@angular/core";
 import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from "@angular/router";
 
 import {Observable} from "rxjs";
+import {UserService} from "./user/services/user.service";
 
 
 @Injectable({
@@ -14,7 +15,7 @@ import {Observable} from "rxjs";
 export class LoggedInGuard implements CanActivate {
 
 
-  constructor() {
+  constructor(private userService: UserService) {
 
   }
 
@@ -35,10 +36,8 @@ export class LoggedInGuard implements CanActivate {
 
 
     //ToDo if authService.isLoggedIn && hasRoles(user)
-
-
+    //return this.userService.isLoggedIn();
     return true;
-
   }
 
 }

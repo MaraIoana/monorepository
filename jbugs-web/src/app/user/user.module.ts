@@ -15,7 +15,7 @@ import {BackendService} from "./services/backend.service";
     RbtnDirective
   ],
   providers: [
-    BackendService
+    BackendService,
   ],
   imports: [
     CommonModule,

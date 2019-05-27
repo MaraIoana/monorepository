@@ -32,15 +32,4 @@ export class UsersComponent implements OnInit {
     this.output.emit(person);
   }
 
-  //
-  // users = [
-  //   {id:1, name:'a'},
-  //   {id:2, name:'b'},
-  //   {id:3, name:'c'}
-  // ];
-  // constructor() { }
-  //
-  // ngOnInit() {
-  // }
-
 }

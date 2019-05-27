@@ -46,4 +46,10 @@ public class UserResource {
                .build();
         //return Response.ok(userFacade.getAll()).build();
    }
+
+//   @GET
+//   @Produces(MediaType.APPLICATION_JSON)
+//   public Response getUser(String username, String password){
+//
+//   }
 }
