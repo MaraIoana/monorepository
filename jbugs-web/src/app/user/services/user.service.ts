@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {BackendService} from "./backend.service";
 import {Observable} from "rxjs";
 import {addUser} from "../../models/addUser.model";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -23,16 +24,16 @@ export class UserService {
     return this.backendService.post('http://localhost:8080/jbugs/jbugs-api/users',user, {responseType: 'text'});
   }
 
-  public login(username, password){
-    return this.backendService.post('http://localhost:8080/jbugs/jbugs-api/users', {username, password})
-      .pipe(map(user => {
-        if(user && user.token){
-          localStorage.setItem('currentUser', user.token);
-          this.loggedIn = true;
-        }
-        return user.succes;
-      }));
-  }
+  // public login(username, password){
+  //   return this.backendService.post('http://localhost:8080/jbugs/jbugs-api/users', {username, password})
+  //     .pipe(map(user => {
+  //       if(user && user.token){
+  //         localStorage.setItem('currentUser', user.token);
+  //         this.loggedIn = true;
+  //       }
+  //       return user.succes;
+  //     }));
+  // }
 
   public isLoggedIn(){
     return this.loggedIn;
