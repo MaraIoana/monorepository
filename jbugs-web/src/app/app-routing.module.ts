@@ -1,6 +1,6 @@
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {RouterModule, Routes} from "@angular/router";
-import {BugsComponent} from "./bugs/bugs.component";
+import {BugsComponent} from "./bug/bugs/bugs.component";
 import {NgModule} from "@angular/core";
 import {UsersComponent} from "./user/users/users.component";
 import {UserEditComponent} from "./user/user-edit/user-edit.component";

@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -11,8 +11,9 @@ import {SummaryPipe} from "./summary.pipe";
 import {LoginComponent} from './login/login.component';
 import {UserEditComponent} from './user/user-edit/user-edit.component';
 import {UsersComponent} from './user/users/users.component';
-import {BugsComponent} from './bugs/bugs.component';
+import {BugsComponent} from './bug/bugs/bugs.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -30,10 +31,12 @@ import {DashboardComponent} from './dashboard/dashboard.component';
     AppRoutingModule,
     UserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AgGridModule.withComponents([])
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }
 

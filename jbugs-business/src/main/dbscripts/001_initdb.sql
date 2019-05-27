@@ -14,6 +14,29 @@ create table users
 )
 ;
 
+create table bugs
+(
+	ID bigint auto_increment
+		primary key,
+	title varchar(255) not null,
+	description varchar(250) not null,
+	version varchar(255) not null,
+	targetDate datetime null,
+	status varchar(255) not null,
+	fixedVersion varchar(255) null,
+	severity varchar(255) not null,
+
+	createdByUser bigint not null,
+	assignedTo bigint not null,
+
+	constraint FK_created_by_user_id
+		foreign key (createdByUser) references users (ID),
+
+	constraint FK_assigned_to_user_id
+		foreign key (assignedTo) references users (ID)
+)
+;
+
 create table roles
 (
 	ID bigint auto_increment
@@ -77,6 +100,10 @@ create table comment
 
 
 -- insert data
+INSERT INTO msg_training.bugs (ID, title, description, version, targetDate,status, fixedVersion, severity,createdByUser, assignedTo) VALUES (20, 'Bug1', 'prima descriere', 'A001', '2019/03/09', 'FIXED', 'A002', 'HIGH',5,1);
+INSERT INTO msg_training.bugs (ID, title, description, version, targetDate,status, fixedVersion, severity,createdByUser, assignedTo) VALUES (21, 'Bug2', 'alta descriere', 'X001', '2018/05/09', 'CLOSED', 'K1002', 'LOW',9,10);
+INSERT INTO msg_training.bugs (ID, title, description, version, targetDate,status, fixedVersion, severity,createdByUser, assignedTo) VALUES (22, 'Bug3', 'tot aia', 'P001','2019/03/04', 'INPROGRESS', 'O019', 'NEW',1,7);
+
 INSERT INTO msg_training.users (ID, counter, email, first_name, last_name, mobile_number, password, username) VALUES (1, 0, 'admin@admin.com', 'Viorica', 'Administrator', '0700000000', 'admin', 'admin');
 INSERT INTO msg_training.users (ID, counter, email, first_name, last_name, mobile_number, password, username) VALUES (5, 0, 'pm@pm.com', 'Serban', 'Manager', '0700000000', 'pm', 'pm');
 INSERT INTO msg_training.users (ID, counter, email, first_name, last_name, mobile_number, password, username) VALUES (6, 0, 'tm@tm.com', 'Mihai', 'TestManager', '0700000000', 'tm', 'tm');
