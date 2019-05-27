@@ -5,6 +5,7 @@ import {UserComponent} from "./user.component";
 import {JumperDirective} from "./directives/jumper.directive";
 import {RbtnDirective} from "./directives/rbtn.directive";
 import {BackendService} from "./services/backend.service";
+import {AgGridModule} from "ag-grid-angular"
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {BackendService} from "./services/backend.service";
   ],
   imports: [
     CommonModule,
+    AgGridModule.withComponents([])
   ],
   exports: [
     UserListComponent,

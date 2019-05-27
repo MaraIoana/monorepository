@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
+import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -14,6 +14,7 @@ import {UsersComponent} from './user/users/users.component';
 import {BugsComponent} from './bug/bugs/bugs.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { UserAddComponent } from './user/user-add/user-add.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AgGridModule } from 'ag-grid-angular';
     UserEditComponent,
     UsersComponent,
     BugsComponent,
-    DashboardComponent
+    DashboardComponent,
+    UserAddComponent
   ],
   imports: [
     BrowserModule,

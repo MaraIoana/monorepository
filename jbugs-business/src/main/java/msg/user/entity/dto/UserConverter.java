@@ -4,9 +4,13 @@
 package msg.user.entity.dto;
 
 import msg.role.control.RoleControl;
+import msg.role.entity.RoleEntity;
+import msg.role.entity.dto.RoleConverter;
 import msg.user.entity.UserEntity;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -22,6 +26,9 @@ public class UserConverter {
     @EJB
     private RoleControl roleControl;
 
+    @EJB
+    private RoleConverter roleConverter;
+
     /**
      * Converts a {@link UserInputDTO} to {@link UserEntity}.
      *
@@ -34,11 +41,15 @@ public class UserConverter {
         u.setLastName(userInputDTO.getLastName());
         u.setEmail(userInputDTO.getEmail());
         u.setMobileNumber(userInputDTO.getMobileNumber());
+        u.setUsername(userInputDTO.getUsername());
         u.setRoles(new ArrayList<>());
 
         if (userInputDTO.getRoles() != null && !userInputDTO.getRoles().isEmpty()){
             u.getRoles().addAll(
-                    roleControl.getRolesByTypeList(userInputDTO.getRoles()));
+                    roleControl.getRolesByTypeList(userInputDTO.getRoles())
+                            .stream()
+                            .map(roleConverter::dtoToEntity)
+                            .collect(Collectors.toList()));
         }
         return u;
     }
@@ -51,5 +62,22 @@ public class UserConverter {
         u.setMobileNumber(userEntity.getMobileNumber());
         return u;
     }
+
+    public UserInputDTO convertEntityDTOO(UserEntity userEntity){
+        final UserInputDTO u = new UserInputDTO();
+        u.setFirstName(userEntity.getFirstName());
+        u.setLastName(userEntity.getLastName());
+        u.setEmail(userEntity.getEmail());
+        u.setMobileNumber(userEntity.getMobileNumber());
+        u.setUsername(userEntity.getUsername());
+        List<String> roles = new ArrayList<>();
+        for(RoleEntity el: userEntity.getRoles())
+        {
+            roles.add(el.getType());
+        }
+        u.setRoles(roles);
+        return u;
+    }
+
 
 }

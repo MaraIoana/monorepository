@@ -3,9 +3,9 @@
 // =================================================================================================
 package msg.user.boundary;
 
-import msg.right.Permission;
+import msg.permission.entity.Permission;
+import msg.exeptions.BusinessException;
 import msg.user.control.UserControl;
-import msg.user.entity.dto.UserDTO;
 import msg.user.entity.dto.UserInputDTO;
 
 import javax.annotation.security.PermitAll;
@@ -33,11 +33,16 @@ public class UserFacade {
      */
     @PermitAll
     @RolesAllowed(Permission.USER_MANAGEMENT)
-    public void createUser(UserInputDTO user){
-         this.userControl.createUser(user);
+    public Object createUser(UserInputDTO user){
+        try{
+            return this.userControl.createUser(user);
+        }
+        catch (BusinessException e){
+         return e.getExceptionMessage();
+        }
     }
 
-    public List<UserDTO> getAll(){
+    public List<UserInputDTO> getAll(){
         return userControl.getAll();
     }
 
