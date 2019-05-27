@@ -3,7 +3,7 @@ package msg.bug.boundary;
 import msg.bug.control.BugControl;
 import msg.bug.entity.Bug;
 import msg.bug.entity.dto.BugDTO;
-import msg.right.Permission;
+
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
