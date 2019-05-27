@@ -49,7 +49,6 @@ public class UserControl {
      * @return the username of the newly created user.
      */
     public UserInputDTO createUser(final UserInputDTO userDTO){
-        //userDTO = null;
         if (userDao.existsEmail(userDTO.getEmail())){
             throw new BusinessException(MessageCatalog.USER_WITH_SAME_MAIL_EXISTS);
         }
@@ -82,7 +81,7 @@ public class UserControl {
      */
     private String createUserName(final String firstName, final String lastName, int count){
         if(count <=5){
-            return firstName.substring(0, 5-count).toUpperCase() + lastName.substring(lastName.length() - count-1,lastName.length() - 1).toUpperCase();
+            return firstName.substring(0, 5-count).toUpperCase() + lastName.substring(lastName.length() - count ,lastName.length()).toUpperCase();
         }
         else {
             String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

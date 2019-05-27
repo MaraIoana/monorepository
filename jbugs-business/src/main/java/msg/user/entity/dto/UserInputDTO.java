@@ -17,7 +17,6 @@ public class UserInputDTO {
     private String lastName;
     private String email;
     private String mobileNumber;
-    //private int counter;
     private List<String> roles=new ArrayList<>();
 
     /**
