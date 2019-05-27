@@ -3,6 +3,7 @@ package msg.application;
 import msg.exeptions.BusinessExceptionMapper;
 import msg.exeptions.RuntimeExceptionMapper;
 import msg.filters.AuthorizationFilter;
+import msg.permission.boundary.PermissionResource;
 import msg.role.boundary.RoleResource;
 import msg.user.boundary.AuthResource;
 import msg.user.boundary.UserResource;
@@ -29,6 +30,7 @@ public class JBugsApplication extends Application {
         classes.add(RuntimeExceptionMapper.class);
         classes.add(AuthResource.class);
         classes.add(RoleResource.class);
+        classes.add(PermissionResource.class);
         //classes.add(AuthorizationFilter.class);
         return classes;
     }

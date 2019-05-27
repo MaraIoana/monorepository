@@ -1,10 +1,11 @@
 package msg.role.boundary;
 
+import msg.role.entity.dto.RoleInputDTO;
+import msg.role.entity.dto.RoleTypeDTO;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -32,5 +33,21 @@ public class RoleResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll(){
         return Response.ok(roleFacade.getAll()).build();
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/role")
+    public Response getRole(RoleTypeDTO type) {
+        return Response.ok(roleFacade.getRole(type.getType())).build();
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/save")
+    public Response save(RoleInputDTO roleInputDTO){
+        return Response.ok(roleFacade.save(roleInputDTO)).build();
     }
 }

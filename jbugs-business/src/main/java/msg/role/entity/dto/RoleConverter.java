@@ -1,10 +1,13 @@
 package msg.role.entity.dto;
 
 import msg.permission.control.PermissionControl;
+import msg.permission.entity.dto.PermissionConverter;
+import msg.permission.entity.dto.PermissionDTO;
 import msg.role.entity.RoleEntity;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -20,13 +23,19 @@ public class RoleConverter {
     @EJB
     private PermissionControl permissionControl;
 
+    @EJB
+    private PermissionConverter permissionConverter;
+
     public RoleEntity dtoToEntity(RoleInputDTO dto){
         RoleEntity roleEntity = new RoleEntity();
 
         roleEntity.setType(dto.getType());
         if (dto.getPermissions() != null && !dto.getPermissions().isEmpty()){
+            List<PermissionDTO> permissionDTOList = permissionControl.getPermissionsByRoles(dto.getPermissions());
+
+
             roleEntity.getPermissions().addAll(
-                    permissionControl.getPermissionsByTypeList(dto.getPermissions()));
+                    permissionDTOList.stream().map(permissionConverter::dtoToEntity).collect(Collectors.toList()));
         }
 
         return roleEntity;

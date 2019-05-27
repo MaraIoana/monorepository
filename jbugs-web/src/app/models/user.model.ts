@@ -1,8 +1,13 @@
-import {Roles} from "./roles.model";
+import {Role} from "./role.model";
 
 export interface User {
-  firstname: string;
-  lastname: string;
-  age: number;
-  roles: Roles[];
+  id:number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  mobileNumber: string;
+  username:string;
+  password:string;
+  counter:number;
+  roles:Role[];
 }

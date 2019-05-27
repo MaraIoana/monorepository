@@ -28,13 +28,24 @@ public class PermissionDao {
         return p;
     }
 
+    public PermissionEntity getPermissionByType(String type){
+        return em.createNamedQuery(PermissionEntity.GET_PERMISSION_BY_TYPE,PermissionEntity.class)
+                .setParameter("type",type)
+                .getSingleResult();
+    }
+
     public void removePermission(PermissionEntity p){
         em.remove(p);
     }
 
-    public List<PermissionEntity> getPermissionsByTypeList(final List<String> typeList){
-        return em.createNamedQuery(PermissionEntity.QUERY_GET_PERMISSIONS_BY_TYPE_LIST, PermissionEntity.class)
-                .setParameter(PermissionEntity.INPUT_TYPE_LIST, typeList)
+    public List<PermissionEntity> getPermissionsByRoles(final List<String> roles){
+        return em.createNamedQuery(PermissionEntity.QUERY_GET_PERMISSIONS_BY_ROLES, PermissionEntity.class)
+                .setParameter(PermissionEntity.INPUT_ROLES, roles)
+                .getResultList();
+    }
+
+    public List<PermissionEntity> getAll(){
+        return em.createNamedQuery(PermissionEntity.FIND_ALL,PermissionEntity.class)
                 .getResultList();
     }
 }

@@ -3,8 +3,14 @@
 // =================================================================================================
 package msg.role.entity;
 
+import msg.permission.entity.Permission;
+import msg.permission.entity.PermissionEntity;
+import msg.role.entity.dto.RoleInputDTO;
+
+import java.util.Collections;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.management.relation.Role;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -34,5 +40,21 @@ public class RoleDao {
 
     public List<RoleEntity> getAll(){
         return em.createNamedQuery(RoleEntity.FIND_ALL, RoleEntity.class).getResultList();
+    }
+
+    public RoleEntity save(RoleInputDTO roleInputDTO){
+        RoleEntity roleEntity = getRole(roleInputDTO.getType());
+        roleEntity = em.find(RoleEntity.class,roleEntity.getId());
+        List<PermissionEntity> permissions = em.createNamedQuery(PermissionEntity.GET_PERMISSION_ENTITIES,PermissionEntity.class)
+                .setParameter("types",roleInputDTO.getPermissions())
+                .getResultList();
+
+        roleEntity.setPermissions(permissions);
+        em.flush();
+        return roleEntity;
+    }
+
+    private RoleEntity getRole(String type){
+        return this.getRolesByTypeList(Collections.singletonList(type)).get(0);
     }
 }

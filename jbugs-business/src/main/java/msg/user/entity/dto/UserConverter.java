@@ -4,9 +4,11 @@
 package msg.user.entity.dto;
 
 import msg.role.control.RoleControl;
+import msg.role.entity.dto.RoleConverter;
 import msg.user.entity.UserEntity;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -21,6 +23,9 @@ public class UserConverter {
 
     @EJB
     private RoleControl roleControl;
+
+    @EJB
+    private RoleConverter roleConverter;
 
     /**
      * Converts a {@link UserInputDTO} to {@link UserEntity}.
@@ -38,7 +43,10 @@ public class UserConverter {
 
         if (userInputDTO.getRoles() != null && !userInputDTO.getRoles().isEmpty()){
             u.getRoles().addAll(
-                    roleControl.getRolesByTypeList(userInputDTO.getRoles()));
+                    roleControl.getRolesByTypeList(userInputDTO.getRoles())
+                            .stream()
+                            .map(roleConverter::dtoToEntity)
+                            .collect(Collectors.toList()));
         }
         return u;
     }

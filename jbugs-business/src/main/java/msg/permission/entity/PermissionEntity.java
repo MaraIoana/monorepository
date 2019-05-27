@@ -14,13 +14,28 @@ import javax.persistence.*;
 @Entity
 @Table(name="permission")
 @NamedQueries({
-        @NamedQuery(name= PermissionEntity.QUERY_GET_PERMISSIONS_BY_TYPE_LIST,
-                query= "select r from PermissionEntity r "
-                        + "where r.type in :" + PermissionEntity.INPUT_TYPE_LIST )})
+        @NamedQuery(name = PermissionEntity.QUERY_GET_PERMISSIONS_BY_ROLES,
+                query = "select p from PermissionEntity p "
+                        + "where p.type in :" + PermissionEntity.INPUT_ROLES),
+        @NamedQuery(name = PermissionEntity.GET_PERMISSION_BY_TYPE,
+                query = "select p from PermissionEntity p " +
+                        "where p.type = :type"),
+        @NamedQuery(name = PermissionEntity.FIND_ALL,
+                query = "select p from PermissionEntity p"),
+        @NamedQuery(name= PermissionEntity.GET_PERMISSION_ENTITIES,
+                query = "select p from PermissionEntity p" +
+                        " where p.type in :" + PermissionEntity.TYPES)
+}
+)
 public class PermissionEntity extends BaseEntity<Long> {
 
-    public static final String QUERY_GET_PERMISSIONS_BY_TYPE_LIST = "getPermissionsByTypeList";
-    public static final String INPUT_TYPE_LIST = "type";
+    public static final String QUERY_GET_PERMISSIONS_BY_ROLES = "getPermissionsByRoles";
+    public static final String INPUT_ROLES = "roles";
+    public static final String GET_PERMISSION_BY_TYPE = "getPermissionByType";
+    public static final String FIND_ALL = "findAllPermissions";
+    public static final String GET_PERMISSION_ENTITIES = "getPermissionEntities";
+    public static final String TYPES = "types";
+
 
     @Column(name="type", nullable = false)
     private String type;

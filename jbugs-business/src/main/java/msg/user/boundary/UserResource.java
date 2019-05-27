@@ -23,27 +23,23 @@ public class UserResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
    public Response createUser(UserInputDTO inputDTO){
-        userFacade = null;
         userFacade.createUser(inputDTO);
         return Response.ok().build();
-
-//       userFacade.createUser(inputDTO);
-//       return null;
    }
 
    @GET
    @Produces(MediaType.APPLICATION_JSON)
     public Response getAll(){
-       return Response
-               .status(200)
-               .header("Access-Control-Allow-Origin", "*")
-               .header("Access-Control-Allow-Credentials", "true")
-               .header("Access-Control-Allow-Headers",
-                       "origin, content-type, accept, authorization")
-               .header("Access-Control-Allow-Methods",
-                       "GET, POST, PUT, DELETE, OPTIONS, HEAD")
-               .entity(userFacade.getAll())
-               .build();
-        //return Response.ok(userFacade.getAll()).build();
+//       return Response
+//               .status(200)
+//               .header("Access-Control-Allow-Origin", "*")
+//               .header("Access-Control-Allow-Credentials", "true")
+//               .header("Access-Control-Allow-Headers",
+//                       "origin, content-type, accept, authorization")
+//               .header("Access-Control-Allow-Methods",
+//                       "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+//               .entity(userFacade.getAll())
+//               .build();
+        return Response.ok(userFacade.getAll()).build();
    }
 }

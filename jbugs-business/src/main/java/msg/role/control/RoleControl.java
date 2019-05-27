@@ -3,11 +3,13 @@
 // =================================================================================================
 package msg.role.control;
 
+import msg.permission.entity.dto.PermissionDTO;
 import msg.role.entity.RoleEntity;
 import msg.role.entity.RoleDao;
 import msg.role.entity.dto.RoleConverter;
 import msg.role.entity.dto.RoleInputDTO;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
@@ -33,8 +35,11 @@ public class RoleControl {
      * @param typeList a list of role types.
      * @return a list of role entities.
      */
-    public List<RoleEntity> getRolesByTypeList(List<String> typeList){
-        return roleDao.getRolesByTypeList(typeList);
+    public List<RoleInputDTO> getRolesByTypeList(List<String> typeList){
+        return roleDao.getRolesByTypeList(typeList)
+                .stream()
+                .map(roleConverter::entityToDto)
+                .collect(Collectors.toList());
     }
 
     public List<RoleInputDTO> getAll(){
@@ -48,7 +53,15 @@ public class RoleControl {
     public List<String> getRoleTypes(){
         return roleDao.getAll()
                 .stream()
-                .map(role -> role.getType())
+                .map(RoleEntity::getType)
                 .collect(Collectors.toList());
     }
+
+    public RoleInputDTO save(RoleInputDTO roleInputDTO){
+        RoleEntity roleEntity = roleDao.save(roleInputDTO);
+
+        return roleConverter.entityToDto(roleEntity);
+    }
+
+
 }

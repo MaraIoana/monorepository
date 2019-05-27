@@ -17,7 +17,7 @@ import java.util.Objects;
 @Entity
 @Table(name="roles")
 @NamedQueries({
-        @NamedQuery(name="getPermissions",
+        @NamedQuery(name= RoleEntity.GET_PERMISSIONS,
             query="select r.permissions from RoleEntity r where r.type=:type "),
         @NamedQuery(name= RoleEntity.QUERY_GET_ROLES_BY_TYPE_LIST,
             query= "select r from RoleEntity r where r.type in :" + RoleEntity.INPUT_TYPE_LIST ),
@@ -28,7 +28,8 @@ public class RoleEntity extends BaseEntity<Long> {
 
     public static final String QUERY_GET_ROLES_BY_TYPE_LIST = "getRolesByTypeList";
     public static final String INPUT_TYPE_LIST = "type";
-    public static final String FIND_ALL = "findAll";
+    public static final String FIND_ALL = "findAllRoles";
+    public static final String GET_PERMISSIONS = "getPermissions";
     @Column(name="type",nullable = false)
     private String type;
 
