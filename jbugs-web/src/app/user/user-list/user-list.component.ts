@@ -2,6 +2,7 @@ import {Component,OnInit} from '@angular/core';
 import {UserService} from "../services/user.service";
 import {User} from "../../models/user.model";
 import {RestUser} from "../../models/restUser.models";
+import {addUser} from "../../models/addUser.model";
 
 @Component({
   selector: 'app-user-list',
@@ -17,7 +18,7 @@ export class UserListComponent implements OnInit {
 
   private columnDefs;
 
-  public userList: RestUser[];
+  public userList: addUser[];
 
   constructor(private userService: UserService) {
     this.columnDefs = [
@@ -25,9 +26,8 @@ export class UserListComponent implements OnInit {
       {headerName: 'Lastname', field: 'lastName',sortable:true,filter:true},
       {headerName: 'Email', field: 'email',sortable:true,filter:true},
       {headerName: 'Mobile', field: 'mobileNumber',sortable:true,filter:true},
-      {headerName: 'Username', field: 'username',sortable:true,filter:true},
-      {headerName: 'Password', field: 'password',sortable:true,filter:true},
-      {headerName: 'Counter', field: 'counter',sortable:true,filter:true},
+      {headerName: 'Username', field: 'username',sortable:true,filter:true}
+
     ];
     this.rowSelection="single";
   }

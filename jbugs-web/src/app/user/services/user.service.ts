@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BackendService} from "./backend.service";
 import {Observable} from "rxjs";
-import {RestUser} from "../../models/restUser.models";
+import {addUser} from "../../models/addUser.model";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class UserService {
   constructor(private backendService: BackendService) {
   }
 
-  public getAllUsers(): Observable<RestUser[]> {
+  public getAllUsers(): Observable<addUser[]> {
     //return this.backendService.get('jbugs/jbugs-api/users');
     //return this.backendService.get('localhost:8080/jbugs/jbugs-api/users');
     return this.backendService.get('http://localhost:8080/jbugs/jbugs-api/users');

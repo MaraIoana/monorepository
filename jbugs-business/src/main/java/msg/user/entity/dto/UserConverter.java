@@ -41,6 +41,7 @@ public class UserConverter {
         u.setLastName(userInputDTO.getLastName());
         u.setEmail(userInputDTO.getEmail());
         u.setMobileNumber(userInputDTO.getMobileNumber());
+        u.setUsername(userInputDTO.getUsername());
         u.setRoles(new ArrayList<>());
 
         if (userInputDTO.getRoles() != null && !userInputDTO.getRoles().isEmpty()){
@@ -68,6 +69,7 @@ public class UserConverter {
         u.setLastName(userEntity.getLastName());
         u.setEmail(userEntity.getEmail());
         u.setMobileNumber(userEntity.getMobileNumber());
+        u.setUsername(userEntity.getUsername());
         List<String> roles = new ArrayList<>();
         for(RoleEntity el: userEntity.getRoles())
         {
