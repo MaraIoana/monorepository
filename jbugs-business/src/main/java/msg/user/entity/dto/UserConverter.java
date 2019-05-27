@@ -4,11 +4,13 @@
 package msg.user.entity.dto;
 
 import msg.role.control.RoleControl;
+import msg.role.entity.RoleEntity;
 import msg.role.entity.dto.RoleConverter;
 import msg.user.entity.UserEntity;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -59,5 +61,21 @@ public class UserConverter {
         u.setMobileNumber(userEntity.getMobileNumber());
         return u;
     }
+
+    public UserInputDTO convertEntityDTOO(UserEntity userEntity){
+        final UserInputDTO u = new UserInputDTO();
+        u.setFirstName(userEntity.getFirstName());
+        u.setLastName(userEntity.getLastName());
+        u.setEmail(userEntity.getEmail());
+        u.setMobileNumber(userEntity.getMobileNumber());
+        List<String> roles = new ArrayList<>();
+        for(RoleEntity el: userEntity.getRoles())
+        {
+            roles.add(el.getType());
+        }
+        u.setRoles(roles);
+        return u;
+    }
+
 
 }

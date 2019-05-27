@@ -1,6 +1,7 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component,OnInit} from '@angular/core';
 import {UserService} from "../services/user.service";
 import {User} from "../../models/user.model";
+import {RestUser} from "../../models/restUser.models";
 
 @Component({
   selector: 'app-user-list',
@@ -16,7 +17,7 @@ export class UserListComponent implements OnInit {
 
   private columnDefs;
 
-  public userList: User[];
+  public userList: RestUser[];
 
   constructor(private userService: UserService) {
     this.columnDefs = [
