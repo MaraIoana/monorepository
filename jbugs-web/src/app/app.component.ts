@@ -1,6 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
-import {User} from "./models/user.model";
-import {Roles} from "./models/roles.model";
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,19 +6,5 @@ import {Roles} from "./models/roles.model";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
-  @ViewChild('userList')
-  public inputListViewChild;
-
-  title = 'jbugs-web';
-
-  alertUserFromList(user: User) {
-    alert(user.firstname);
-  }
-
-  alertChild() {
-    alert(this.inputListViewChild.lastname);
-  }
-
 
 }

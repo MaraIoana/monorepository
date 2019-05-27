@@ -17,8 +17,16 @@ public class UserInputDTO {
     private String lastName;
     private String email;
     private String mobileNumber;
-    private int counter;
+    private String username;
     private List<String> roles=new ArrayList<>();
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     /**
      * Getter.
@@ -91,24 +99,6 @@ public class UserInputDTO {
      */
     public void setMobileNumber(final String pMobileNumber) {
         this.mobileNumber = pMobileNumber;
-    }
-
-    /**
-     * Getter.
-     *
-     * @return counter
-     */
-    public int getCounter() {
-        return this.counter;
-    }
-
-    /**
-     * Setter.
-     *
-     * @param pCounter
-     */
-    public void setCounter(final int pCounter) {
-        this.counter = pCounter;
     }
 
     /**
