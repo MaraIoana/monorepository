@@ -38,5 +38,5 @@ public class UserResource {
                .entity(userFacade.getAll())
                .build();
         //return Response.ok(userFacade.getAll()).build();
-   }
+    }
 }

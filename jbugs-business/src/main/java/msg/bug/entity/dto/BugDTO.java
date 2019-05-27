@@ -1,8 +1,8 @@
-package edu.msg.ro.persistence.entity;
+package msg.bug.entity.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import edu.msg.ro.persistence.entity.BaseEntity;
+import msg.bug.entity.Severity;
+import msg.bug.entity.Status;
 import java.util.Date;
 
 /**
@@ -11,28 +11,19 @@ import java.util.Date;
  * @author msg systems AG; User Name.
  * @since 19.1.2
  */
-@Entity
-@Table(name = "bugs")
-public class Bug extends BaseEntity<Long>{
+public class BugDTO {
 
-    @Column(name = "title")
     private String title;
-    @Column(name = "description")
     private String description;
-    @Column(name ="version")
     private String version;
-    @Column(name ="targetDate")
     private Date date;
-    @Column(name = "Status")
-    private String Status;
-    @Column(name = "fixed_version")
+    private String status;
     private String fixedVersion;
-    @Column (name ="severity")
     private String severity;
-    /* todo: createByUser assigned to */
+    private Long  createdBy;
+    private Long  assignedTo;
 
-    public Bug() {
-    }
+    public BugDTO() { }
 
     public String getTitle() {
         return title;
@@ -66,20 +57,36 @@ public class Bug extends BaseEntity<Long>{
         this.date = date;
     }
 
-    public String getStatus() {
-        return Status;
-    }
-
-    public void setStatus(String status) {
-        Status = status;
-    }
-
     public String getFixedVersion() {
         return fixedVersion;
     }
 
     public void setFixedVersion(String fixedVersion) {
         this.fixedVersion = fixedVersion;
+    }
+
+    public Long getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Long createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Long getAssignedTo() {
+        return assignedTo;
+    }
+
+    public void setAssignedTo(Long assignedTo) {
+        this.assignedTo = assignedTo;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getSeverity() {
