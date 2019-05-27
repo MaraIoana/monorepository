@@ -1,14 +1,12 @@
-<!--<ul *ngIf="showlist">-->
-<!--  <li *ngFor="let person of userlist">{{person.firstName}} , {{person.lastName}}-->
-<!--    &lt;!&ndash;<button appRbtn [role]="person.roles" (click)="alertUser(person)">get name</button>-->
-<!--    &ndash;&gt;-->
-<!--  </li>-->
-<!--</ul>-->
-<ul *ngIf="showList">
-  <li *ngFor="let person of userList"> {{person.firstName}} , {{person.mobileNumber}}
-    <button (click)="alertUser(person)"> alert{{person.firstName}}</button>
-
-  </li>
-
-
-</ul>
+<div class="test-header">Selection: <span id="selectedRow"></span></div>
+<ag-grid-angular
+  id="myGrid"
+  style="width: 1000px; height: 1000px;"
+  class="ag-theme-balham"
+  [rowData]="userList"
+  [columnDefs]="columnDefs"
+  [rowSelection]="rowSelection"
+  (selectionChanged)="onSelectionChanged()"
+  (gridReady)="onGridReady($event)"
+>
+</ag-grid-angular>

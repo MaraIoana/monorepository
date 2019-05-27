@@ -9,7 +9,7 @@ import msg.exeptions.BusinessException;
 import msg.notifications.boundary.NotificationFacade;
 import msg.notifications.boundary.notificationParams.NotificationParamsWelcomeUser;
 import msg.notifications.entity.NotificationType;
-import msg.role.entity.Role;
+import msg.role.entity.RoleEntity;
 import msg.user.MessageCatalog;
 import msg.user.entity.dto.UserDTO;
 import msg.user.entity.dto.UserInputDTO;
@@ -19,7 +19,6 @@ import msg.user.entity.UserDao;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -111,7 +110,7 @@ public class UserControl {
                     .withClaim("username",byEmail.getUsername())
                     .withArrayClaim("roles",byEmail.getRoles()
                             .stream()
-                            .map(Role::getType).toArray(String[]::new)) .sign(algorithm);
+                            .map(RoleEntity::getType).toArray(String[]::new)) .sign(algorithm);
         } else {
             throw new BusinessException(MessageCatalog.INVALID_CREDENTIALS);
         }

@@ -1,7 +1,7 @@
 package msg.user.entity;
 
 import edu.msg.ro.persistence.entity.BaseEntity;
-import msg.role.entity.Role;
+import msg.role.entity.RoleEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +58,7 @@ public class UserEntity extends BaseEntity<Long> {
             joinColumns = @JoinColumn(name="user_id", referencedColumnName = "id",nullable = false),
             inverseJoinColumns = @JoinColumn(name="role_id",referencedColumnName = "id",nullable = false)
     )
-    private List<Role> roles=new ArrayList<>();
+    private List<RoleEntity> roles=new ArrayList<>();
 
     public UserEntity() { }
 
@@ -118,11 +118,11 @@ public class UserEntity extends BaseEntity<Long> {
         this.counter = counter;
     }
 
-    public List<Role> getRoles() {
+    public List<RoleEntity> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(List<RoleEntity> roles) {
         this.roles = roles;
     }
 

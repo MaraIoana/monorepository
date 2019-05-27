@@ -3,11 +3,9 @@
 // =================================================================================================
 package msg.user.boundary;
 
-import com.sun.org.apache.xpath.internal.operations.String;
+import msg.permission.entity.Permission;
 import msg.exeptions.BusinessException;
-import msg.right.Permission;
 import msg.user.control.UserControl;
-import msg.user.entity.dto.UserDTO;
 import msg.user.entity.dto.UserInputDTO;
 
 import javax.annotation.security.PermitAll;
