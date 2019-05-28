@@ -71,7 +71,11 @@ public class UserDao {
     public List<UserEntity> getAll(){
         return em.createNamedQuery(UserEntity.USER_FIND_ALL, UserEntity.class).getResultList();
     }
-
+    public UserEntity getUser(String username){
+        return em.createNamedQuery(UserEntity.USER_FIND_BY_USERNAME, UserEntity.class).
+                setParameter(UserEntity.USERNAME,username)
+                .getSingleResult();
+    }
     public UserEntity findByEmail(String email){
         return em.createNamedQuery(UserEntity.USER_FIND_BY_EMAIL, UserEntity.class)
                 .setParameter(UserEntity.EMAIL,email)

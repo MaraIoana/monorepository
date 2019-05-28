@@ -3,7 +3,7 @@
 
 <h1>Users</h1>
 <div *ngFor="let person of userList">
-  <li>{{person.firstName}}
+  <li>{{person.firstName}} <button (click)="updateUser(person)"> {{"Update"}}</button>
   <div *ngFor="let role of person.roles">
     <p>{{role.toString()}}</p>
   </div>

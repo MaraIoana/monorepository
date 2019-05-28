@@ -1,4 +1,4 @@
-<form #form='ngForm' (ngSubmit)="submit(form)">
+<form #form='ngForm'>
   <div class="form-group">
     <label> First Name </label>
     <input class="form-control"
@@ -6,6 +6,7 @@
            id="firstName"
            name="firstName"
            required
+           [ngModel]="user.lastName"
            #firstName="ngModel"
            ngModel>
     <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid">Required field</div>
@@ -17,6 +18,7 @@
            id="lastName"
            name="lastName"
            required
+           [ngModel]="user.lastName"
            #lastName="ngModel"
            ngModel>
     <div class="alert alert-danger" *ngIf="lastName.touched && lastName.invalid">Required field</div>
@@ -28,22 +30,26 @@
            id="email"
            name="email"
            required
+           [ngModel]="user.email"
            #email="ngModel"
            ngModel>
     <div class="alert alert-danger" *ngIf="email.touched && email.invalid">Required field</div>
   </div>
   <div class="form-group">
-    <label> Phone Number </label>
+    <label> Mobile Number </label>
     <input class="form-control"
            type="text"
-           id="phoneNumber"
-           name="phoneNumber"
+           id="mobilNumber"
+           name="mobileNumber"
            required
-           #phoneNumber="ngModel"
-           ngModel>
-    <div class="alert alert-danger" *ngIf="phoneNumber.touched && phoneNumber.invalid">Required field</div>
+           [ngModel]="user.mobileNumber"
+           #mobileNumber="ngModel"
+           ngModel
+           >
+
+    <div class="alert alert-danger" *ngIf="mobileNumber.touched && mobileNumber.invalid">Required field</div>
   </div>
-  <button class="btn btn-primary" [disabled]="form.invalid">Update</button>
+  <button type="submit" (click)="submit(form)" class="btn btn-primary" [disabled]="form.invalid">Update</button>
 
 
 </form>

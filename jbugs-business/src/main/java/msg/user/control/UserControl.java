@@ -124,6 +124,13 @@ public class UserControl {
 
     }
 
+    public UserDTO getUser(String username){
+        UserEntity user = userDao.getUser(username);
+         return userConverter.convertEntityDTO(user);
+
+
+    }
+
     public String authenticateUser(UserInputDTO userInputDTO) {
         UserEntity byEmail = userDao.findByEmail(userInputDTO.getEmail());
         if (byEmail != null) {

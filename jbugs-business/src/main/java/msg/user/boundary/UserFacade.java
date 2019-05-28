@@ -57,6 +57,12 @@ public class UserFacade {
         return userControl.getAll();
     }
 
+    public UserDTO getUser(String username){
+        System.out.println("Usercontrol:"+ username);
+        System.out.println("before Usecontrol......%%%%%%");
+        return userControl.getUser(username);
+    }
+
 
     public Object authenticateUser(UserInputDTO userInputDTO) {
        return userControl.authenticateUser(userInputDTO);

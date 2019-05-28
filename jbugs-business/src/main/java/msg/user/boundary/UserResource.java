@@ -36,7 +36,7 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateUser(UserDTO userDTO) {
         //userFacade = null;
-        //userFacade.updateUser(userDTO);
+        //userFacade.updateUser(userDTO)
         return Response.status(200).entity(userFacade.updateUser(userDTO)).build();
 
     }
@@ -50,4 +50,21 @@ public class UserResource {
                .build();
         //return Response.ok(userFacade.getAll()).build();
    }
+
+    @GET
+    @Path(value = "/getUser/{username}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getUser(@PathParam("username") String username){
+        System.out.println("String username ´" + username);
+        return Response
+                .status(200)
+                .entity(userFacade.getUser(username))
+                .build();
+       /*
+        return Response
+                .status(200)
+                .entity(userFacade.getAll())
+                .build();*/
+        //return Response.ok(userFacade.getAll()).build(
+    }
 }
