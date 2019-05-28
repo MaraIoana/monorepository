@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module version="4">
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" version="4">
   <component name="FacetManager">
     <facet type="ejb" name="EJB">
       <configuration>
@@ -33,6 +33,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="jbugs-persistence" />
     <orderEntry type="library" name="Maven: com.auth0:java-jwt:3.8.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.8" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.8" level="project" />

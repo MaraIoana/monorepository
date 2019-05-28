@@ -31,7 +31,6 @@ public class UserEntity extends BaseEntity<Long> {
     public static final String USERNAME = "username";
     public static final String USER_FIND_BY_EMAIL = "UserEntity.findByEmail";
     public static final String USER_FIND_BY_USERNAME = "UserEntity.findByUsername";
-    public static final String USERNAME = "username";
     public static final String USER_COUNT_BY_USERNAME = "UserEntity.countByUsername";
 
     @Column(name="first_name",nullable = false)

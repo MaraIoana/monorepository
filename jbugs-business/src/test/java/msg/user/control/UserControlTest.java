@@ -8,6 +8,7 @@ import msg.user.entity.UserDao;
 import msg.user.entity.dto.UserConverter;
 import msg.user.entity.dto.UserDTO;
 import msg.user.entity.dto.UserInputDTO;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
