@@ -42,6 +42,12 @@ public class UserControlTest {
     }
 
     @Test
+    public void getAll() {
+
+        Assert.assertEquals(2,userDao.getAll().size());
+    }
+
+    @Test
     public void testCreateUserWithSuccess(){
         UserInputDTO user = createTestInputDTO();
 

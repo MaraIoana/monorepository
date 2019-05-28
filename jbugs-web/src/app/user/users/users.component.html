@@ -2,18 +2,6 @@
 <button routerLink="/user-add">Add a new user</button>
 
 <h1>Users</h1>
-<div *ngFor="let person of userList">
-  <li>{{person.firstName}} <button (click)="updateUser(person)"> {{"Update"}}</button>
-  <div *ngFor="let role of person.roles">
-    <p>{{role.toString()}}</p>
-  </div>
-</div>
-<!--<li>-->
-<!--  <li *ngFor="let person of userList"> {{person.firstName}}-->
-<!--  <li *ngFor="let role of person">-->
-<!--&lt;!&ndash;    <button (click)="alertUser(person)"> alert{{person.firstName}}</button>&ndash;&gt;-->
-<!--    &lt;!&ndash;    <h4><a [routerLink]="[user.id , 'edit']"> {{user.name}} </a></h4>&ndash;&gt;-->
-<!--    &lt;!&ndash;    <h4><a [routerLink]="['/users' , user.id]"> {{user.name}} </a></h4>&ndash;&gt;-->
-<!--</div>-->
+
+<app-user-list></app-user-list>
 <!--</a>-->
-<router-outlet></router-outlet>

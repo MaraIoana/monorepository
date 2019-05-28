@@ -1,7 +1,7 @@
 package msg.user.entity;
 
 import edu.msg.ro.persistence.entity.BaseEntity;
-import msg.role.entity.Role;
+import msg.role.entity.RoleEntity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -21,15 +21,18 @@ import java.util.Objects;
         @NamedQuery(name= UserEntity.USER_FIND_BY_EMAIL,query= "SELECT u from UserEntity u where u.email = :" + UserEntity.EMAIL),
         @NamedQuery(name = UserEntity.USER_FIND_BY_USERNAME, query = "SELECT u from UserEntity u where u.username = :" + UserEntity.USERNAME),
         @NamedQuery(name = UserEntity.USER_FIND_ALL,
-                    query =  "select u from UserEntity u")
+                    query =  "select u from UserEntity u"),
+        @NamedQuery(name= UserEntity.USER_COUNT_BY_USERNAME,query= "SELECT count(u) from UserEntity u where u.username = :" + UserEntity.USERNAME)
 })
 public class UserEntity extends BaseEntity<Long> {
     public static final String USER_FIND_ALL = "UserEntity.findAll";
     public static final String USER_COUNT_BY_EMAIL = "UserEntity.countByEmail";
     public static final String EMAIL = "email";
+    public static final String USERNAME = "username";
     public static final String USER_FIND_BY_EMAIL = "UserEntity.findByEmail";
     public static final String USER_FIND_BY_USERNAME = "UserEntity.findByUsername";
     public static final String USERNAME = "username";
+    public static final String USER_COUNT_BY_USERNAME = "UserEntity.countByUsername";
 
     @Column(name="first_name",nullable = false)
     private String firstName;
@@ -50,7 +53,7 @@ public class UserEntity extends BaseEntity<Long> {
             joinColumns = @JoinColumn(name="user_id", referencedColumnName = "id",nullable = false),
             inverseJoinColumns = @JoinColumn(name="role_id",referencedColumnName = "id",nullable = false)
     )
-    private List<Role> roles=new ArrayList<>();
+    private List<RoleEntity> roles=new ArrayList<>();
 
     public UserEntity() { }
 
@@ -110,11 +113,11 @@ public class UserEntity extends BaseEntity<Long> {
         this.counter = counter;
     }
 
-    public List<Role> getRoles() {
+    public List<RoleEntity> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(List<RoleEntity> roles) {
         this.roles = roles;
     }
 

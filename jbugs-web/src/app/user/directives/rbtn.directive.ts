@@ -1,4 +1,4 @@
-import {Roles} from "../../models/roles.model";
+import {Role} from "../../models/role.model";
 import {AfterViewInit, Directive, ElementRef, Input} from "@angular/core";
 
 
@@ -7,13 +7,13 @@ import {AfterViewInit, Directive, ElementRef, Input} from "@angular/core";
 })
 export class RbtnDirective implements AfterViewInit {
 
-  @Input() role: Roles[];
+  @Input() role: Role[];
 
   constructor(private el: ElementRef) {
   }
 
   ngAfterViewInit() {
-    // if (this.role.includes(Roles.DELETE_BUG))
+    // if (this.role.includes(Role.DELETE_BUG))
     //   this.el.nativeElement.disabled = true;
   }
 

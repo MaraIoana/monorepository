@@ -23,7 +23,6 @@ public class UserResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-
     @Produces(MediaType.APPLICATION_JSON)
     public Response createUser(UserInputDTO inputDTO){
         return Response
@@ -67,4 +66,5 @@ public class UserResource {
                 .build();*/
         //return Response.ok(userFacade.getAll()).build(
     }
-}
+    }
+

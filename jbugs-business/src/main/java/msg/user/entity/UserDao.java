@@ -29,6 +29,12 @@ public class UserDao {
                 .getSingleResult();
         return (count > 0);
     }
+    public boolean existUsername(String username){
+        long count = em.createNamedQuery(UserEntity.USER_COUNT_BY_USERNAME, Long.class)
+                .setParameter(UserEntity.USERNAME,username)
+                .getSingleResult();
+        return (count > 0);
+    }
 
     /**
      * Find user with username

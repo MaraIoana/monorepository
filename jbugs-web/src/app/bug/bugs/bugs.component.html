@@ -1,0 +1,17 @@
+<h3>bugs</h3>
+<!--<div>-->
+<!--  <li *ngFor="let bug of bugList"> {{bug.title}},{{bug.description}},{{bug.severity}}-->
+
+<!--</div>-->
+
+
+<ag-grid-angular
+  id="myGrid"
+  style="width: 1500px; height: 1500px;"
+  class="ag-theme-balham"
+  [rowData]="bugList"
+  [columnDefs]="columnDefs"
+
+  (rowClicked)='onRowClicked($event)'
+>
+</ag-grid-angular>

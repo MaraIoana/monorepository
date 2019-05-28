@@ -11,6 +11,7 @@
            ngModel>
     <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid">
       <div *ngIf="firstName.errors.required">The field is required</div>
+      <div *ngIf="firstName.errors.minlength">First name should have at least 5 letters.</div>
     </div>
 
   </div>

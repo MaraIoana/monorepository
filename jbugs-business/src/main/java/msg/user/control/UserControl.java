@@ -9,7 +9,7 @@ import msg.exeptions.BusinessException;
 import msg.notifications.boundary.NotificationFacade;
 import msg.notifications.boundary.notificationParams.NotificationParamsWelcomeUser;
 import msg.notifications.entity.NotificationType;
-import msg.role.entity.Role;
+import msg.role.entity.RoleEntity;
 import msg.user.MessageCatalog;
 import msg.user.entity.UserDao;
 import msg.user.entity.UserEntity;
@@ -48,16 +48,17 @@ public class UserControl {
      * @return the username of the newly created user.
      */
     public UserInputDTO createUser(final UserInputDTO userDTO){
-        //userDTO = null;
         if (userDao.existsEmail(userDTO.getEmail())){
             throw new BusinessException(MessageCatalog.USER_WITH_SAME_MAIL_EXISTS);
         }
 
         final UserEntity newUserEntity = userConverter.convertInputDTOtoEntity(userDTO);
-        boolean used=false;
-        newUserEntity.setUsername(this.createUserName(userDTO.getFirstName(), userDTO.getLastName(),used));
-        //TODO
-        //Check if username exists, if so -> createUserName with bool true
+        int count=1;
+        newUserEntity.setUsername(this.createUserName(userDTO.getFirstName(), userDTO.getLastName(),count));
+        while(userDao.existUsername(newUserEntity.getUsername())){
+            count++;
+            newUserEntity.setUsername(this.createUserName(userDTO.getFirstName(), userDTO.getLastName(),count));
+        }
         newUserEntity.setPassword("DEFAULT_PASSWORD");
         userDao.createUser(newUserEntity);
 
@@ -98,28 +99,26 @@ public class UserControl {
      * @param lastName the last name of the user. mandatory
      * @return a unique identifier for the input user.
      */
-    //TODO Replace with logic based on the specification
-    private String createUserName(final String firstName, final String lastName, boolean ok){
-//        String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-//        int count = 8;
-//        StringBuilder builder = new StringBuilder();
-//        while (count-- != 0) {
-//            int character = (int)(Math.random()*ALPHA_NUMERIC_STRING.length());
-//            builder.append(ALPHA_NUMERIC_STRING.charAt(character));
-//        }
-//        return builder.toString();
-        if(ok==false) {
-            return firstName.substring(0, 5).toUpperCase() + lastName.substring(lastName.length() - 1).toUpperCase();
+    private String createUserName(final String firstName, final String lastName, int count){
+        if(count <=5){
+            return firstName.substring(0, 5-count).toUpperCase() + lastName.substring(lastName.length() - count ,lastName.length()).toUpperCase();
         }
         else {
-            return firstName.substring(0, 4).toUpperCase() + lastName.substring(lastName.length() - 2,lastName.length() - 1).toUpperCase();
+            String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            int counter = 8;
+            StringBuilder builder = new StringBuilder();
+            while (counter-- != 0) {
+                int character = (int)(Math.random()*ALPHA_NUMERIC_STRING.length());
+                builder.append(ALPHA_NUMERIC_STRING.charAt(character));
+            }
+            return builder.toString();
         }
     }
 
-    public List<UserDTO> getAll(){
+    public List<UserInputDTO> getAll(){
         return userDao.getAll()
                 .stream()
-                .map(userConverter::convertEntityDTO)
+                .map(userConverter::convertEntityDTOO)
                 .collect(Collectors.toList());
 
     }
@@ -139,7 +138,7 @@ public class UserControl {
                     .withClaim("username",byEmail.getUsername())
                     .withArrayClaim("roles",byEmail.getRoles()
                             .stream()
-                            .map(Role::getType).toArray(String[]::new)) .sign(algorithm);
+                            .map(RoleEntity::getType).toArray(String[]::new)) .sign(algorithm);
         } else {
             throw new BusinessException(MessageCatalog.INVALID_CREDENTIALS);
         }

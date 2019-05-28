@@ -13,8 +13,8 @@ export class UserAddComponent implements OnInit {
   public userNew: addUser = {};
   roles = [
     {name:'ADMINISTRATOR', value:'1', checked:false},
-    {name:'PROJECT_MANAGER', value:'2', checked:false},
-    {name:'TEST_MANAGER', value:'3', checked:false},
+    {name:'PROJECT MANAGER', value:'2', checked:false},
+    {name:'TEST MANAGER', value:'3', checked:false},
     {name:'DEVELOPER', value:'4', checked:false},
     {name:'TESTER', value:'5', checked:false}
   ]
