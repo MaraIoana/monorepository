@@ -6,6 +6,7 @@ package msg.user.boundary;
 import msg.permission.entity.Permission;
 import msg.exeptions.BusinessException;
 import msg.user.control.UserControl;
+import msg.user.entity.dto.UserDTO;
 import msg.user.entity.dto.UserInputDTO;
 
 import javax.annotation.security.PermitAll;
@@ -42,8 +43,22 @@ public class UserFacade {
         }
     }
 
+    @PermitAll
+    @RolesAllowed(Permission.USER_MANAGEMENT)
+    public String updateUser(UserDTO user) {
+        return this.userControl.updateUser(user);
+    }
+
+    ;
+
     public List<UserInputDTO> getAll(){
         return userControl.getAll();
+    }
+
+    public UserDTO getUser(String username){
+        System.out.println("Usercontrol:"+ username);
+        System.out.println("before Usecontrol......%%%%%%");
+        return userControl.getUser(username);
     }
 
 

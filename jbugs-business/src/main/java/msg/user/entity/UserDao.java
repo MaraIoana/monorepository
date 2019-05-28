@@ -37,6 +37,20 @@ public class UserDao {
     }
 
     /**
+     * Find user with username
+     *
+     * @param username to be found
+     * @return user associated with username.
+     */
+    // TODO: 22.05.2019 exception handling need to be implemented if user not found
+    public UserEntity findUserByUsername(String username) {
+        UserEntity user = em.createNamedQuery(UserEntity.USER_FIND_BY_USERNAME, UserEntity.class)
+                .setParameter(UserEntity.USERNAME, username)
+                .getSingleResult();
+        return (user);
+    }
+
+    /**
      * Persists a user entity.
      *
      * @param user the input entity to be saved.
@@ -47,10 +61,27 @@ public class UserDao {
         return user;
     }
 
+    public UserEntity updateUser(UserEntity user) {
+
+        UserEntity updateUser = findUserByUsername(user.getUsername());
+        updateUser.setFirstName(user.getFirstName());
+        updateUser.setLastName(user.getLastName());
+        updateUser.setEmail(user.getEmail());
+        updateUser.setMobileNumber(user.getMobileNumber());
+        em.merge(updateUser);
+
+
+        return updateUser;
+    }
+
     public List<UserEntity> getAll(){
         return em.createNamedQuery(UserEntity.USER_FIND_ALL, UserEntity.class).getResultList();
     }
-
+    public UserEntity getUser(String username){
+        return em.createNamedQuery(UserEntity.USER_FIND_BY_USERNAME, UserEntity.class).
+                setParameter(UserEntity.USERNAME,username)
+                .getSingleResult();
+    }
     public UserEntity findByEmail(String email){
         return em.createNamedQuery(UserEntity.USER_FIND_BY_EMAIL, UserEntity.class)
                 .setParameter(UserEntity.EMAIL,email)

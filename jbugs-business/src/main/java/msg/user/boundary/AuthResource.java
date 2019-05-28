@@ -24,4 +24,6 @@ public class AuthResource {
     public Response auth(UserInputDTO userInputDTO){
         return Response.ok(userFacade.authenticateUser(userInputDTO)).build();
     }
+
+
 }
