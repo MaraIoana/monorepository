@@ -36,11 +36,12 @@ export class UserEditComponent implements OnInit {
 
     this.userService.updateUser(this.user).subscribe(
 
-        result => console.log(result),
+        result => console.log(result.username),
         error => {
           console.log(error)
         }
       );
+
   }
 
      ngOnInit() {
