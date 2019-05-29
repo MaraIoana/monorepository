@@ -1,7 +1,9 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {addUser} from '../../models/addUser.model';
+import {UserService} from '../services/user.service';
+import { Router } from '@angular/router';
 import {RestUser} from "../../models/restUser.models";
-import {UserService} from "../services/user.service";
-import {addUser} from "../../models/addUser.model";
+
 
 @Component({
   selector: 'app-users',
@@ -10,13 +12,16 @@ import {addUser} from "../../models/addUser.model";
 })
 export class UsersComponent implements OnInit {
 
-  public userList: addUser[];
+  public userList: RestUser[];
+  public currentUser: RestUser;
+  public id: number;
+
 
   @Output()
-  public output = new EventEmitter<addUser>();
+  public output = new EventEmitter<RestUser>();
   public showList = true;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router:Router ) {
   }
 
 
@@ -27,8 +32,12 @@ export class UsersComponent implements OnInit {
       });
   }
 
-  alertUser(person: addUser) {
-    this.output.emit(person);
+  updateUser(person: RestUser) {
+    this.currentUser = person;
+    alert(person.firstName);
+    //this.id = 1;
+    //this.router.navigateByUrl("userid/edit");
+    this.router.navigate([ "/edit" ,this.currentUser.username]);
   }
 
 }

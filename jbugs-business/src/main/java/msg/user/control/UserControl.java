@@ -11,11 +11,11 @@ import msg.notifications.boundary.notificationParams.NotificationParamsWelcomeUs
 import msg.notifications.entity.NotificationType;
 import msg.role.entity.RoleEntity;
 import msg.user.MessageCatalog;
-import msg.user.entity.dto.UserDTO;
-import msg.user.entity.dto.UserInputDTO;
+import msg.user.entity.UserDao;
 import msg.user.entity.UserEntity;
 import msg.user.entity.dto.UserConverter;
-import msg.user.entity.UserDao;
+import msg.user.entity.dto.UserDTO;
+import msg.user.entity.dto.UserInputDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -72,6 +72,27 @@ public class UserControl {
     }
 
     /**
+     * Update a userDTO based on the {@link UserInputDTO}.
+     *
+     * @param userDTO the input User DTO. mandatory
+     * @return the username of the updated  user.
+     * todo Message for updating the user (showing them on the UI is belongs to anther User Stroy)
+     * todo Exception handling if username does not exist
+     */
+    public UserDTO updateUser(final UserDTO userDTO) {
+        //userDTO = null;
+       /* if (userDao.existsEmail(userDTO.getEmail())){
+            throw new BusinessException(MessageCatalog.USER_WITH_SAME_MAIL_EXISTS);
+        }*/
+
+        UserEntity updateUserEntity = userConverter.convertDTOToEntity(userDTO);
+        UserDTO result = userConverter.convertEntityDTO(userDao.updateUser(updateUserEntity));
+
+
+        return result;
+    }
+
+    /**
      * Creates a unique user name based on the inputs.
      *
      * @param firstName the first name of the user. mandatory
@@ -99,6 +120,13 @@ public class UserControl {
                 .stream()
                 .map(userConverter::convertEntityDTOO)
                 .collect(Collectors.toList());
+
+    }
+
+    public UserDTO getUser(String username){
+        UserEntity user = userDao.getUser(username);
+         return userConverter.convertEntityDTO(user);
+
 
     }
 

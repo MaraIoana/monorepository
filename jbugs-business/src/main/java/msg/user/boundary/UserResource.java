@@ -1,5 +1,6 @@
 package msg.user.boundary;
 
+import msg.user.entity.dto.UserDTO;
 import msg.user.entity.dto.UserInputDTO;
 
 import javax.ejb.EJB;
@@ -38,5 +39,23 @@ public class UserResource {
                .entity(userFacade.getAll())
                .build();
         //return Response.ok(userFacade.getAll()).build();
+   }
+
+    @GET
+    @Path(value = "/getUser/{username}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getUser(@PathParam("username") String username){
+        System.out.println("String username ´" + username);
+        return Response
+                .status(200)
+                .entity(userFacade.getUser(username))
+                .build();
+       /*
+        return Response
+                .status(200)
+                .entity(userFacade.getAll())
+                .build();*/
+        //return Response.ok(userFacade.getAll()).build(
     }
-}
+    }
+

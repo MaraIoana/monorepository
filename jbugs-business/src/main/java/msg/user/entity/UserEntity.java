@@ -3,18 +3,10 @@ package msg.user.entity;
 import edu.msg.ro.persistence.entity.BaseEntity;
 import msg.role.entity.RoleEntity;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 
 /**
  * The User entity.
@@ -27,6 +19,7 @@ import javax.persistence.Table;
 @NamedQueries({
         @NamedQuery(name= UserEntity.USER_COUNT_BY_EMAIL,query= "SELECT count(u) from UserEntity u where u.email = :" + UserEntity.EMAIL),
         @NamedQuery(name= UserEntity.USER_FIND_BY_EMAIL,query= "SELECT u from UserEntity u where u.email = :" + UserEntity.EMAIL),
+        @NamedQuery(name = UserEntity.USER_FIND_BY_USERNAME, query = "SELECT u from UserEntity u where u.username = :" + UserEntity.USERNAME),
         @NamedQuery(name = UserEntity.USER_FIND_ALL,
                     query =  "select u from UserEntity u"),
         @NamedQuery(name= UserEntity.USER_COUNT_BY_USERNAME,query= "SELECT count(u) from UserEntity u where u.username = :" + UserEntity.USERNAME)
@@ -37,6 +30,7 @@ public class UserEntity extends BaseEntity<Long> {
     public static final String EMAIL = "email";
     public static final String USERNAME = "username";
     public static final String USER_FIND_BY_EMAIL = "UserEntity.findByEmail";
+    public static final String USER_FIND_BY_USERNAME = "UserEntity.findByUsername";
     public static final String USER_COUNT_BY_USERNAME = "UserEntity.countByUsername";
 
     @Column(name="first_name",nullable = false)

@@ -1,3 +1,68 @@
-<p>
-  user-edit works!
-</p>
+<form #form='ngForm'>
+  <div class="form-group">
+    <label> First Name </label>
+    <input class="form-control"
+           type="text"
+           id="firstName"
+           name="firstName"
+           required
+           minlength="5"
+           [ngModel]="user.firstName"
+           #firstName="ngModel"
+           ngModel>
+    <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid">
+      <div *ngIf="firstName.errors.pattern">The pattern is invalid.</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label> Last Name </label>
+    <input class="form-control"
+           type="text"
+           id="lastName"
+           name="lastName"
+           required
+           [ngModel]="user.lastName"
+           #lastName="ngModel"
+           ngModel>
+    <div class="alert alert-danger" *ngIf="lastName.touched && lastName.invalid">
+      <div *ngIf="firstName.errors.required">The field is required</div>
+      </div>
+  </div>
+  <div class="form-group">
+    <label> Email </label>
+    <input class="form-control"
+           type="text"
+           id="email"
+           name="email"
+           required
+           pattern="[a-zA-Z0-9.-_]{1,}@msggroup.com"
+           [ngModel]="user.email"
+           #email="ngModel"
+           ngModel>
+    <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+      <div *ngIf="email.errors.pattern">The pattern is invalid.</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label> Mobile Number </label>
+    <input class="form-control"
+           type="text"
+           id="mobilNumber"
+           name="mobileNumber"
+           required
+           pattern="[+]4[0,9]{1}[0-9]{9}"
+           [ngModel]="user.mobileNumber"
+           #mobileNumber="ngModel"
+           ngModel
+           >
+
+    <div class="alert alert-danger" *ngIf="mobileNumber.touched && mobileNumber.invalid">
+      <div *ngIf="mobileNumber.errors.pattern">The pattern is invalid.</div>
+      <div *ngIf="mobileNumber.errors.required">The field is required.</div>
+
+    </div>
+  </div>
+  <button type="submit" (click)="submit(form)" class="btn btn-primary" [disabled]="form.invalid">Update</button>
+
+
+</form>
