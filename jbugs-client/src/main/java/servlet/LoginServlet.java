@@ -1,7 +1,6 @@
-package authentication;
+package servlet;
 
 import msg.user.boundary.UserFacade;
-import msg.user.entity.dto.UserDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,18 +16,15 @@ import java.io.IOException;
  * @author msg systems AG; User Name.
  * @since 19.1.2
  */
-
-@WebServlet("/login")
-public class LoginView extends HttpServlet {
+@WebServlet(urlPatterns = { "/LoginServlet" })
+public class LoginServlet extends HttpServlet {
     private String username;
     private String password;
-    private UserFacade userFacade;
 
-    public void login(HttpServletRequest request,
-                      HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request,
+                       HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-
-
+        response.sendRedirect("/");
     }
 }
