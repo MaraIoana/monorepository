@@ -5,6 +5,11 @@ import msg.role.control.RoleControl;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Document me.
  *
@@ -50,6 +55,8 @@ public class BugConverter {
         b.setTitle(bug.getTitle());
         b.setDescription(bug.getDescription());
         b.setVersion(bug.getVersion());
+
+
         b.setDate(bug.getDate());
 
         String status=bug.getStatus().toString();
