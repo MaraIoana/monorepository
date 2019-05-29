@@ -1,8 +1,7 @@
-import {Component,OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../services/user.service";
-import {User} from "../../models/user.model";
-import {RestUser} from "../../models/restUser.models";
 import {addUser} from "../../models/addUser.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-list',
@@ -17,10 +16,11 @@ export class UserListComponent implements OnInit {
   private rowSelection;
 
   private columnDefs;
+  public self;
 
   public userList: addUser[];
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
     this.columnDefs = [
       {headerName: 'Firstname', field: 'firstName',sortable:true,filter:true},
       {headerName: 'Lastname', field: 'lastName',sortable:true,filter:true},
@@ -30,6 +30,7 @@ export class UserListComponent implements OnInit {
 
     ];
     this.rowSelection="single";
+
   }
 
 
@@ -47,6 +48,7 @@ export class UserListComponent implements OnInit {
 
   onSelectionChanged() {
     let selectedRows = this.gridApi.getSelectedRows();
+    let router = this.router;
     let selectedRowsString = "";
     selectedRows.forEach(function(selectedRow, index) {
       if (index !== 0) {
@@ -54,6 +56,11 @@ export class UserListComponent implements OnInit {
       }
       selectedRowsString += selectedRow.firstName;
       document.getElementById('selectedRow').innerText=selectedRowsString;
+      alert(selectedRow.username);
+      //this.id = 1;
+      //this.router.navigateByUrl("userid/edit");
+
+      router.navigate(["/edit", selectedRow.username]);
     });
 
   }
