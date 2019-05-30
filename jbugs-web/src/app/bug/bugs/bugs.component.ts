@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Bug} from "../../models/bug.model";
 import {BugService} from "../services/bug.service";
 import {User} from "../../models/user.model";
+import {element} from "protractor";
 
 @Component({
   selector: 'app-bugs',
@@ -40,7 +41,15 @@ export class BugsComponent implements OnInit {
     this.bugService.getAllBugs()
       .subscribe((bugList)=>{
         this.bugList=bugList;
+        for(var b in this.bugList ){
+          var date = this.bugList[b].date;
+          var d = new Date(date);
+          var ds = d.toLocaleString();
+          this.bugList[b].date=ds;
+        }
     })
+
+
   }
   onGridReady(params) {
     this.gridApi = params.api;
