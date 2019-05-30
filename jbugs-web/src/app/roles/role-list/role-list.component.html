@@ -1,0 +1,66 @@
+<div class="test-header">Selection: <span id="selectedRow"></span></div>
+<ag-grid-angular
+  #myGrid
+  id="myGrid"
+  style="height: 1000px"
+  class="ag-theme-balham float-left"
+  [rowData]="roleList"
+  [columnDefs]="columnDefs"
+  [rowSelection]="rowSelection"
+  domLayout="print"
+  (selectionChanged)="onSelectionChanged()"
+  (gridReady)="onGridReady($event)"
+>
+</ag-grid-angular>
+
+<div *ngIf="isSelected">
+    <ag-grid-angular *ngIf="rolePermissions.length!==0"
+      id="permissionGrid"
+      class="ag-theme-balham"
+      [rowData]="rolePermissions"
+      [columnDefs]="permColumnDefs"
+      [rowSelection]="rowSelection"
+      domLayout="print"
+      (gridReady)="onGridReady2($event)"
+      (selectionChanged)="setSelected()"
+    >
+    </ag-grid-angular>
+  <p *ngIf="rolePermissions.length===0">
+    No permissions!
+  </p>
+</div>
+
+<form #addPermission='ngForm' (change)="validateForm()">
+  <div class="form-group" *ngIf="isSelected">
+    <label for="permissions">Permissions:</label>
+    <div *ngFor="let permission of permissionsCheck">
+      <label>
+        <input type="checkbox"
+               name="permissions"
+               id="permissions"
+               required
+               value="{{permission.type}}"
+               [(ngModel)]="permission.checked"/>
+        {{permission.type}}
+      </label>
+    </div>
+  </div>
+    <div class="form-group">
+      <button class="btn btn-primary" [hidden]="!isSelected" [disabled]="!validForm" (click)="savePermission()">Add</button>
+      <button class="btn btn-primary" [hidden]="!isSelected" [disabled]="!isPermSelected" (click)="deletePermission()">Delete</button>
+      <br>
+      <br>
+      <br>
+      <p id="infoMessage"></p>
+    </div>
+
+
+</form>
+
+<!--<form #addPermission ngModelGroup="addPermission">-->
+<!--  <div class="form-group">-->
+<!--    <div class="form-control">-->
+<!--      <button>DDD</button>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</form>-->

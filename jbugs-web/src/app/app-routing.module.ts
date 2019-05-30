@@ -7,6 +7,8 @@ import {UserEditComponent} from "./user/user-edit/user-edit.component";
 import {LoggedInGuard} from "./logged-in.guard";
 import {LoginComponent} from "./login/login.component";
 import {UserAddComponent} from "./user/user-add/user-add.component";
+import {RoleListComponent} from "./roles/role-list/role-list.component";
+import {RoleComponent} from "./roles/role/role.component";
 
 const routes: Routes = [
   {
@@ -44,6 +46,24 @@ const routes: Routes = [
       {
         path: 'bugs',
         component: BugsComponent
+      },
+      {
+        path:'roles',
+        children:[
+          {
+            path:'',
+            component:RoleListComponent
+          },
+          {
+            path:':roleId',
+            children:[
+              {
+                path:'',
+                component:RoleComponent
+              }
+            ]
+          }
+        ]
       }
     ]
   },
