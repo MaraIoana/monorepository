@@ -1,20 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RoleListComponent } from './role-list/role-list.component';
-import { RoleComponent } from './role/role.component';
+import { RolesComponent } from './roles/roles.component';
 import {AgGridModule} from "ag-grid-angular";
 import {FormsModule} from "@angular/forms";
 
 @NgModule({
-  declarations: [RoleListComponent, RoleComponent],
+  declarations: [RolesComponent],
   imports: [
     CommonModule,
     AgGridModule.withComponents([]),
     FormsModule,
   ],
   exports:[
-    RoleListComponent,
-    RoleComponent
+    RolesComponent
   ]
 })
 export class RoleModule { }
