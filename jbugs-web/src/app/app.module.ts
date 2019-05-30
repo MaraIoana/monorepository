@@ -15,6 +15,7 @@ import {BugsComponent} from './bug/bugs/bugs.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { UserAddComponent } from './user/user-add/user-add.component';
+import {RoleModule} from "./roles/role.module";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { UserAddComponent } from './user/user-add/user-add.component';
     UserModule,
     HttpClientModule,
     FormsModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
+    RoleModule
   ],
   providers: [],
   bootstrap: [AppComponent],
