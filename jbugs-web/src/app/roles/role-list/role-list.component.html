@@ -47,7 +47,7 @@
   </div>
     <div class="form-group">
       <button class="btn btn-primary" [hidden]="!isSelected" [disabled]="!validForm" (click)="savePermission()">Add</button>
-      <button class="btn btn-primary" [hidden]="!isSelected" [disabled]="!isPermSelected" (click)="deletePermission()">Delete</button>
+      <button class="btn btn-primary" [hidden]="!isSelected" [disabled]="!isPermSelected || isLast" (click)="deletePermission()">Delete</button>
       <br>
       <br>
       <br>
