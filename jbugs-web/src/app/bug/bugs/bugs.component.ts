@@ -41,9 +41,11 @@ export class BugsComponent implements OnInit {
         this.bugList=bugList;
     })
   }
-  //
-  // onRowClicked(event: any) { console.log('row', event);
-  //     this.output.emit(this.rowSelection.data.field.);
-  // }
+
+  onRowClicked(event: any) {
+    console.log('row', event);
+    alert(event.data.status);
+      //this.output.emit(this.rowSelection.data.field);
+  }
 
 }

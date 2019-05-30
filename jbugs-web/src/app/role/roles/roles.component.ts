@@ -6,10 +6,10 @@ import {PermissionService} from "../services/permission.service";
 
 @Component({
   selector: 'app-role-list',
-  templateUrl: './role-list.component.html',
-  styleUrls: ['./role-list.component.css']
+  templateUrl: './roles.component.html',
+  styleUrls: ['./roles.component.css']
 })
-export class RoleListComponent implements OnInit {
+export class RolesComponent implements OnInit {
 
   private gridApi;
   private gridColumnApi;
