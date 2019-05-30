@@ -13,6 +13,7 @@ import {HttpClient} from "@angular/common/http";
 export class UserService {
 
   private loggedIn = false;
+
   constructor(private backendService: BackendService, private http: HttpClient) {
     this.loggedIn = !!localStorage.getItem('auth_token');
   }

@@ -25,6 +25,6 @@ public class LoginServlet extends HttpServlet {
                        HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        response.sendRedirect("/");
+        response.sendRedirect("/dashboard/users");
     }
 }
