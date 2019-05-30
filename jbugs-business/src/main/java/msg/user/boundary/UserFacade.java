@@ -45,19 +45,15 @@ public class UserFacade {
 
     @PermitAll
     @RolesAllowed(Permission.USER_MANAGEMENT)
-    public String updateUser(UserDTO user) {
+    public Object updateUser(UserDTO user) {
         return this.userControl.updateUser(user);
     }
-
-    ;
 
     public List<UserInputDTO> getAll(){
         return userControl.getAll();
     }
 
     public UserDTO getUser(String username){
-        System.out.println("Usercontrol:"+ username);
-        System.out.println("before Usecontrol......%%%%%%");
         return userControl.getUser(username);
     }
 

@@ -1,12 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {RestUser} from '../../models/restUser.models';
 import {NgForm} from '@angular/forms';
-import {UsersComponent} from "../users/users.component";
 import {UserService} from "../services/user.service";
-import {User} from "../../models/user.model";
-
-
 
 
 @Component({
@@ -35,12 +31,13 @@ export class UserEditComponent implements OnInit {
     //this.userService.updateUser(this.user);
 
     this.userService.updateUser(this.user).subscribe(
-
-        result => console.log(result),
+      result => alert("User with username: " + result.username + " updated successfully"),
         error => {
           console.log(error)
+          alert("Error during Update...")
         }
       );
+
   }
 
      ngOnInit() {

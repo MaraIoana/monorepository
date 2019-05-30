@@ -79,17 +79,17 @@ public class UserControl {
      * todo Message for updating the user (showing them on the UI is belongs to anther User Stroy)
      * todo Exception handling if username does not exist
      */
-    public String updateUser(final UserDTO userDTO) {
+    public UserDTO updateUser(final UserDTO userDTO) {
         //userDTO = null;
        /* if (userDao.existsEmail(userDTO.getEmail())){
             throw new BusinessException(MessageCatalog.USER_WITH_SAME_MAIL_EXISTS);
         }*/
 
         UserEntity updateUserEntity = userConverter.convertDTOToEntity(userDTO);
-        userDao.updateUser(updateUserEntity);
+        UserDTO result = userConverter.convertEntityDTO(userDao.updateUser(updateUserEntity));
 
 
-        return updateUserEntity.getUsername();
+        return result;
     }
 
     /**
