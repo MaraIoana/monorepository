@@ -4,13 +4,15 @@
 
 <!--</div>-->
 
-
+<div class="test-header">Selection: <span id="selectedRow"></span></div>
 <ag-grid-angular
   id="myGrid"
   style="width: 1500px; height: 1500px;"
   class="ag-theme-balham"
   [rowData]="bugList"
   [columnDefs]="columnDefs"
-  (rowClicked)='onRowClicked($event)'
+  [rowSelection]="rowSelection"
+  (selectionChanged)="onSelectionChanged()"
+  (gridReady)="onGridReady($event)"
 >
 </ag-grid-angular>

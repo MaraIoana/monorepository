@@ -31,15 +31,6 @@ public class UserResource {
                 .build();
    }
 
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateUser(UserDTO userDTO) {
-        //userFacade = null;
-        //userFacade.updateUser(userDTO)
-        return Response.status(200).entity(userFacade.updateUser(userDTO)).build();
-
-    }
-
    @GET
    @Produces(MediaType.APPLICATION_JSON)
     public Response getAll(){

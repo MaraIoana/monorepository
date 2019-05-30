@@ -31,7 +31,7 @@ export class UserService {
   }
 
   public getUser(userName: string){
-    let urlGet : string;
+    var urlGet : string
     urlGet = 'http://localhost:8080/jbugs/jbugs-api/users/getUser/'+ userName;
     //return this.backendService.get('http://localhost:8080/jbugs/jbugs-api/users/getUser/',userName);
     return this.backendService.get(urlGet);
