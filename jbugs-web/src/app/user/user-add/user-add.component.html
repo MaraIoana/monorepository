@@ -1,4 +1,4 @@
-<form #form='ngForm'>
+<form #form='ngForm' (change)="validateForm()">
   <div class="form-group">
     <label for="firstName"> First Name </label>
     <input class="form-control"
@@ -78,6 +78,8 @@
     </div>
   </div>
 
-  <button type="submit" (click)="addUser(form)" [disabled]="form.invalid" class="btn btn-primary">Add</button>
+  <button type="submit" (click)="addUser(form)" [disabled]="!validForm" [disabled]="form.invalid"
+          class="btn btn-primary">Add
+  </button>
   <button type="button" (click)="back()" class="btn btn-primary">Back</button>
 </form>
