@@ -11,10 +11,12 @@ import {SummaryPipe} from "./summary.pipe";
 import {LoginComponent} from './login/login.component';
 import {UserEditComponent} from './user/user-edit/user-edit.component';
 import {UsersComponent} from './user/users/users.component';
-import {BugsComponent} from './bug/bugs/bugs.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { UserAddComponent } from './user/user-add/user-add.component';
+import {BugModule} from "./bug/bug.module";
+
+;
 
 @NgModule({
   declarations: [
@@ -24,7 +26,7 @@ import { UserAddComponent } from './user/user-add/user-add.component';
     LoginComponent,
     UserEditComponent,
     UsersComponent,
-    BugsComponent,
+
     DashboardComponent,
     UserAddComponent
   ],
@@ -34,7 +36,8 @@ import { UserAddComponent } from './user/user-add/user-add.component';
     UserModule,
     HttpClientModule,
     FormsModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
+    BugModule
   ],
   providers: [],
   bootstrap: [AppComponent],

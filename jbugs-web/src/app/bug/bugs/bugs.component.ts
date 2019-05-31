@@ -15,6 +15,8 @@ export class BugsComponent implements OnInit {
   private gridColumnApi;
   private rowSelection;
   private columnDefs;
+  private paginationPageSize;
+  private paginationNoFormatter;
   public bugList: Bug[];
 
   @Output()
@@ -33,6 +35,10 @@ export class BugsComponent implements OnInit {
     //   {headerName: 'Assigned to', field: 'assignedTo',sortable:true,filter:true},
      ];
     this.rowSelection="single";
+    this.paginationPageSize=25;
+    this.paginationNoFormatter = function(params) {
+      return "[" + params.value.toLocaleString() + "]";
+    };
   }
 
   ngOnInit() {
@@ -48,9 +54,8 @@ export class BugsComponent implements OnInit {
           this.bugList[b].date=ds;
         }
     })
-
-
   }
+
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
