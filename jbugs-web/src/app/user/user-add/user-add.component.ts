@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {addUser} from "../../models/addUser.model";
 import {UserService} from "../services/user.service";
@@ -18,6 +18,7 @@ export class UserAddComponent implements OnInit {
     {name:'DEVELOPER', value:'4', checked:false},
     {name:'TESTER', value:'5', checked:false}
   ]
+  private validForm: boolean = false;
   get selectedOptions() {
     return this.roles
       .filter(opt => opt.checked)
@@ -49,5 +50,13 @@ export class UserAddComponent implements OnInit {
 
   back() {
     this.router.navigate(['/dashboard/users']);
+  }
+
+  validateForm() {
+    if (this.selectedOptions.length !== 0) {
+      this.validForm = true;
+    } else {
+      this.validForm = false;
+    }
   }
 }
