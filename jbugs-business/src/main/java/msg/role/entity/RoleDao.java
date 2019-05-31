@@ -7,8 +7,8 @@ import msg.permission.entity.Permission;
 import msg.permission.entity.PermissionEntity;
 import msg.role.entity.dto.RoleInputDTO;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 import javax.ejb.Stateless;
 import javax.management.relation.Role;
 import javax.persistence.EntityManager;
@@ -45,11 +45,12 @@ public class RoleDao {
     public RoleEntity save(RoleInputDTO roleInputDTO){
         RoleEntity roleEntity = getRole(roleInputDTO.getType());
         roleEntity = em.find(RoleEntity.class,roleEntity.getId());
-        List<PermissionEntity> permissions = em.createNamedQuery(PermissionEntity.GET_PERMISSION_ENTITIES,PermissionEntity.class)
-                .setParameter("types",roleInputDTO.getPermissions())
-                .getResultList();
 
-        roleEntity.setPermissions(permissions);
+        HashSet<PermissionEntity> permissions = new HashSet<>(em.createNamedQuery(PermissionEntity.GET_PERMISSION_ENTITIES, PermissionEntity.class)
+                .setParameter("types", roleInputDTO.getPermissions())
+                .getResultList());
+
+        roleEntity.setPermissions(new ArrayList<>(permissions));
         em.flush();
         return roleEntity;
     }

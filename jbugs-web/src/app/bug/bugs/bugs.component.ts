@@ -1,8 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Bug} from "../../models/bug.model";
 import {BugService} from "../services/bug.service";
-import {User} from "../../models/user.model";
-import {element} from "protractor";
 
 @Component({
   selector: 'app-bugs',
