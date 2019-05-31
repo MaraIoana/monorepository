@@ -14,8 +14,14 @@ export class UserEditComponent implements OnInit {
   public user: RestUser = {};
   public username: string;
   private sub: any;
+  roles = [
+    {name: 'ADMINISTRATOR', value: '1', checked: false},
+    {name: 'PROJECT MANAGER', value: '2', checked: false},
+    {name: 'TEST MANAGER', value: '3', checked: false},
+    {name: 'DEVELOPER', value: '4', checked: false},
+    {name: 'TESTER', value: '5', checked: false}
+  ]
 
-   currenntUser: RestUser;
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService) {
 
