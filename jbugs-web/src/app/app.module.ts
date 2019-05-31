@@ -10,12 +10,11 @@ import {FormsModule} from "@angular/forms";
 import {SummaryPipe} from "./summary.pipe";
 import {LoginComponent} from './login/login.component';
 import {UserEditComponent} from './user/user-edit/user-edit.component';
-import {UsersComponent} from './user/users/users.component';
 import {BugsComponent} from './bug/bugs/bugs.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { UserAddComponent } from './user/user-add/user-add.component';
-import {RoleModule} from "./roles/role.module";
+import {RoleModule} from "./role/role.module";
 
 @NgModule({
   declarations: [
@@ -23,11 +22,10 @@ import {RoleModule} from "./roles/role.module";
     UserManagementComponent,
     SummaryPipe,
     LoginComponent,
-    UserEditComponent,
-    UsersComponent,
     BugsComponent,
     DashboardComponent,
-    UserAddComponent
+    UserAddComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
