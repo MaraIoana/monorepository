@@ -3,15 +3,13 @@ import {RoleService} from "../services/role.service";
 import {Role} from "../../models/role.model";
 import {Permission} from "../../models/permission.model";
 import {PermissionService} from "../services/permission.service";
-import {RoleType} from "../../models/roleType.model";
-import {$} from "protractor";
 
 @Component({
   selector: 'app-role-list',
-  templateUrl: './role-list.component.html',
-  styleUrls: ['./role-list.component.css']
+  templateUrl: './roles.component.html',
+  styleUrls: ['./roles.component.css']
 })
-export class RoleListComponent implements OnInit {
+export class RolesComponent implements OnInit {
 
   private gridApi;
   private gridColumnApi;
@@ -30,12 +28,10 @@ export class RoleListComponent implements OnInit {
   public isSelected:boolean = false;
   public isPermSelected:boolean = false;
   public validForm:boolean = false;
+  public isLast:boolean = false;
 
-  permissionsCheck = [
-    {type:'USER_MANAGEMENT', value:'1', checked:false},
-    {type:'BUG_MANAGEMENT', value:'2', checked:false},
-    {type:'PERMISSION_MANAGEMENT', value:'3', checked:false}
-  ];
+
+  public permissionsCheck = [];
   get selectedOptions() {
     return this.permissionsCheck
       .filter(opt => opt.checked)
@@ -86,6 +82,15 @@ export class RoleListComponent implements OnInit {
       document.getElementById('selectedRow').innerText = selectedRowsString;
     });
 
+    this.permissionsCheck = [];
+    for(let perm of this.permissionList){
+      this.permissionsCheck.push({
+        type:perm.type,
+        value:perm.id,
+        checked:false
+      })
+    }
+
     this.rolePermissions = this.getPermissions(selectedRows[0].permissions);
     this.isSelected = true;
     this.isPermSelected = false;
@@ -94,6 +99,15 @@ export class RoleListComponent implements OnInit {
   }
 
   setSelected(){
+    let role:Role;
+    role = this.gridApi.getSelectedRows()[0];
+
+    if(role.permissions.length > 1){
+      this.isLast = false;
+    }
+    else{
+      this.isLast = true;
+    }
     this.isPermSelected = true;
     this.deselectPermissions();
   }

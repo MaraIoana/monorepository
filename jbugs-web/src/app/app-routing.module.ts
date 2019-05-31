@@ -7,8 +7,7 @@ import {UserEditComponent} from "./user/user-edit/user-edit.component";
 import {LoggedInGuard} from "./logged-in.guard";
 import {LoginComponent} from "./login/login.component";
 import {UserAddComponent} from "./user/user-add/user-add.component";
-import {RoleListComponent} from "./roles/role-list/role-list.component";
-import {RoleComponent} from "./roles/role/role.component";
+import {RolesComponent} from "./role/roles/roles.component";
 
 const routes: Routes = [
   {
@@ -33,6 +32,14 @@ const routes: Routes = [
             component: UsersComponent,
           },
           {
+            path:'user-add',
+            component:UserAddComponent
+          },
+          {
+            path:'edit/:userName',
+            component:UserEditComponent
+          },
+          {
             path: ':userId',
             children: [
               {
@@ -52,28 +59,11 @@ const routes: Routes = [
         children:[
           {
             path:'',
-            component:RoleListComponent
-          },
-          {
-            path:':roleId',
-            children:[
-              {
-                path:'',
-                component:RoleComponent
-              }
-            ]
+            component:RolesComponent
           }
         ]
-      }
+      },
     ]
-  },
-  {
-    path: ':user-add',
-    component: UserAddComponent
-  },
-  {
-    path: 'edit/:userName',
-    component: UserEditComponent
   }
 ];
 

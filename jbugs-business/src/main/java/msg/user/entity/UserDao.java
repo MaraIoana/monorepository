@@ -1,6 +1,9 @@
 package msg.user.entity;
 
+import msg.role.entity.RoleEntity;
+
 import javax.ejb.Stateless;
+import javax.management.relation.Role;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
