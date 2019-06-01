@@ -179,5 +179,47 @@
 			</build>
 		</profile>
 
+		<profile>
+			<id>payara-remote</id>
+
+			<dependencies>
+				<!-- The actual Arquillian connector -->
+				<dependency>
+					<groupId>org.omnifaces</groupId>
+					<artifactId>arquillian-payara-server-4-remote</artifactId>
+					<version>1.0-beta-SNAPSHOT</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<systemPropertyVariables>
+								<javaEEServer>payara-remote</javaEEServer>
+							</systemPropertyVariables>
+						</configuration>
+					</plugin>
+				</plugins>
+				<testResources>
+					<testResource>
+						<directory>src/test/resources</directory>
+						<filtering>true</filtering>
+					</testResource>
+					<testResource>
+						<directory>src/test/resources-glassfish-remote</directory>
+						<filtering>true</filtering>
+					</testResource>
+				</testResources>
+			</build>
+
+			<modules>
+				<module>jbugs-persistence</module>
+				<module>jbugs-business</module>
+			</modules>
+		</profile>
+
 	</profiles>
 </project>
