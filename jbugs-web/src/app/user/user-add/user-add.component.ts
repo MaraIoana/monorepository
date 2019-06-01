@@ -29,13 +29,6 @@ export class UserAddComponent implements OnInit {
   ngOnInit() {
   }
 
-  validateForm() {
-    if (this.selectedOptions.length !== 0) {
-      this.validForm = true;
-    } else {
-      this.validForm = false;
-    }
-  }
   addUser(form: NgForm) {
     this.userNew.firstName = form.value.firstName;
     this.userNew.lastName = form.value.lastName;
@@ -52,11 +45,7 @@ export class UserAddComponent implements OnInit {
         }
       }
     );
-
-  }
-
-  back() {
-    this.router.navigate(['/dashboard/users']);
+    this.router.navigate(['/dashboard/users'],);
   }
 
   validateForm() {

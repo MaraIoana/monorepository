@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BackendService} from "../../user/services/backend.service";
 import {Observable} from "rxjs";
 import {Permission} from "../../models/permission.model";
-import {UserPermissions} from "../../models/userPermissions.model";
+
+//import {UserPermissions} from "../../models/userPermissions.model";
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,7 @@
 package msg.role.entity;
 
 import edu.msg.ro.persistence.entity.BaseEntity;
+import jdk.nashorn.internal.ir.annotations.Immutable;
 import msg.permission.entity.PermissionEntity;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name="roles")
+@Immutable
 @NamedQueries({
         @NamedQuery(name= RoleEntity.GET_PERMISSIONS,
             query="select r.permissions from RoleEntity r where r.type=:type "),

@@ -3,7 +3,8 @@ import {BackendService} from "./backend.service";
 import {Observable} from "rxjs";
 import {addUser} from "../../models/addUser.model";
 import {RestUser} from "../../models/restUser.models";
-import {UserRoles} from "../../models/userRoles.model";
+
+//import {UserRoles} from "../../models/userRoles.model";
 
 
 @Injectable({
@@ -37,8 +38,8 @@ export class UserService {
     return this.backendService.get(urlGet);
   }
 
-  public getUserRoles(username:string):Observable<UserRoles>{
-    return this.backendService.post("http://localhost:8080/jbugs/jbugs-api/users/getUserRoles",{'username':username});
-  }
+  // public getUserRoles(username:string):Observable<UserRoles>{
+  //   return this.backendService.post("http://localhost:8080/jbugs/jbugs-api/users/getUserRoles",{'username':username});
+  // }
 }
 
