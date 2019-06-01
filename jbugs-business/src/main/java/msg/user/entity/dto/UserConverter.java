@@ -60,8 +60,8 @@ public class UserConverter {
         u.setEmail(userEntity.getEmail());
         u.setMobileNumber(userEntity.getMobileNumber());
         u.setUsername(userEntity.getUsername());
-        //u.setRoles(userEntity.getRoles().stream().map(roleConverter::entityToDto).collect(Collectors.toList())
         u.setRoles(roleConverter.RoleToStringList(userEntity.getRoles()));
+        System.out.println(u.getRoles());
         return u;
     }
 

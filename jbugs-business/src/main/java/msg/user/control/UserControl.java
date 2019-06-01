@@ -123,9 +123,11 @@ public class UserControl {
 
     }
 
-    public UserDTO getUser(String username){
+    public UserInputDTO getUser(String username) {
         UserEntity user = userDao.getUser(username);
-         return userConverter.convertEntityDTO(user);
+        System.out.println("getUser:");
+        System.out.println("getUser:");
+        return userConverter.convertEntityDTOO(user);
 
 
     }
