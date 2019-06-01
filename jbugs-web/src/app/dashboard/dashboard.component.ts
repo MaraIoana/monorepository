@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
+import {UserRoles} from "../models/userRoles.model";
 
 
 @Component({
@@ -12,9 +14,74 @@ import {Component, OnInit} from '@angular/core';
 })
 
 export class DashboardComponent implements OnInit {
-  constructor() {
+
+  public permissionManagement = false;
+  public userManagement = false;
+  public bugManagement = false;
+  public bugClose = false;
+  public bugExportPDF = false;
+  public isMine = false;
+
+  private permissions:string[];
+
+  constructor(private router:Router) {
+    this.permissions= this.router.getCurrentNavigation().extras.state.permissions;
+    console.log(this.router.getCurrentNavigation().extras.state.permissions);
   }
 
-  ngOnInit() {
+  ngOnInit(){
+    this.checkPermissions();
+  }
+
+  checkPermissions(){
+    this.checkPermissionManagement();
+    this.checkUserManagement();
+    this.checkBugManagement();
+    this. checkBugClose();
+    this.checkBugExportPDF();
+    this.checkIsMine();
+  }
+
+  checkPermissionManagement(){
+    if(this.permissions.includes("PERMISSION_MANAGEMENT")){
+      this.permissionManagement = false;
+    }
+    else
+      this.permissionManagement = true;
+  }
+  checkUserManagement(){
+    if(this.permissions.includes("USER_MANAGEMENT")){
+      this.userManagement = false;
+    }
+    else
+      this.userManagement = true;
+  }
+  checkBugManagement(){
+    if(this.permissions.includes("BUG_MANAGEMENT")){
+      this.bugManagement = false;
+    }
+    else
+      this.bugManagement = true;
+  }
+  checkBugClose(){
+    if(this.permissions.includes("BUG_CLOSE")){
+      this.bugClose = false;
+    }
+    else
+      this.bugClose = true;
+  }
+  checkBugExportPDF(){
+    if(this.permissions.includes("BUG_EXPORT_PDF")){
+      this.bugExportPDF = false;
+    }
+    else
+      this.bugExportPDF = true;
+  }
+  checkIsMine(){
+    if(this.permissions.includes("IS_MINE")){
+      this.isMine = false;
+    }
+    else
+      this.isMine = true;
   }
 }

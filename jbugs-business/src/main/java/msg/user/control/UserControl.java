@@ -16,6 +16,7 @@ import msg.user.entity.UserEntity;
 import msg.user.entity.dto.UserConverter;
 import msg.user.entity.dto.UserDTO;
 import msg.user.entity.dto.UserInputDTO;
+import msg.user.entity.dto.UserRolesDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -126,8 +127,10 @@ public class UserControl {
     public UserDTO getUser(String username){
         UserEntity user = userDao.getUser(username);
          return userConverter.convertEntityDTO(user);
+    }
 
-
+    public UserRolesDTO getUserRoles(String username){
+        return userConverter.entityToUserRolesDto(userDao.getUser(username));
     }
 
     public String authenticateUser(UserInputDTO userInputDTO) {
