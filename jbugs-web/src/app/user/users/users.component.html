@@ -1,7 +1,19 @@
-<!--<a *ngFor="let user of userList" class="col-1-4">-->
-<button routerLink="/user-add">Add a new user</button>
-
+<button routerLink="user-add">Add a new user</button>
+<br>
 <h1>Users</h1>
+<br>
+<div class="test-header">Selection: <span id="selectedRow"></span></div>
+<br>
+<ag-grid-angular
+  id="myGrid"
+  style="width: 1000px; height: 1000px;"
+  class="ag-theme-balham"
+  [rowData]="userList"
+  [columnDefs]="columnDefs"
+  [rowSelection]="rowSelection"
+  (selectionChanged)="onSelectionChanged()"
+  (gridReady)="onGridReady($event)"
+>
+</ag-grid-angular>
 
-<app-user-list></app-user-list>
-<!--</a>-->
+<router-outlet></router-outlet>

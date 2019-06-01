@@ -27,9 +27,9 @@ export class BugsComponent implements OnInit {
       {headerName: 'Status', field: 'status',sortable:true,filter:true},
       {headerName: 'Fixed Version', field: 'fixedVersion',sortable:true,filter:true},
       {headerName: 'Severity', field: 'severity',sortable:true,filter:true},
-      {headerName: 'Created by', field: 'createdByUser',sortable:true,filter:true},
-      {headerName: 'Assigned to', field: 'assignedTo',sortable:true,filter:true},
-    ];
+    //   {headerName: 'Created by', field: 'createdByUser',sortable:true,filter:true},
+    //   {headerName: 'Assigned to', field: 'assignedTo',sortable:true,filter:true},
+     ];
     this.rowSelection="single";
   }
 
@@ -39,11 +39,38 @@ export class BugsComponent implements OnInit {
     this.bugService.getAllBugs()
       .subscribe((bugList)=>{
         this.bugList=bugList;
+        for(var b in this.bugList ){
+          var date = this.bugList[b].date;
+          var d = new Date(date);
+          var ds = d.toLocaleString();
+          this.bugList[b].date=ds;
+        }
     })
+
+
   }
-  //
-  // onRowClicked(event: any) { console.log('row', event);
-  //     this.output.emit(this.rowSelection.data.field.);
-  // }
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+  }
+
+  onSelectionChanged() {
+    let selectedRows = this.gridApi.getSelectedRows();
+    let selectedRowsString = "";
+    selectedRows.forEach(function(selectedRow, index) {
+      if (index !== 0) {
+        selectedRowsString += ", ";
+      }
+
+      var date = selectedRow.date;
+      var d = new Date(date);
+      var ds = d.toLocaleString();
+      console.log(ds);
+      selectedRowsString += selectedRow.title+", "+ selectedRow.description+", date: "+ds+", "+
+        selectedRow.version+", "+selectedRow.status+", "+selectedRow.fixedVersion+", "+selectedRow.severity;
+      alert(selectedRowsString);
+    });
+
+  }
 
 }

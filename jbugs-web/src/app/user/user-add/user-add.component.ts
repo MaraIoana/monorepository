@@ -58,4 +58,12 @@ export class UserAddComponent implements OnInit {
   back() {
     this.router.navigate(['/dashboard/users']);
   }
+
+  validateForm() {
+    if (this.selectedOptions.length !== 0) {
+      this.validForm = true;
+    } else {
+      this.validForm = false;
+    }
+  }
 }

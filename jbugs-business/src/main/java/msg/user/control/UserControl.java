@@ -16,13 +16,12 @@ import msg.user.entity.UserEntity;
 import msg.user.entity.dto.UserConverter;
 import msg.user.entity.dto.UserDTO;
 import msg.user.entity.dto.UserInputDTO;
+import msg.user.entity.dto.UserRolesDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.util.List;
 import java.util.stream.Collectors;
-
-//import msg.user.entity.dto.UserRolesDTO;
 
 /**
  * Control operations for all the User related operations.
@@ -88,10 +87,11 @@ public class UserControl {
             throw new BusinessException(MessageCatalog.USER_WITH_SAME_MAIL_EXISTS);
         }*/
 
-//        UserEntity updateUserEntity = userConverter.convertDTOToEntity(userDTO);
-//        UserDTO result = userConverter.convertEntityDTO(userDao.updateUser(updateUserEntity))
-//        return result;
-        return userDTO;
+        UserEntity updateUserEntity = userConverter.convertDTOToEntity(userDTO);
+        UserDTO result = userConverter.convertEntityDTO(userDao.updateUser(updateUserEntity));
+
+
+        return result;
     }
 
     /**
@@ -125,14 +125,13 @@ public class UserControl {
 
     }
 
-    public UserDTO getUser(String username) {
+    public UserDTO getUser(String username){
         UserEntity user = userDao.getUser(username);
-        return userConverter.convertEntityDTO(user);
+         return userConverter.convertEntityDTO(user);
     }
 
-    public UserRolesDTO getUserRoles(String username) {
-        //return userConverter.entityToUserRolesDto(userDao.getUser(username));
-        return null;
+    public UserRolesDTO getUserRoles(String username){
+        return userConverter.entityToUserRolesDto(userDao.getUser(username));
     }
 
     public String authenticateUser(UserInputDTO userInputDTO) {

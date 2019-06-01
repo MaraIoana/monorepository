@@ -1,9 +1,12 @@
 package msg.user.boundary;
 
+import msg.user.entity.dto.UserDTO;
 import msg.user.entity.dto.UserInputDTO;
+import msg.user.entity.dto.UserRolesDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -38,5 +41,29 @@ public class UserResource {
                .entity(userFacade.getAll())
                .build();
         //return Response.ok(userFacade.getAll()).build();
+   }
+
+    @GET
+    @Path(value = "/getUser/{username}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getUser(@PathParam("username") String username){
+        System.out.println("String username ´" + username);
+        return Response
+                .status(200)
+                .entity(userFacade.getUser(username))
+                .build();
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/getUserRoles")
+    public Response getUserRoles(UserRolesDTO userRolesDTO){
+        return Response
+                .status(200)
+                .entity(userFacade.getUserRoles(userRolesDTO.getUsername()))
+                .build();
+        //return Response.ok(userFacade.getAll()).build();
     }
 }
+

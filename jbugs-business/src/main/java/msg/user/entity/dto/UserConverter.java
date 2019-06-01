@@ -8,11 +8,11 @@ import msg.role.entity.RoleEntity;
 import msg.role.entity.dto.RoleConverter;
 import msg.user.entity.UserEntity;
 
-import java.util.ArrayList;
-import java.util.stream.Collectors;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Converts different DOs to UserEntity and vice-versa.
@@ -45,11 +45,11 @@ public class UserConverter {
         u.setRoles(new ArrayList<>());
 
         if (userInputDTO.getRoles() != null && !userInputDTO.getRoles().isEmpty()){
-            u.getRoles().addAll(
-                    roleControl.getRolesByTypeList(userInputDTO.getRoles())
-                            .stream()
-                            .map(roleConverter::dtoToEntity)
-                            .collect(Collectors.toList()));
+            roleControl.getRolesByTypeList(userInputDTO.getRoles())
+                    .stream()
+                    .map(roleConverter::dtoToEntity)
+                    .collect(Collectors.toList())
+                    .addAll(u.getRoles());
         }
         return u;
     }
@@ -60,6 +60,18 @@ public class UserConverter {
         u.setLastName(userEntity.getLastName());
         u.setEmail(userEntity.getEmail());
         u.setMobileNumber(userEntity.getMobileNumber());
+        u.setUsername(userEntity.getUsername());
+        return u;
+    }
+
+    public UserEntity convertDTOToEntity(UserDTO userDTO) {
+        final UserEntity u = new UserEntity();
+        u.setUsername(userDTO.getUsername());
+        u.setFirstName(userDTO.getFirstName());
+        u.setLastName(userDTO.getLastName());
+        u.setEmail(userDTO.getEmail());
+        u.setMobileNumber(userDTO.getMobileNumber());
+
         return u;
     }
 
@@ -77,6 +89,36 @@ public class UserConverter {
         }
         u.setRoles(roles);
         return u;
+    }
+
+    public UserRolesDTO entityToUserRolesDto(UserEntity userEntity){
+        UserRolesDTO userRolesDTO  = new UserRolesDTO();
+        List<String> roles = new ArrayList<>();
+
+        userRolesDTO.setUsername(userEntity.getUsername());
+        for(RoleEntity el: userEntity.getRoles())
+        {
+            roles.add(el.getType());
+        }
+        userRolesDTO.setRoles(roles);
+
+        return userRolesDTO;
+    }
+
+    public UserEntity userRoleDtoToEntity(UserRolesDTO userRolesDTO){
+        UserEntity userEntity = new UserEntity();
+
+        userEntity.setUsername(userRolesDTO.getUsername());
+
+        if (userRolesDTO.getRoles() != null && !userRolesDTO.getRoles().isEmpty()){
+            roleControl.getRolesByTypeList(userRolesDTO.getRoles())
+                    .stream()
+                    .map(roleConverter::dtoToEntity)
+                    .collect(Collectors.toList())
+                    .addAll(userEntity.getRoles());
+        }
+
+        return userEntity;
     }
 
 
