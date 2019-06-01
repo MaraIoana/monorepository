@@ -69,6 +69,7 @@ public class UserControl {
                 new NotificationParamsWelcomeUser(userFullName, newUserEntity.getUsername()));
         UserInputDTO responseUser = new UserInputDTO();
         responseUser.setFirstName(newUserEntity.getUsername());
+        responseUser.setRoles(userDTO.getRoles());
         return responseUser;
     }
 
