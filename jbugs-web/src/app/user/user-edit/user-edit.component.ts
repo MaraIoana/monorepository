@@ -13,7 +13,6 @@ import {UserService} from "../services/user.service";
 export class UserEditComponent implements OnInit {
   public user: RestUser = {};
   public username: string;
-  private sub: any;
   roles = [
     {name: 'ADMINISTRATOR', value: '1', checked: false},
     {name: 'PROJECT MANAGER', value: '2', checked: false},
@@ -58,6 +57,7 @@ export class UserEditComponent implements OnInit {
        this.userService.getUser(this.username).subscribe((user) => {
          this.user = user;
        });
+       console.log(this.user.roles)
        //this.user.mobileNumber = "0040666666"
        //console.log(this.user.mobileNumber);
 

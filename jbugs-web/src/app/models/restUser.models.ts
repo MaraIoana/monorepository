@@ -4,4 +4,5 @@ export interface RestUser {
   lastName ?: string;
   email ?: string;
   mobileNumber ?: string;
+  roles?: string[];
 }

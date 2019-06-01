@@ -1,9 +1,6 @@
 package msg.user.entity;
 
-import msg.role.entity.RoleEntity;
-
 import javax.ejb.Stateless;
-import javax.management.relation.Role;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -71,6 +68,7 @@ public class UserDao {
         updateUser.setLastName(user.getLastName());
         updateUser.setEmail(user.getEmail());
         updateUser.setMobileNumber(user.getMobileNumber());
+        updateUser.setRoles(user.getRoles());
         em.merge(updateUser);
 
 
