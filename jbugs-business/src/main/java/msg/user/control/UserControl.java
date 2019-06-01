@@ -3,22 +3,22 @@
 // =================================================================================================
 package msg.user.control;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
 import msg.exeptions.BusinessException;
 import msg.notifications.boundary.NotificationFacade;
 import msg.notifications.boundary.notificationParams.NotificationParamsWelcomeUser;
 import msg.notifications.entity.NotificationType;
-import msg.role.entity.RoleEntity;
 import msg.user.MessageCatalog;
 import msg.user.entity.UserDao;
 import msg.user.entity.UserEntity;
 import msg.user.entity.dto.UserConverter;
 import msg.user.entity.dto.UserDTO;
 import msg.user.entity.dto.UserInputDTO;
+import msg.user.entity.dto.UserLoginDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.json.Json;
+import javax.json.JsonObject;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -126,22 +126,11 @@ public class UserControl {
     public UserDTO getUser(String username){
         UserEntity user = userDao.getUser(username);
          return userConverter.convertEntityDTO(user);
-
-
     }
 
 
-    public String authenticateUser(UserInputDTO userInputDTO) {
-        UserEntity byEmail = userDao.findByEmail(userInputDTO.getEmail());
-        if (byEmail != null) {
-            Algorithm algorithm = Algorithm.HMAC256("abcd");
-            return JWT.create().withIssuer("auth0")
-                    .withClaim("username",byEmail.getUsername())
-                    .withArrayClaim("roles",byEmail.getRoles()
-                            .stream()
-                            .map(RoleEntity::getType).toArray(String[]::new)) .sign(algorithm);
-        } else {
-            throw new BusinessException(MessageCatalog.INVALID_CREDENTIALS);
-        }
+    public boolean authenticateUser(UserLoginDTO userLoginDTO) {
+        UserEntity user = userDao.findUserByUsername(userLoginDTO.getUsername());
+        return  (user != null && user.getPassword().equals(userLoginDTO.getPassword()));
     }
 }

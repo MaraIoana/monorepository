@@ -1,11 +1,13 @@
 import {Injectable} from '@angular/core';
 import {BackendService} from "./backend.service";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {addUser} from "../../models/addUser.model";
 import {Url} from "url";
 import {RestUser} from "../../models/restUser.models";
-
 import {HttpClient} from "@angular/common/http";
+import {map} from "rxjs/operators";
+import {User} from "../../models/user.model";
+import {LoginUser} from "../../models/loginUser.model";
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +15,11 @@ import {HttpClient} from "@angular/common/http";
 export class UserService {
 
   private loggedIn = false;
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: Observable<User>;
 
   constructor(private backendService: BackendService, private http: HttpClient) {
-    this.loggedIn = !!localStorage.getItem('auth_token');
+    this.loggedIn = !!localStorage.getItem('currentUser');
   }
 
   public getAllUsers(): Observable<addUser[]> {
@@ -41,20 +45,24 @@ export class UserService {
     return this.backendService.get(urlGet);
   }
 
-  // public login(username, password){
-  //   return this.backendService.post('http://localhost:8080/jbugs/jbugs-api/users', {username, password})
-  //     .pipe(map(user => {
-  //       if(user && user.token){
-  //         localStorage.setItem('currentUser', user.token);
-  //         this.loggedIn = true;
-  //       }
-  //       return user.succes;
-  //     }));
-  // }
-
-  public isLoggedIn(){
-    return this.loggedIn;
+  public login(user: LoginUser) {
+    return this.backendService.post('http://localhost:8080/jbugs/jbugs-api/auth', user)
+      .pipe(map(respone => {
+        if (respone) {
+          localStorage.setItem('currentUser', JSON.stringify(respone));
+          //this.currentUserSubject.next(respone);
+        }
+        return respone;
+      }));
   }
+
+  public logout() {
+    localStorage.removeItem('currentUser');
+  }
+
+  // public isLoggedIn(){
+  //   return this.loggedIn;
+  // }
 
 }
 

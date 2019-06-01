@@ -8,6 +8,7 @@ import msg.exeptions.BusinessException;
 import msg.user.control.UserControl;
 import msg.user.entity.dto.UserDTO;
 import msg.user.entity.dto.UserInputDTO;
+import msg.user.entity.dto.UserLoginDTO;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
@@ -57,8 +58,8 @@ public class UserFacade {
         return userControl.getUser(username);
     }
 
-
-    public Object authenticateUser(UserInputDTO userInputDTO) {
-       return userControl.authenticateUser(userInputDTO);
+    @PermitAll
+    public boolean authenticateUser(UserLoginDTO userLoginDTO) {
+       return userControl.authenticateUser(userLoginDTO);
     }
 }

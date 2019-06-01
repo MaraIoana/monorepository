@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 import {UserModule} from "./user/user.module";
 import {HttpClientModule} from "@angular/common/http";
 import {UserManagementComponent} from './user/user-management/user-management.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SummaryPipe} from "./summary.pipe";
 import {LoginComponent} from './login/login.component';
 import {UserEditComponent} from './user/user-edit/user-edit.component';
@@ -36,7 +36,8 @@ import {RoleModule} from "./roles/role.module";
     HttpClientModule,
     FormsModule,
     AgGridModule.withComponents([]),
-    RoleModule
+    RoleModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
