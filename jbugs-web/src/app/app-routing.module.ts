@@ -4,11 +4,14 @@ import {BugsComponent} from "./bug/bugs/bugs.component";
 import {NgModule} from "@angular/core";
 import {UsersComponent} from "./user/users/users.component";
 import {UserEditComponent} from "./user/user-edit/user-edit.component";
-import {LoggedInGuard} from "./logged-in.guard";
+import {LoggedInGuard} from "./guards/logged-in.guard";
 import {LoginComponent} from "./login/login.component";
 import {UserAddComponent} from "./user/user-add/user-add.component";
-import {RoleListComponent} from "./roles/role-list/role-list.component";
-import {RoleComponent} from "./roles/role/role.component";
+import {RolesComponent} from "./role/roles/roles.component";
+import {PermManagementGuard} from "./guards/perm-management.guard";
+import {RoutingErrorComponent} from "./error/routing-error/routing-error.component";
+import {UserManagementGuard} from "./guards/user-management.guard";
+import {BugManagementGuard} from "./guards/bug-management.guard";
 
 const routes: Routes = [
   {
@@ -27,10 +30,19 @@ const routes: Routes = [
     children: [
       {
         path: 'users',
+        canActivate:[],
         children: [
           {
             path: '',
             component: UsersComponent,
+          },
+          {
+            path:'user-add',
+            component:UserAddComponent
+          },
+          {
+            path:'edit/:userName',
+            component:UserEditComponent
           },
           {
             path: ':userId',
@@ -45,35 +57,24 @@ const routes: Routes = [
       },
       {
         path: 'bugs',
+        canActivate:[],
         component: BugsComponent
       },
       {
         path:'roles',
+        canActivate:[],
         children:[
           {
             path:'',
-            component:RoleListComponent
-          },
-          {
-            path:':roleId',
-            children:[
-              {
-                path:'',
-                component:RoleComponent
-              }
-            ]
+            component:RolesComponent
           }
         ]
       }
     ]
   },
   {
-    path: ':user-add',
-    component: UserAddComponent
-  },
-  {
-    path: 'edit/:userName',
-    component: UserEditComponent
+    path:'error',
+    component:RoutingErrorComponent
   }
 ];
 

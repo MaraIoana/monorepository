@@ -3,6 +3,8 @@
 // =================================================================================================
 package msg.user.control;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import msg.exeptions.BusinessException;
 import msg.notifications.boundary.NotificationFacade;
 import msg.notifications.boundary.notificationParams.NotificationParamsWelcomeUser;
@@ -11,16 +13,11 @@ import msg.role.entity.RoleEntity;
 import msg.user.MessageCatalog;
 import msg.user.entity.UserDao;
 import msg.user.entity.UserEntity;
-import msg.user.entity.dto.UserConverter;
-import msg.user.entity.dto.UserDTO;
-import msg.user.entity.dto.UserInputDTO;
-import msg.user.entity.dto.UserLoginDTO;
+import msg.user.entity.dto.*;
+import msg.user.entity.dto.UserRolesDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.management.relation.Role;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -131,13 +128,16 @@ public class UserControl {
          return userConverter.convertEntityDTO(user);
     }
 
+    public UserRolesDTO getUserRoles(String username){
+        return userConverter.entityToUserRolesDto(userDao.getUser(username));
+    }
+
 
     public List<String> authenticateUser(UserLoginDTO userLoginDTO) {
         UserEntity user = null;
-        try{
+        try {
             user = userDao.findUserByUsername(userLoginDTO.getUsername());
-        }
-        catch (Exception e){
+        } catch (Exception e) {
         }
 
         List<String> roles = new ArrayList<>();
@@ -145,7 +145,7 @@ public class UserControl {
             for (RoleEntity r : user.getRoles()) {
                 roles.add(r.getType());
             }
+            return roles;
         }
-        return roles;
     }
 }

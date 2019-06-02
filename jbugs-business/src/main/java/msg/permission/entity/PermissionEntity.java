@@ -15,8 +15,8 @@ import javax.persistence.*;
 @Table(name="permission")
 @NamedQueries({
         @NamedQuery(name = PermissionEntity.QUERY_GET_PERMISSIONS_BY_ROLES,
-                query = "select p from PermissionEntity p "
-                        + "where p.type in :" + PermissionEntity.INPUT_ROLES),
+                query = "select r.permissions from RoleEntity r "
+                        + "where r.type in :" + PermissionEntity.INPUT_ROLES),
         @NamedQuery(name = PermissionEntity.GET_PERMISSION_BY_TYPE,
                 query = "select p from PermissionEntity p " +
                         "where p.type = :type"),
@@ -24,7 +24,13 @@ import javax.persistence.*;
                 query = "select p from PermissionEntity p"),
         @NamedQuery(name= PermissionEntity.GET_PERMISSION_ENTITIES,
                 query = "select p from PermissionEntity p" +
-                        " where p.type in :" + PermissionEntity.TYPES)
+                        " where p.type in :" + PermissionEntity.TYPES),
+        @NamedQuery(name = PermissionEntity.GET_PERMISSIONS_FOR_USER,
+                query = "select u.roles from UserEntity u" +
+                        " where u.username = :username"),
+        @NamedQuery(name = PermissionEntity.USER_COUNT,
+                query = "select count(u) from UserEntity u" +
+                        " where u.username = :username")
 }
 )
 public class PermissionEntity extends BaseEntity<Long> {
@@ -35,6 +41,8 @@ public class PermissionEntity extends BaseEntity<Long> {
     public static final String FIND_ALL = "findAllPermissions";
     public static final String GET_PERMISSION_ENTITIES = "getPermissionEntities";
     public static final String TYPES = "types";
+    public static final String GET_PERMISSIONS_FOR_USER = "getPermissionsForUser";
+    public static final String USER_COUNT = "userCount";
 
 
     @Column(name="type", nullable = false)

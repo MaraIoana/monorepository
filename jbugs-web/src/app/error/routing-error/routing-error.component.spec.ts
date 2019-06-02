@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RoleListComponent } from './role-list.component';
+import { RoutingErrorComponent } from './routing-error.component';
 
-describe('RoleListComponent', () => {
-  let component: RoleListComponent;
-  let fixture: ComponentFixture<RoleListComponent>;
+describe('RoutingErrorComponent', () => {
+  let component: RoutingErrorComponent;
+  let fixture: ComponentFixture<RoutingErrorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RoleListComponent ]
+      declarations: [ RoutingErrorComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RoleListComponent);
+    fixture = TestBed.createComponent(RoutingErrorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

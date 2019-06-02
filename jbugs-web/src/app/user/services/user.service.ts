@@ -1,25 +1,17 @@
 import {Injectable} from '@angular/core';
 import {BackendService} from "./backend.service";
-import {BehaviorSubject, Observable} from "rxjs";
+import {Observable} from "rxjs";
 import {addUser} from "../../models/addUser.model";
-import {Url} from "url";
 import {RestUser} from "../../models/restUser.models";
-import {HttpClient} from "@angular/common/http";
-import {map} from "rxjs/operators";
-import {User} from "../../models/user.model";
-import {LoginUser} from "../../models/loginUser.model";
+import {UserRoles} from "../../models/userRoles.model";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private loggedIn = false;
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
-
   constructor(private backendService: BackendService) {
-    this.loggedIn = !!localStorage.getItem('currentUser');
   }
 
   public getAllUsers(): Observable<addUser[]> {
@@ -45,6 +37,8 @@ export class UserService {
     return this.backendService.get(urlGet);
   }
 
-
+  public getUserRoles(username:string):Observable<UserRoles>{
+    return this.backendService.post("http://localhost:8080/jbugs/jbugs-api/users/getUserRoles",{'username':username});
+  }
 }
 

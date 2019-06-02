@@ -13,12 +13,14 @@
 	<packaging>war</packaging>
 
 	<dependencies>
+
 		<dependency>
 			<groupId>edu.msg.ro</groupId>
 			<artifactId>jbugs-business</artifactId>
 			<type>ejb</type>
 			<version>${project.version}</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>
