@@ -18,7 +18,7 @@ export class UserService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-  constructor(private backendService: BackendService, private http: HttpClient) {
+  constructor(private backendService: BackendService) {
     this.loggedIn = !!localStorage.getItem('currentUser');
   }
 
@@ -45,24 +45,6 @@ export class UserService {
     return this.backendService.get(urlGet);
   }
 
-  public login(user: LoginUser) {
-    return this.backendService.post('http://localhost:8080/jbugs/jbugs-api/auth', user)
-      .pipe(map(respone => {
-        if (respone) {
-          localStorage.setItem('currentUser', JSON.stringify(respone));
-          //this.currentUserSubject.next(respone);
-        }
-        return respone;
-      }));
-  }
-
-  public logout() {
-    localStorage.removeItem('currentUser');
-  }
-
-  // public isLoggedIn(){
-  //   return this.loggedIn;
-  // }
 
 }
 

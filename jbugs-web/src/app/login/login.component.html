@@ -1,6 +1,7 @@
-<form #form='ngForm'>
+<form #form='ngForm' >
   <div class="form-group">
-    <label for="Username"> Username </label>
+    <div *ngIf="submitted" class="alert alert-danger" ng-reflect-ng-class="[object Object]">Username or password is incorrect</div>
+    <label> Username </label>
     <input class="form-control"
            type="text"
            id="username"
@@ -28,4 +29,6 @@
   </div>
 
   <button (click)="onSubmit(form)" [disabled]="form.invalid" class="btn btn-primary">Login</button>
+
 </form>
+

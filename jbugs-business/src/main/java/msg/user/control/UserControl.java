@@ -7,6 +7,7 @@ import msg.exeptions.BusinessException;
 import msg.notifications.boundary.NotificationFacade;
 import msg.notifications.boundary.notificationParams.NotificationParamsWelcomeUser;
 import msg.notifications.entity.NotificationType;
+import msg.role.entity.RoleEntity;
 import msg.user.MessageCatalog;
 import msg.user.entity.UserDao;
 import msg.user.entity.UserEntity;
@@ -19,6 +20,8 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.json.Json;
 import javax.json.JsonObject;
+import javax.management.relation.Role;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -129,8 +132,20 @@ public class UserControl {
     }
 
 
-    public boolean authenticateUser(UserLoginDTO userLoginDTO) {
-        UserEntity user = userDao.findUserByUsername(userLoginDTO.getUsername());
-        return  (user != null && user.getPassword().equals(userLoginDTO.getPassword()));
+    public List<String> authenticateUser(UserLoginDTO userLoginDTO) {
+        UserEntity user = null;
+        try{
+            user = userDao.findUserByUsername(userLoginDTO.getUsername());
+        }
+        catch (Exception e){
+        }
+
+        List<String> roles = new ArrayList<>();
+        if (user != null && user.getPassword().equals(userLoginDTO.getPassword())) {
+            for (RoleEntity r : user.getRoles()) {
+                roles.add(r.getType());
+            }
+        }
+        return roles;
     }
 }

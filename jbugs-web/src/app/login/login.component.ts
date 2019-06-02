@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {UserService} from "../user/services/user.service";
-import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
-import {first} from "rxjs/internal/operators/first";
+import {NgForm} from "@angular/forms";
 import {LoginUser} from "../models/loginUser.model";
+import {LoginService} from "./services/login.service";
 
 @Component({
   selector: 'app-login',
@@ -11,45 +10,36 @@ import {LoginUser} from "../models/loginUser.model";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
-  loading = false;
   submitted = false;
   error = 'Error';
-  user: LoginUser = {
-    username: "",
-    password: ""
-  };
+  user: LoginUser = {};
 
-  constructor(private formBuilder: FormBuilder,
-              private router: Router,
-              private userService: UserService){
+  constructor(private router: Router,
+              private authService: LoginService){
   }
 
   ngOnInit() {
-    // this.loginForm = this.formBuilder.group({
-    //   username: ['', Validators.required],
-    //   password: ['', Validators.required]
-    // });
-
-    this.userService.logout();
-
+    this.submitted = false;
+    localStorage.removeItem('currentUser');
   }
 
   public onSubmit(form: NgForm) {
     this.user.username = form.value.username;
     this.user.password = form.value.password;
-    this.submitted = true;
-    this.loading = true;
-    console.log(this.user.username);
-    console.log(this.user.password);
-    this.userService.login(this.user).subscribe(
+    // console.log(this.user.username);
+    // console.log(this.user.password);
+    this.authService.login(this.user).subscribe(
       result => {
-        if (result) {
-          this.router.navigate(['/dashboard']);
-        }
+        console.log(result);
+          if (result.length != 0) {
+            this.router.navigate(['/dashboard']);
+          }
+          else{
+            this.submitted = true;
+          }
         },
         error=>{
-          this.router.navigate(['/login']);
+          alert(this.error);
         });
   }
 

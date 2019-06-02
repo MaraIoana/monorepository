@@ -59,7 +59,7 @@ public class UserFacade {
     }
 
     @PermitAll
-    public boolean authenticateUser(UserLoginDTO userLoginDTO) {
+    public List<String> authenticateUser(UserLoginDTO userLoginDTO) {
        return userControl.authenticateUser(userLoginDTO);
     }
 }
