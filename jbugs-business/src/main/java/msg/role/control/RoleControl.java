@@ -34,7 +34,7 @@ public class RoleControl {
      * @return a list of role entities.
      */
     public List<RoleInputDTO> getRolesDTOByTypeList(List<String> typeList) {
-        return roleDao.getRolesByTypeList(typeList)
+        return this.getRolesByTypeList(typeList)
                 .stream()
                 .map(roleConverter::entityToDto)
                 .collect(Collectors.toList());
