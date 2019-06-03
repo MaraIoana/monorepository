@@ -1,8 +1,9 @@
 .float-left { width: 25%; float: left; }
 .float-right {width: 70%; float: right; }
 
-#permissionGrid {
-  padding: 20px;
+ag-grid-angular{
+  padding-left: 40px;
+  padding-top: 50px;
 }
 
 button{

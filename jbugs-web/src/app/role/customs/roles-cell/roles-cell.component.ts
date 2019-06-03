@@ -3,6 +3,7 @@ import {MatDialog} from "@angular/material";
 import {PermissionsDialogComponent} from "../permissions-dialog/permissions-dialog.component";
 import {Permission} from "../../../models/permission.model";
 import {PermissionService} from "../../services/permission.service";
+import {RoleService} from "../../services/role.service";
 
 @Component({
   selector: 'app-roles-cell',
@@ -13,7 +14,7 @@ export class RolesCellComponent implements OnInit{
 
   private rowData;
 
-  constructor(public dialog:MatDialog) { }
+  constructor(public dialog:MatDialog,private roleService:RoleService) { }
 
   agInit(params){
     this.rowData = params.data;
@@ -33,7 +34,11 @@ export class RolesCellComponent implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe(result=>{
-      console.log(result + " Dialog closed.");
+      if(result){
+        this.roleService.savePermission(result).subscribe(data=>{
+          console.log("SavePermission result: " + data);
+        })
+      }
     })
   }
 

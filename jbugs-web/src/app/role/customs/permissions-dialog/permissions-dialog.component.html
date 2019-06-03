@@ -31,12 +31,12 @@
   </form>
 
   <mat-dialog-actions>
-    <button mat-button [disabled]="!validForm"><i class="material-icons">add_box</i>Add</button>
+    <button mat-button (click)="savePermission()" [disabled]="!validForm"><i class="material-icons">add_box</i>Add</button>
     <button mat-button (click)="deletePermission()" [disabled]="!isSelected"><i class="material-icons">delete</i>Delete</button>
   </mat-dialog-actions>
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button mat-button (click)="printData()">Close</button>
-  <button mat-raised-button (click)="printData()">Save</button>
+  <button mat-button (click)="close()">Close</button>
+  <button mat-raised-button (click)="save()">Save</button>
 </mat-dialog-actions>
