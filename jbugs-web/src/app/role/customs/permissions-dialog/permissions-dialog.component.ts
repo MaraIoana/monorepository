@@ -14,7 +14,6 @@ export class PermissionsDialogComponent implements OnInit {
   private gridApi;
   private gridColumnApi;
 
-  private isLast = false;
   private isSelected = false;
   private validForm =false;
 
@@ -54,7 +53,7 @@ export class PermissionsDialogComponent implements OnInit {
       for(let r of result){
         this.permissionsCheck.push({
           type:r.type,
-          value:r.id,
+          description:r.description,
           checked:false
         })
       }
@@ -95,8 +94,26 @@ export class PermissionsDialogComponent implements OnInit {
     this.refreshTable();
   }
 
-  printData(){
-    console.log(this.rolePermissions);
+  savePermission(){
+    for(let perm of this.selectedOptions){
+      if(this.rolePermissions.map(x=>x.type).includes(perm)){
+        console.log(perm + " already exists");
+      }
+      else{
+        let permission = this.getPerm(perm);
+        this.rolePermissions.push(permission);
+      }
+
+    }
+    this.refreshTable();
+  }
+
+  getPerm(perm:string):Permission{
+    for(let p of this.permissionList){
+      if(p.type === perm){
+        return p;
+      }
+    }
   }
 
   validateForm(){
@@ -106,6 +123,17 @@ export class PermissionsDialogComponent implements OnInit {
     else{
       this.validForm = false;
     }
+  }
+
+  close(){
+    this.dialogRef.close();
+  }
+
+  save(){
+    this.dialogRef.close({
+      type:this.data.type,
+      permissions:this.rolePermissions.map(x=>x.type)
+    });
   }
 
   refreshTable(){

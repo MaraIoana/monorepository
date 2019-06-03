@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RolesComponent } from './roles/roles.component';
 import {AgGridModule} from "ag-grid-angular";
 import {FormsModule} from "@angular/forms";
-import {MatCheckboxModule} from "@angular/material";
+import {MatCardModule, MatCheckboxModule} from "@angular/material";
 
 @NgModule({
   declarations: [RolesComponent],
@@ -11,7 +11,8 @@ import {MatCheckboxModule} from "@angular/material";
     CommonModule,
     AgGridModule.withComponents([]),
     FormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatCardModule
   ],
   exports:[
     RolesComponent
