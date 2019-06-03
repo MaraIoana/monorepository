@@ -1,5 +1,5 @@
 export interface Permission{
-  id:number;
+  id?:number;
   type:string;
   description:string;
 }

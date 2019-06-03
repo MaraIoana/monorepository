@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {BackendService} from "../../user/services/backend.service";
 import {Observable} from "rxjs";
 import {Permission} from "../../models/permission.model";
-import {UserPermissions} from "../../models/userPermissions.model";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +18,12 @@ export class PermissionService {
 
   public getUserPermissions(username:string):Observable<any>{
     return this.backendService.post(this.baseUrl+ '/permissions/userPermissions',{'username':username
+    });
+  }
+
+  public getRolePermissions(type:string):Observable<any>{
+    return this.backendService.post(this.baseUrl+ '/permissions/rolePermissions',{
+      'type':type
     });
   }
 }

@@ -22,12 +22,7 @@ export class RoleService {
   }
 
   public savePermission(role:Role):Observable<Role> {
-    if (role.permissions.length === 0) {
-      return this.backendService.post(this.baseUrl + '/roles/save', {
-          'type': role.type,
-          'permissions': {}
-        })
-      }
-    return this.backendService.post(this.baseUrl + '/roles/save', role);
+    if(role)
+      return this.backendService.post(this.baseUrl + '/roles/save', role);
   }
 }

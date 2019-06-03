@@ -59,4 +59,11 @@ public class PermissionControl {
         );
         return permissions;
     }
+
+    public List<PermissionDTO> getRolePermissions(String type){
+        return permissionDao.getRolePermissions(type)
+                .stream()
+                .map(permissionConverter::entityToDto)
+                .collect(Collectors.toList());
+    }
 }
