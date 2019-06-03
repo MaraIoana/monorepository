@@ -1,9 +1,14 @@
 package msg.permission.entity;
 
+import msg.role.entity.RoleEntity;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * The DAO for the PermissionEntity Entities.
@@ -47,5 +52,31 @@ public class PermissionDao {
     public List<PermissionEntity> getAll(){
         return em.createNamedQuery(PermissionEntity.FIND_ALL,PermissionEntity.class)
                 .getResultList();
+    }
+
+    public List<PermissionEntity> getPermissionsForUser(String username) {
+        List<String> roles;
+
+        roles = em.createNamedQuery(PermissionEntity.GET_PERMISSIONS_FOR_USER, RoleEntity.class)
+                .setParameter("username", username)
+                .getResultList()
+                .stream()
+                .map(RoleEntity::getType)
+                .collect(Collectors.toList());
+
+        HashSet<PermissionEntity> perms = new HashSet<>(
+                em.createNamedQuery(PermissionEntity.QUERY_GET_PERMISSIONS_BY_ROLES, PermissionEntity.class)
+                        .setParameter(PermissionEntity.INPUT_ROLES, roles)
+                        .getResultList()
+        );
+
+        return new ArrayList<>(perms);
+    }
+
+    public boolean existsUser(String username) {
+        long count = em.createNamedQuery(PermissionEntity.USER_COUNT, Long.class)
+                .setParameter("username", username)
+                .getSingleResult();
+        return (count > 0);
     }
 }

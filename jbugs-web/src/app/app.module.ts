@@ -12,9 +12,10 @@ import {LoginComponent} from './login/login.component';
 import {UserEditComponent} from './user/user-edit/user-edit.component';
 import {BugsComponent} from './bug/bugs/bugs.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
-import { AgGridModule } from 'ag-grid-angular';
-import { UserAddComponent } from './user/user-add/user-add.component';
+import {AgGridModule} from 'ag-grid-angular';
+import {UserAddComponent} from './user/user-add/user-add.component';
 import {RoleModule} from "./role/role.module";
+import {ErrorModule} from "./error/error.module";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {RoleModule} from "./role/role.module";
     HttpClientModule,
     FormsModule,
     AgGridModule.withComponents([]),
-    RoleModule
+    RoleModule,
+    ErrorModule
   ],
   providers: [],
   bootstrap: [AppComponent],

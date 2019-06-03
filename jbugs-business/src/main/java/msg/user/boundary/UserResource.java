@@ -1,6 +1,7 @@
 package msg.user.boundary;
 
 import msg.user.entity.dto.UserInputDTO;
+import msg.user.entity.dto.UserRolesDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -49,12 +50,18 @@ public class UserResource {
                 .status(200)
                 .entity(userFacade.getUser(username))
                 .build();
-       /*
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/getUserRoles")
+    public Response getUserRoles(UserRolesDTO userRolesDTO) {
         return Response
                 .status(200)
-                .entity(userFacade.getAll())
-                .build();*/
-        //return Response.ok(userFacade.getAll()).build(
+                .entity(userFacade.getUserRoles(userRolesDTO.getUsername()))
+                .build();
+        //return Response.ok(userFacade.getAll()).build();
     }
 
     @PUT
@@ -67,4 +74,5 @@ public class UserResource {
     }
 
 }
+
 

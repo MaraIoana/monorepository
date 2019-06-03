@@ -1,5 +1,6 @@
 package msg.permission.boundary;
 
+import msg.exeptions.BusinessException;
 import msg.permission.control.PermissionControl;
 import msg.permission.entity.dto.PermissionDTO;
 
@@ -30,5 +31,13 @@ public class PermissionFacade {
 
     public List<PermissionDTO> getAll(){
         return permissionControl.getAll();
+    }
+
+    public Object getPermissionsForUser(String username) {
+        try {
+            return permissionControl.getPermissionsForUser(username);
+        } catch (BusinessException e) {
+            return e.getExceptionMessage();
+        }
     }
 }

@@ -7,6 +7,7 @@ import msg.exeptions.BusinessException;
 import msg.permission.entity.Permission;
 import msg.user.control.UserControl;
 import msg.user.entity.dto.UserInputDTO;
+import msg.user.entity.dto.UserRolesDTO;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
@@ -54,6 +55,10 @@ public class UserFacade {
 
     public UserInputDTO getUser(String username) {
         return userControl.getUser(username);
+    }
+
+    public UserRolesDTO getUserRoles(String username) {
+        return userControl.getUserRoles(username);
     }
 
 

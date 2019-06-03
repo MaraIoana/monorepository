@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {BackendService} from "./backend.service";
 import {Observable} from "rxjs";
 import {addUser} from "../../models/addUser.model";
-import {Url} from "url";
 import {RestUser} from "../../models/restUser.models";
+import {UserRoles} from "../../models/userRoles.model";
 
 
 @Injectable({
@@ -35,6 +35,10 @@ export class UserService {
     urlGet = 'http://localhost:8080/jbugs/jbugs-api/users/getUser/'+ userName;
     //return this.backendService.get('http://localhost:8080/jbugs/jbugs-api/users/getUser/',userName);
     return this.backendService.get(urlGet);
+  }
+
+  public getUserRoles(username: string): Observable<UserRoles> {
+    return this.backendService.post("http://localhost:8080/jbugs/jbugs-api/users/getUserRoles", {'username': username});
   }
 }
 

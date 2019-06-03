@@ -1,14 +1,13 @@
 package msg.permission.boundary;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
 import msg.permission.entity.dto.PermissionTypeDTO;
+import msg.permission.entity.dto.UserPermissionsDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.awt.*;
 
 /**
  * Document me.
@@ -36,6 +35,14 @@ public class PermissionResource {
     @Path("/perm")
     public Response getPermissionByType(PermissionTypeDTO type){
         return Response.ok(permissionFacade.getPermissionByType(type.getType())).build();
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/userPermissions")
+    public Response getPermissionsForUser(UserPermissionsDTO userPermissionsDTO) {
+        return Response.status(200).entity(permissionFacade.getPermissionsForUser(userPermissionsDTO.getUsername())).build();
     }
 
 
