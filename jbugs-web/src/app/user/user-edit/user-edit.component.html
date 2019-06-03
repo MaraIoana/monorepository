@@ -76,6 +76,19 @@
       </label>
     </div>
   </div>
+  <div class="form-group">
+    <label for="roles">Roles:</label>
+    <div id="roles" *ngFor="let role of roles">
+      <label>
+        <input type="checkbox"
+               name="{{role.name}}"
+               required
+               value="{{role.name}}"
+               [(ngModel)]="role.checked"/>
+        {{role.name}}
+      </label>
+    </div>
+  </div>
   <button type="submit" (click)="submit(form)" class="btn btn-primary" [disabled]="form.invalid">Update</button>
 
 

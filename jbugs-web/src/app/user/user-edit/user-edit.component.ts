@@ -64,6 +64,11 @@ export class UserEditComponent implements OnInit {
 
        this.userService.getUser(this.username).subscribe((user) => {
          this.user = user;
+         for (let i = 0; i < this.user.roles.length; i++) {
+           this.roles.forEach((role) => {
+             this.setRole(this.roles[i], role);
+           });
+         }
        });
        console.log(this.user.roles);
        //this.user.mobileNumber = "0040666666"
@@ -81,5 +86,9 @@ export class UserEditComponent implements OnInit {
        console.log(this.user.roles);
      }
 
-
+  setRole(role: any, userRole: any) {
+    if (role == userRole) {
+      role.checked = true;
+    }
+  }
 }
