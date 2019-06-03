@@ -13,10 +13,7 @@ import msg.role.entity.RoleEntity;
 import msg.user.MessageCatalog;
 import msg.user.entity.UserDao;
 import msg.user.entity.UserEntity;
-import msg.user.entity.dto.UserConverter;
-import msg.user.entity.dto.UserDTO;
-import msg.user.entity.dto.UserInputDTO;
-import msg.user.entity.dto.UserRolesDTO;
+import msg.user.entity.dto.*;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -146,5 +143,21 @@ public class UserControl {
         } else {
             throw new BusinessException(MessageCatalog.INVALID_CREDENTIALS);
         }
+    }
+
+    public UserDataDTO getUserData(String username){
+        UserDataDTO userDataDTO = userConverter.entityToUserDataDto(userDao.getUser(username));
+        userDataDTO.setHasTasks(userDao.hasTasks(username));
+
+        return userDataDTO;
+    }
+
+    public UserDataDTO activateOrReset(String username){
+
+        return userConverter.entityToUserDataDto(userDao.activateOrReset(username));
+    }
+
+    public UserDataDTO deactivate(String username){
+        return userConverter.entityToUserDataDto(userDao.deactivate(username));
     }
 }

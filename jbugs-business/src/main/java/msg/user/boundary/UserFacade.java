@@ -7,6 +7,7 @@ import msg.permission.entity.Permission;
 import msg.exeptions.BusinessException;
 import msg.user.control.UserControl;
 import msg.user.entity.dto.UserDTO;
+import msg.user.entity.dto.UserDataDTO;
 import msg.user.entity.dto.UserInputDTO;
 import msg.user.entity.dto.UserRolesDTO;
 
@@ -66,4 +67,12 @@ public class UserFacade {
     public Object authenticateUser(UserInputDTO userInputDTO) {
        return userControl.authenticateUser(userInputDTO);
     }
+
+    public UserDataDTO getUserData(String username) {
+        return userControl.getUserData(username);
+    }
+
+    public UserDataDTO activateOrReset(String username) { return userControl.activateOrReset(username);}
+
+    public UserDataDTO deactivate(String username) { return userControl.deactivate(username);}
 }

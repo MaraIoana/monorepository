@@ -28,7 +28,7 @@ export class RolesCellComponent implements OnInit{
 
   openDialog():void{
     let dialogRef = this.dialog.open(PermissionsDialogComponent,{
-      data:this.rowData
+      data:this.rowData,
     });
 
     dialogRef.afterClosed().subscribe(result=>{

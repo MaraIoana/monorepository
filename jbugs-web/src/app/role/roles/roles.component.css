@@ -1,11 +1,6 @@
 .float-left { width: 25%; float: left; }
 .float-right {width: 70%; float: right; }
 
-ag-grid-angular{
-  padding-left: 40px;
-  padding-top: 50px;
-}
-
 button{
   padding: 24px 24px;
 }

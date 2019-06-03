@@ -1,6 +1,7 @@
 package msg.user.entity;
 
 import msg.role.entity.RoleEntity;
+import msg.user.entity.dto.UserDataDTO;
 
 import javax.ejb.Stateless;
 import javax.management.relation.Role;
@@ -89,5 +90,31 @@ public class UserDao {
         return em.createNamedQuery(UserEntity.USER_FIND_BY_EMAIL, UserEntity.class)
                 .setParameter(UserEntity.EMAIL,email)
                 .getSingleResult();
+    }
+
+    public boolean hasTasks(String username){
+        long count =  em.createNamedQuery(UserEntity.HAS_TASKS,Long.class)
+                .setParameter("username",username)
+                .getSingleResult();
+        return (count>0);
+    }
+
+    public UserEntity activateOrReset(String username){
+        UserEntity userEntity = getUser(username);
+        userEntity.setCounter(5);
+
+        em.merge(userEntity);
+
+        return userEntity;
+    }
+
+    public UserEntity deactivate(String username){
+        UserEntity userEntity = getUser(username);
+        //todo check if user has tasks if needed
+        userEntity.setCounter(0);
+
+        em.merge(userEntity);
+
+        return userEntity;
     }
 }

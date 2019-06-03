@@ -22,6 +22,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatDialogModule, MatIconModule} from "@angular/material";
 import { RolesCellComponent } from './role/customs/roles-cell/roles-cell.component';
 import { PermissionsDialogComponent } from './role/customs/permissions-dialog/permissions-dialog.component';
+import { UsersCellComponent } from './user/customs/users-cell/users-cell.component';
+import { UserDetailsComponent } from './user/customs/user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { PermissionsDialogComponent } from './role/customs/permissions-dialog/pe
     UserAddComponent,
     UserEditComponent,
     RolesCellComponent,
-    PermissionsDialogComponent
+    PermissionsDialogComponent,
+    UsersCellComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +56,12 @@ import { PermissionsDialogComponent } from './role/customs/permissions-dialog/pe
     MatDialogModule
   ],
   providers: [],
-  entryComponents:[RolesCellComponent,PermissionsDialogComponent],
+  entryComponents:[
+    RolesCellComponent,
+    PermissionsDialogComponent,
+    UsersCellComponent,
+    UserDetailsComponent
+  ],
   bootstrap: [AppComponent],
 
 })

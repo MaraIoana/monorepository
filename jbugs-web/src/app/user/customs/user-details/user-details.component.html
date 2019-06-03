@@ -1,0 +1,14 @@
+
+<mat-dialog-content>
+    <h2>{{data.firstName}} {{data.lastName}}</h2> <br>
+    <i class="material-icons">tag_faces</i> {{data.username}} <br>
+    <i class="material-icons">mail</i> {{data.email}} <br>
+    <i class="material-icons">phone</i> {{data.mobileNumber}} <br>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button [hidden]="!activateButton" (click)="activate()"><i class="material-icons">check</i>Activate</button>
+    <button mat-raised-button [hidden]="!deactivateButton" (click)="deactivate()"><i class="material-icons">block</i>Deactivate</button>
+    <button mat-button (click)="close()">Close</button>
+</mat-dialog-actions>
+
+

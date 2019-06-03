@@ -5,8 +5,6 @@ import {JumperDirective} from "./directives/jumper.directive";
 import {RbtnDirective} from "./directives/rbtn.directive";
 import {BackendService} from "./services/backend.service";
 import {AgGridModule} from "ag-grid-angular"
-import {UserEditComponent} from "./user-edit/user-edit.component";
-import {UserAddComponent} from "./user-add/user-add.component";
 import {RouterModule} from "@angular/router";
 
 
