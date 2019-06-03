@@ -45,10 +45,8 @@ public class UserConverter {
         u.setRoles(new ArrayList<>());
 
         if (userInputDTO.getRoles() != null && !userInputDTO.getRoles().isEmpty()){
-            u.setRoles(roleControl.getRolesByTypeList(userInputDTO.getRoles())
-                    .stream()
-                    .map(roleConverter::dtoToEntity)
-                    .collect(Collectors.toList()));
+            List<RoleEntity> roleEntities = roleControl.getRolesByTypeList(userInputDTO.getRoles());
+            u.setRoles(roleEntities);
         }
         return u;
     }
@@ -88,6 +86,36 @@ public class UserConverter {
         }
         u.setRoles(roles);
         return u;
+    }
+
+    public UserRolesDTO entityToUserRolesDto(UserEntity userEntity){
+        UserRolesDTO userRolesDTO  = new UserRolesDTO();
+        List<String> roles = new ArrayList<>();
+
+        userRolesDTO.setUsername(userEntity.getUsername());
+        for(RoleEntity el: userEntity.getRoles())
+        {
+            roles.add(el.getType());
+        }
+        userRolesDTO.setRoles(roles);
+
+        return userRolesDTO;
+    }
+
+    public UserEntity userRoleDtoToEntity(UserRolesDTO userRolesDTO){
+        UserEntity userEntity = new UserEntity();
+
+        userEntity.setUsername(userRolesDTO.getUsername());
+
+        if (userRolesDTO.getRoles() != null && !userRolesDTO.getRoles().isEmpty()){
+            roleControl.getRolesDTOByTypeList(userRolesDTO.getRoles())
+                    .stream()
+                    .map(roleConverter::dtoToEntity)
+                    .collect(Collectors.toList())
+                    .addAll(userEntity.getRoles());
+        }
+
+        return userEntity;
     }
 
 

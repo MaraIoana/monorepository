@@ -5,7 +5,6 @@ import msg.role.entity.dto.RoleInputDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -31,7 +30,7 @@ public class RoleFacade {
     }
 
     public RoleInputDTO getRole(String type){
-        return roleControl.getRolesByTypeList(Collections.singletonList(type)).get(0);
+        return roleControl.getRolesDTOByTypeList(Collections.singletonList(type)).get(0);
     }
 
     public RoleInputDTO save(RoleInputDTO roleInputDTO){
