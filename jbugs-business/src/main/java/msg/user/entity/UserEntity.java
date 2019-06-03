@@ -49,8 +49,8 @@ public class UserEntity extends BaseEntity<Long> {
     private int counter;
     @ManyToMany(cascade= CascadeType.PERSIST)
     @JoinTable(name="users_roles",
-            joinColumns = @JoinColumn(name="user_id", referencedColumnName = "id",nullable = false),
-            inverseJoinColumns = @JoinColumn(name="role_id",referencedColumnName = "id",nullable = false)
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
     )
     private List<RoleEntity> roles=new ArrayList<>();
 

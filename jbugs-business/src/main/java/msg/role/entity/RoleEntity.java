@@ -28,7 +28,7 @@ import java.util.Objects;
 })
 public class RoleEntity extends BaseEntity<Long> {
 
-    public static final String QUERY_GET_ROLES_BY_TYPE_LIST = "getRolesByTypeList";
+    public static final String QUERY_GET_ROLES_BY_TYPE_LIST = "getRolesDTOByTypeList";
     public static final String INPUT_TYPE_LIST = "type";
     public static final String FIND_ALL = "findAllRoles";
     public static final String GET_PERMISSIONS = "getPermissions";

@@ -45,10 +45,7 @@ public class UserConverter {
         u.setRoles(new ArrayList<>());
 
         if (userInputDTO.getRoles() != null && !userInputDTO.getRoles().isEmpty()){
-            List<RoleEntity> roleEntities = roleControl.getRolesByTypeList(userInputDTO.getRoles())
-                    .stream()
-                    .map(roleConverter::dtoToEntity)
-                    .collect(Collectors.toList());
+            List<RoleEntity> roleEntities = roleControl.getRolesByTypeList(userInputDTO.getRoles());
             u.setRoles(roleEntities);
         }
         return u;
@@ -111,7 +108,7 @@ public class UserConverter {
         userEntity.setUsername(userRolesDTO.getUsername());
 
         if (userRolesDTO.getRoles() != null && !userRolesDTO.getRoles().isEmpty()){
-            roleControl.getRolesByTypeList(userRolesDTO.getRoles())
+            roleControl.getRolesDTOByTypeList(userRolesDTO.getRoles())
                     .stream()
                     .map(roleConverter::dtoToEntity)
                     .collect(Collectors.toList())
