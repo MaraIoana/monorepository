@@ -43,4 +43,8 @@ public class PermissionFacade {
             return e.getExceptionMessage();
         }
     }
+
+    public List<PermissionDTO> getRolePermissions(String type){
+        return permissionControl.getRolePermissions(type);
+    }
 }

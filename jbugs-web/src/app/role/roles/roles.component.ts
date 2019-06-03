@@ -3,6 +3,7 @@ import {RoleService} from "../services/role.service";
 import {Role} from "../../models/role.model";
 import {Permission} from "../../models/permission.model";
 import {PermissionService} from "../services/permission.service";
+import {RolesCellComponent} from "../customs/roles-cell/roles-cell.component";
 
 @Component({
   selector: 'app-role-list',
@@ -40,7 +41,9 @@ export class RolesComponent implements OnInit {
 
   constructor(private roleService: RoleService,private permissionService:PermissionService) {
     this.columnDefs = [
-      {headerName: 'Type', field: 'type', sortable: true, filter: true},
+      {headerName: 'Type', field: 'type', sortable: true, filter: true, width:200,cellClass:"cell-wrap-text"},
+      { width: 110,cellRendererFramework:RolesCellComponent
+      }
     ];
     this.permColumnDefs=[
       {headerName: 'Type',field: 'type',sortable: true, filter: true},
@@ -48,7 +51,6 @@ export class RolesComponent implements OnInit {
     ];
     this.rowSelection = "single";
   }
-
 
   ngOnInit() {
     this.roleService.getRoles()
