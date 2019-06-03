@@ -58,9 +58,9 @@ export class PermissionsDialogComponent implements OnInit {
         })
       }
     });
-    // this.permissionService.getRolePermissions(this.data.type).subscribe(result=>{
-    //   this.rolePermissions = result;
-    // })
+    this.permissionService.getRolePermissions(this.data.type).subscribe(result => {
+      this.rolePermissions = result;
+    })
   }
 
   onGridReady(params){

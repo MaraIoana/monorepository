@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material";
 import {PermissionsDialogComponent} from "../permissions-dialog/permissions-dialog.component";
-import {Permission} from "../../../models/permission.model";
-import {PermissionService} from "../../services/permission.service";
 import {RoleService} from "../../services/role.service";
 
 @Component({
@@ -36,7 +34,7 @@ export class RolesCellComponent implements OnInit{
     dialogRef.afterClosed().subscribe(result=>{
       if(result){
         this.roleService.savePermission(result).subscribe(data=>{
-          console.log("SavePermission result: " + data);
+          console.log("SavePermission result: " + data.type);
         })
       }
     })
