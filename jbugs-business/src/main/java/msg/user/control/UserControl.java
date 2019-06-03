@@ -131,7 +131,8 @@ public class UserControl {
     }
 
     public UserRolesDTO getUserRoles(String username){
-        return userConverter.entityToUserRolesDto(userDao.getUser(username));
+        //return userConverter.entityToUserRolesDto(userDao.getUser(username));
+        return null;
     }
 
     public String authenticateUser(UserInputDTO userInputDTO) {
