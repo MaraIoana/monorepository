@@ -21,7 +21,9 @@ export class PermissionService {
     });
   }
 
-  public getSth(): void {
-    return null;
+  public getRolePermissions(type: string): Observable<any> {
+    return this.backendService.post(this.baseUrl + '/permissions/rolePermissions', {
+      'type': type
+    })
   }
 }
