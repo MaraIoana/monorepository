@@ -1,6 +1,5 @@
 package msg.user.boundary;
 
-import msg.user.entity.dto.UserDTO;
 import msg.user.entity.dto.UserInputDTO;
 
 import javax.ejb.EJB;
@@ -57,5 +56,15 @@ public class UserResource {
                 .build();*/
         //return Response.ok(userFacade.getAll()).build(
     }
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateUser(UserInputDTO userDTO) {
+        //userFacade = null;
+        //userFacade.updateUser(userDTO)
+        return Response.status(200).entity(userFacade.updateUser(userDTO)).build();
+
     }
+
+}
 

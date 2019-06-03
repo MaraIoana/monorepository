@@ -18,19 +18,27 @@ export class UserEditComponent implements OnInit {
     {name: 'PROJECT MANAGER', value: '2', checked: false},
     {name: 'TEST MANAGER', value: '3', checked: false},
     {name: 'DEVELOPER', value: '4', checked: false},
-    {name: 'TESTER', value: '5', checked: false}
+    {name: 'TESTER', value: '5', checked: false/*this.isChecked()*/}
   ]
 
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService) {
+    console.log(this.user.roles);
+  }
+
+  isChecked() {
+    console.log(this.user.roles);
+    return true;
 
   }
 
   submit(form: NgForm) {
+    console.log(this.user.roles);
     this.user.firstName = form.value.firstName;
     this.user.lastName = form.value.lastName;
     this.user.email = form.value.email;
     this.user.mobileNumber = form.value.mobileNumber;
+    alert(this.user.roles);
     //only for test
     //todo remove this line
     //this.userService.updateUser(this.user);
@@ -53,11 +61,11 @@ export class UserEditComponent implements OnInit {
          }
        );
 
-       console.log(this.username);
+
        this.userService.getUser(this.username).subscribe((user) => {
          this.user = user;
        });
-       console.log(this.user.roles)
+       console.log(this.user.roles);
        //this.user.mobileNumber = "0040666666"
        //console.log(this.user.mobileNumber);
 
@@ -70,6 +78,7 @@ export class UserEditComponent implements OnInit {
          this.id = +params['id'];*/
        //console.log(this.userComponent.currentUser.email);
       /* });*/
+       console.log(this.user.roles);
      }
 
 

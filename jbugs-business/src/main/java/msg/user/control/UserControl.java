@@ -14,7 +14,6 @@ import msg.user.MessageCatalog;
 import msg.user.entity.UserDao;
 import msg.user.entity.UserEntity;
 import msg.user.entity.dto.UserConverter;
-import msg.user.entity.dto.UserDTO;
 import msg.user.entity.dto.UserInputDTO;
 
 import javax.ejb.EJB;
@@ -79,14 +78,14 @@ public class UserControl {
      * todo Message for updating the user (showing them on the UI is belongs to anther User Stroy)
      * todo Exception handling if username does not exist
      */
-    public UserDTO updateUser(final UserDTO userDTO) {
+    public UserInputDTO updateUser(final UserInputDTO userDTO) {
         //userDTO = null;
        /* if (userDao.existsEmail(userDTO.getEmail())){
             throw new BusinessException(MessageCatalog.USER_WITH_SAME_MAIL_EXISTS);
         }*/
 
-        UserEntity updateUserEntity = userConverter.convertDTOToEntity(userDTO);
-        UserDTO result = userConverter.convertEntityDTO(userDao.updateUser(updateUserEntity));
+        UserEntity updateUserEntity = userConverter.convertInputDTOtoEntity(userDTO);
+        UserInputDTO result = userConverter.convertEntityDTOO(userDao.updateUser(updateUserEntity));
 
 
         return result;
