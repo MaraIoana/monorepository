@@ -80,4 +80,10 @@ public class PermissionDao {
                 .getSingleResult();
         return (count > 0);
     }
+
+    public List<PermissionEntity> getRolePermissions(String type){
+        return em.createNamedQuery(PermissionEntity.GET_ROLE_PERMISSIONS,PermissionEntity.class)
+                .setParameter("type",type)
+                .getResultList();
+    }
 }

@@ -7,8 +7,8 @@ package msg.permission.entity.dto;
  * @since 19.1.2
  */
 public class PermissionDTO {
-    String type;
-    String description;
+    private String type;
+    private String description;
 
     public PermissionDTO() {
     }

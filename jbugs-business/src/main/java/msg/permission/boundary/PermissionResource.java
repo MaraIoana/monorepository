@@ -49,6 +49,16 @@ public class PermissionResource {
         return Response.status(200).entity(permissionFacade.getPermissionsForUser(userPermissionsDTO.getUsername())).build();
     }
 
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/rolePermissions")
+    public Response getRolePermissions(PermissionTypeDTO permissionTypeDTO){
+        return Response.status(200).entity(permissionFacade.getRolePermissions(permissionTypeDTO.getType())).build();
+    }
+
+
+
 
 
 

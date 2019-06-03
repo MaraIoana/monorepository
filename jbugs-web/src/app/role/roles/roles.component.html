@@ -2,11 +2,13 @@
 <ag-grid-angular
   #myGrid
   id="myGrid"
-  style="height: 1000px"
-  class="ag-theme-balham float-left"
+  style="width:350px;height: auto"
+  class="ag-theme-balham shadow p-3 mb-5 bg-white rounded"
   [rowData]="roleList"
   [columnDefs]="columnDefs"
-  [rowSelection]="rowSelection"
+  [rowSelection]="false"
+  [animateRows]="true"
+  rowHeight="33"
   domLayout="print"
   (selectionChanged)="onSelectionChanged()"
   (gridReady)="onGridReady($event)"
@@ -16,7 +18,8 @@
 <div *ngIf="isSelected">
     <ag-grid-angular *ngIf="rolePermissions.length!==0"
       id="permissionGrid"
-      class="ag-theme-balham"
+      style="height: auto;width: auto"
+      class="ag-theme-balham shadow p-3 mp-5 bg-white rounded"
       [rowData]="rolePermissions"
       [columnDefs]="permColumnDefs"
       [rowSelection]="rowSelection"
@@ -28,10 +31,9 @@
   <p *ngIf="rolePermissions.length===0">
     No permissions!
   </p>
-</div>
-
 <form #addPermission='ngForm' (change)="validateForm()">
   <div class="form-group" *ngIf="isSelected">
+
     <label for="permissions">Permissions:</label>
     <div *ngFor="let permission of permissionsCheck">
       <label>
@@ -40,23 +42,21 @@
                id="permissions"
                required
                value="{{permission.type}}"
-               [(ngModel)]="permission.checked"/>
-        {{permission.type}}
+               [(ngModel)]="permission.checked"
+        >
+          {{permission.type}}
       </label>
     </div>
   </div>
     <div class="form-group">
       <button class="btn btn-primary" [hidden]="!isSelected" [disabled]="!validForm" (click)="savePermission()">Add</button>
-      <button class="btn btn-primary" [hidden]="!isSelected" [disabled]="!isPermSelected || isLast" (click)="deletePermission()">Delete</button>
+      <button class="btn btn-primary" [hidden]="!isSelected" [disabled]="!isPermSelected && isLast" (click)="deletePermission()">Delete</button>
       <br>
       <br>
       <br>
       <p id="infoMessage"></p>
     </div>
-
-
 </form>
-
 <!--<form #addPermission ngModelGroup="addPermission">-->
 <!--  <div class="form-group">-->
 <!--    <div class="form-control">-->

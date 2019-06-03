@@ -16,6 +16,12 @@ import { AgGridModule } from 'ag-grid-angular';
 import { UserAddComponent } from './user/user-add/user-add.component';
 import {RoleModule} from "./role/role.module";
 import {ErrorModule} from "./error/error.module";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatDialogModule, MatIconModule} from "@angular/material";
+import { RolesCellComponent } from './role/customs/roles-cell/roles-cell.component';
+import { PermissionsDialogComponent } from './role/customs/permissions-dialog/permissions-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +32,9 @@ import {ErrorModule} from "./error/error.module";
     BugsComponent,
     DashboardComponent,
     UserAddComponent,
-    UserEditComponent
+    UserEditComponent,
+    RolesCellComponent,
+    PermissionsDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -36,9 +44,15 @@ import {ErrorModule} from "./error/error.module";
     FormsModule,
     AgGridModule.withComponents([]),
     RoleModule,
-    ErrorModule
+    ErrorModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatDialogModule
   ],
   providers: [],
+  entryComponents:[RolesCellComponent,PermissionsDialogComponent],
   bootstrap: [AppComponent],
 
 })
