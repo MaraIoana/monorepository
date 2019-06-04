@@ -30,6 +30,15 @@ public class BugFacade {
         return bugControl.getAll();
     }
 
+    public BugDTO getBug(Long id) {
+        return bugControl.getBug(id);
+    }
+
+    public Object updateBug(BugDTO bug) {
+        return this.bugControl.updateBug(bug);
+
+    }
+
     public BugDTO modifyStatus(BugDTO bug) {
         return bugControl.modifyStatus(bug);
     }

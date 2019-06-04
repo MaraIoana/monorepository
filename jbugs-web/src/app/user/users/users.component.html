@@ -6,13 +6,15 @@
 <br>
 <ag-grid-angular
   id="myGrid"
-  style="width: 1000px; height: 1000px;"
-  class="ag-theme-balham-dark"
+  style="width: 800px; height: 480px"
+  class="ag-theme-balham-dark shadow p-3 mb-5 bg-dark rounded"
   [rowData]="userList"
   [columnDefs]="columnDefs"
-  [rowSelection]="rowSelection"
+  [rowSelection]="false"
+  [animateRows]="true"
   (selectionChanged)="onSelectionChanged()"
   (gridReady)="onGridReady($event)"
+  rowHeight="33"
 >
 </ag-grid-angular>
 

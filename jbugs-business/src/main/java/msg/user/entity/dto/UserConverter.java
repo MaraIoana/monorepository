@@ -45,10 +45,8 @@ public class UserConverter {
         u.setRoles(new ArrayList<>());
 
         if (userInputDTO.getRoles() != null && !userInputDTO.getRoles().isEmpty()){
-            roleControl.getRolesByTypeList(userInputDTO.getRoles())
-                    .stream()
-                    .map(roleConverter::dtoToEntity)
-                    .collect(Collectors.toList()).addAll(u.getRoles());
+            List<RoleEntity> roleEntities = roleControl.getRolesByTypeList(userInputDTO.getRoles());
+            u.setRoles(roleEntities);
         }
         return u;
     }
@@ -60,6 +58,8 @@ public class UserConverter {
         u.setEmail(userEntity.getEmail());
         u.setMobileNumber(userEntity.getMobileNumber());
         u.setUsername(userEntity.getUsername());
+        u.setRoles(roleConverter.RoleToStringList(userEntity.getRoles()));
+        System.out.println(u.getRoles());
         return u;
     }
 
@@ -88,6 +88,49 @@ public class UserConverter {
         }
         u.setRoles(roles);
         return u;
+    }
+
+    public UserRolesDTO entityToUserRolesDto(UserEntity userEntity){
+        UserRolesDTO userRolesDTO  = new UserRolesDTO();
+        List<String> roles = new ArrayList<>();
+
+        userRolesDTO.setUsername(userEntity.getUsername());
+        for(RoleEntity el: userEntity.getRoles())
+        {
+            roles.add(el.getType());
+        }
+        userRolesDTO.setRoles(roles);
+
+        return userRolesDTO;
+    }
+
+    public UserEntity userRoleDtoToEntity(UserRolesDTO userRolesDTO){
+        UserEntity userEntity = new UserEntity();
+
+        userEntity.setUsername(userRolesDTO.getUsername());
+
+        if (userRolesDTO.getRoles() != null && !userRolesDTO.getRoles().isEmpty()){
+            roleControl.getRolesDTOByTypeList(userRolesDTO.getRoles())
+                    .stream()
+                    .map(roleConverter::dtoToEntity)
+                    .collect(Collectors.toList())
+                    .addAll(userEntity.getRoles());
+        }
+
+        return userEntity;
+    }
+
+    public UserDataDTO entityToUserDataDto(UserEntity userEntity){
+        UserDataDTO userDataDTO = new UserDataDTO();
+
+        userDataDTO.setUsername(userEntity.getUsername());
+        userDataDTO.setFirstName(userEntity.getFirstName());
+        userDataDTO.setLastName(userEntity.getLastName());
+        userDataDTO.setMobileNumber(userEntity.getMobileNumber());
+        userDataDTO.setEmail(userEntity.getEmail());
+        userDataDTO.setCounter(userEntity.getCounter());
+
+        return userDataDTO;
     }
 
 

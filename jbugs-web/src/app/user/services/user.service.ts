@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {BackendService} from "./backend.service";
 import {Observable} from "rxjs";
 import {addUser} from "../../models/addUser.model";
-import {Url} from "url";
 import {RestUser} from "../../models/restUser.models";
 
 
@@ -11,30 +10,47 @@ import {RestUser} from "../../models/restUser.models";
 })
 export class UserService {
 
+  private baseUrl = "http://localhost:8080/jbugs/jbugs-api"
+
   constructor(private backendService: BackendService) {
   }
 
   public getAllUsers(): Observable<addUser[]> {
-    //return this.backendService.get('jbugs/jbugs-api/users');
-    //return this.backendService.get('localhost:8080/jbugs/jbugs-api/users');
-    return this.backendService.get('http://localhost:8080/jbugs/jbugs-api/users');
+    return this.backendService.get(this.baseUrl + '/users');
   }
 
   public updateUser(user:RestUser){
-    return this.backendService.put('http://localhost:8080/jbugs/jbugs-api/users', user);
+    return this.backendService.put(this.baseUrl + '/users', user);
   }
 
-
-
   public addUser(user: addUser){
-    return this.backendService.post('http://localhost:8080/jbugs/jbugs-api/users',user);
+    return this.backendService.post(this.baseUrl + '/users',user);
   }
 
   public getUser(userName: string){
-    var urlGet : string
-    urlGet = 'http://localhost:8080/jbugs/jbugs-api/users/getUser/'+ userName;
-    //return this.backendService.get('http://localhost:8080/jbugs/jbugs-api/users/getUser/',userName);
+    var urlGet : string;
+    urlGet = this.baseUrl + '/users/getUser/'+ userName;
     return this.backendService.get(urlGet);
+  }
+
+  public getUserWithId(userId:number){
+    return this.backendService.get(this.baseUrl + '/users/' + userId);
+  }
+
+  public activateOrResetUser(username:string){
+    return this.backendService.put(this.baseUrl + '/users/activate',{
+      'username':username
+    });
+  }
+
+  public deactivateUser(username:string){
+    return this.backendService.put(this.baseUrl + '/users/deactivate',{
+      'username':username
+    });
+  }
+
+  public getUserData(username:string){
+    return this.backendService.get(this.baseUrl + '/users/getUserData/' + username);
   }
 }
 

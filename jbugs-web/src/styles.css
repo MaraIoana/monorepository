@@ -4,6 +4,9 @@
 @import "~ag-grid-community/dist/styles/ag-grid.css";
 @import "~ag-grid-community/dist/styles/ag-theme-balham-dark.css";
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham-dark.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body {
   padding: 20px;
@@ -17,3 +20,7 @@ body {
 .ag-column-hover {
   background-color: #27285e;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

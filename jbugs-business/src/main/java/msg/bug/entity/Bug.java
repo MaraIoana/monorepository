@@ -17,7 +17,8 @@ import java.util.Objects;
 @Table(name = "bugs")
 @NamedQueries({
         @NamedQuery(name = Bug.BUG_FIND_ALL, query = "select b from Bug b"),
-        @NamedQuery(name = Bug.MODIFY_STATUS, query = "select b from Bug b where b.id=:id")
+        @NamedQuery(name = Bug.MODIFY_STATUS, query = "select b from Bug b where b.id=:id"),
+        @NamedQuery(name = Bug.BUG_FIND_BY_ID, query = "select b from Bug b where b.id = :id")
 }
 )
 public class Bug extends BaseEntity<Long>{
@@ -28,6 +29,8 @@ public class Bug extends BaseEntity<Long>{
 //    @Id
 //    @GeneratedValue(strategy= GenerationType.IDENTITY)
 //    private Long id;
+    public static final String BUG_FIND_BY_ID = "Bug.ByID";
+    public static final String ID = "id";
 
     @Column(name = "title",nullable = false)
     private String title;

@@ -3,13 +3,16 @@
 <!--  <li *ngFor="let bug of bugList"> {{bug.title}},{{bug.description}},{{bug.severity}}-->
 
 <!--</div>-->
+
+<div class="test-header">Selection: <span id="selectedRow"></span></div>
 <ag-grid-angular
   id="myGrid"
-
-  class="ag-theme-balham-dark"
+  style="width: 1062px; height: 500px;"
+  class="ag-theme-balham"
   [rowData]="bugList"
   [columnDefs]="columnDefs"
   [rowSelection]="rowSelection"
+  rowHeight="33"
   (selectionChanged)="onSelectionChanged()"
   (gridReady)="onGridReady($event)"
   [pagination]="true"

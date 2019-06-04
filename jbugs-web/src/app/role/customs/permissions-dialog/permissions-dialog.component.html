@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>{{data.type}}</h2>
+<mat-dialog-content>
+  <ag-grid-angular id="permissionGr"
+                   style="height: auto;width: auto"
+                   class="ag-theme-balham-dark shadow p-3 mp-5 bg-dark rounded"
+                   [rowData]="rolePermissions"
+                   [columnDefs]="columnDefs"
+                   [rowSelection]="rowSelection"
+                   domLayout="print"
+                   (gridReady)="onGridReady($event)"
+                   (selectionChanged)="setSelected()"
+  >
+  </ag-grid-angular>
+  <form #addPermission='ngForm' (change)="validateForm()">
+    <div class="form-group">
+      <label for="permissions">Permissions:</label>
+      <div *ngFor="let permission of permissionsCheck">
+        <label>
+          <input type="checkbox"
+                 name="permissions"
+                 id="permissions"
+                 required
+                 value="{{permission.type}}"
+                 [(ngModel)]="permission.checked"
+          >
+          {{permission.type}}
+        </label>
+      </div>
+    </div>
+  </form>
+
+  <mat-dialog-actions>
+    <button mat-button (click)="savePermission()" [disabled]="!validForm"><i class="material-icons">add_box</i>Add</button>
+    <button mat-button (click)="deletePermission()" [disabled]="!isSelected"><i class="material-icons">delete</i>Delete</button>
+  </mat-dialog-actions>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="close()">Close</button>
+  <button mat-raised-button (click)="save()">Save</button>
+</mat-dialog-actions>
+

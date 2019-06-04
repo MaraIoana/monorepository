@@ -1,7 +1,6 @@
 .float-left { width: 25%; float: left; }
 .float-right {width: 70%; float: right; }
 
-#permissionGrid {
-  padding: 20px;
+button{
+  padding: 24px 24px;
 }
-

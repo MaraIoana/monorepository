@@ -1,14 +1,14 @@
-<div class="test-header">Selection: <span id="selectedRow"></span></div>
 <ag-grid-angular
   #myGrid
   id="myGrid"
-  style="height: 1000px"
-  class="ag-theme-balham-dark float-left"
+  style="width:300px;height: auto"
+  class="ag-theme-balham-dark shadow p-3 mb-5 bg-dark rounded"
   [rowData]="roleList"
   [columnDefs]="columnDefs"
-  [rowSelection]="rowSelection"
+  [rowSelection]="false"
+  [animateRows]="true"
+  rowHeight="33"
   domLayout="print"
-  (selectionChanged)="onSelectionChanged()"
   (gridReady)="onGridReady($event)"
 >
 </ag-grid-angular>

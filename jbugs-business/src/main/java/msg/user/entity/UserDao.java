@@ -1,11 +1,13 @@
 package msg.user.entity;
 
+import msg.exeptions.BusinessException;
 import msg.role.entity.RoleEntity;
+import msg.user.entity.dto.UserDataDTO;
 
 import javax.ejb.Stateless;
-import javax.management.relation.Role;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.xml.registry.infomodel.User;
 import java.util.List;
 
 /**
@@ -71,6 +73,7 @@ public class UserDao {
         updateUser.setLastName(user.getLastName());
         updateUser.setEmail(user.getEmail());
         updateUser.setMobileNumber(user.getMobileNumber());
+        updateUser.setRoles(user.getRoles());
         em.merge(updateUser);
 
 
@@ -90,4 +93,57 @@ public class UserDao {
                 .setParameter(UserEntity.EMAIL,email)
                 .getSingleResult();
     }
+
+    public boolean hasTasks(String username){
+        long count =  em.createNamedQuery(UserEntity.HAS_TASKS,Long.class)
+                .setParameter("username",username)
+                .getSingleResult();
+        return (count>0);
+    }
+
+    public UserEntity activateOrReset(String username){
+        UserEntity userEntity = getUser(username);
+        userEntity.setCounter(0);
+
+        em.merge(userEntity);
+
+        return userEntity;
+    }
+
+    public UserEntity deactivate(String username){
+        UserEntity userEntity = getUser(username);
+        //todo check if user has tasks if needed
+        userEntity.setCounter(5);
+
+        em.merge(userEntity);
+
+        return userEntity;
+    }
+
+    public UserEntity decrementCounter(String username){
+        UserEntity userEntity = getUser(username);
+        userEntity.setCounter(userEntity.getCounter() + 1);
+
+        if(userEntity.getCounter() > 5){
+            userEntity.setCounter(5);
+        }
+
+        em.merge(userEntity);
+
+        return userEntity;
+    }
+
+    public boolean isActive(String username){
+        return em.createNamedQuery(UserEntity.IS_ACTIVE,Integer.class)
+                .setParameter("username",username)
+                .getSingleResult() > 0;
+    }
+
+    public UserEntity getUserWithId(int id){
+        return em.createNamedQuery(UserEntity.GET_USER_WITH_ID,UserEntity.class)
+                .setParameter("id",id)
+                .getSingleResult();
+    }
+
+
 }

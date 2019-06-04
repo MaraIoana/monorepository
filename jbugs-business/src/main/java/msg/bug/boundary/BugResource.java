@@ -4,10 +4,7 @@ import msg.bug.entity.dto.BugDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ws.rs.GET;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -48,6 +45,26 @@ public class BugResource {
                 .entity(bugFacade.modifyStatus(bug))
                 .build();
         //return Response.ok(userFacade.getAll()).build();
+    }
+
+    @GET
+    @Path(value = "/getBug/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getUser(@PathParam("id") Long id) {
+        return Response
+                .status(200)
+                .entity(bugFacade.getBug(id))
+                .build();
+    }
+
+    @PUT
+    @Path("/edit")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateUser(BugDTO bugDTO) {
+        //userFacade = null;
+        //userFacade.updateUser(userDTO)
+        return Response.status(200).entity(bugFacade.updateBug(bugDTO)).build();
+
     }
 
 }
