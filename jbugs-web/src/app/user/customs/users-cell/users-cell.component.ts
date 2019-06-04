@@ -14,8 +14,7 @@ export class UsersCellComponent implements OnInit {
   private rowData;
 
   constructor(private router:Router,
-              private dialog:MatDialog,
-              private userService:UserService) { }
+              private dialog:MatDialog) { }
 
   agInit(params){
     this.rowData = params.data;

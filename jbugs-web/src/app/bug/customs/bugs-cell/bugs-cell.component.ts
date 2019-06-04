@@ -12,10 +12,13 @@ export class BugsCellComponent implements OnInit {
 
   private rowData;
 
+  private gridApi;
+
   constructor(private dialog:MatDialog) { }
 
   agInit(params){
     this.rowData = params.data;
+    this.gridApi = params.api;
   }
 
   ngOnInit() {
@@ -28,7 +31,10 @@ export class BugsCellComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result=>{
-      console.log(result);
+      if(result){
+        this.rowData = result.data;
+        this.gridApi.refreshCells();
+      }
     })
   }
 
