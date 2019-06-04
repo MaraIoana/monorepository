@@ -179,7 +179,6 @@
 			</build>
 		</profile>
 
-		<!-- The Arquillian build -->
 		<profile>
 			<id>payara-remote</id>
 
@@ -221,5 +220,6 @@
 				<module>jbugs-business</module>
 			</modules>
 		</profile>
+
 	</profiles>
 </project>

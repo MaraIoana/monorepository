@@ -11,7 +11,7 @@
            #firstName="ngModel"
            ngModel>
     <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid">
-      <div *ngIf="firstName.errors.pattern">The pattern is invalid.</div>
+      <div *ngIf="firstName.errors.minlength">The pattern is invalid.</div>
     </div>
   </div>
   <div class="form-group">
@@ -62,7 +62,22 @@
 
     </div>
   </div>
-  <button type="submit" (click)="submit(form)" class="btn btn-primary" [disabled]="form.invalid">Update</button>
+
+  <div class="form-group">
+    <label for="roles">Roles:</label>
+    <div id="roles" *ngFor="let role of roles">
+      <label>
+        <input type="checkbox"
+               name="{{role.name}}"
+               value="{{role.name}}"
+               [(ngModel)]="role.checked"/>
+        {{role.name}}
+      </label>
+    </div>
+  </div>
+  <button type="submit" (click)="submit(form)" class="btn btn-primary" [disabled]="(!validForm && form.invalid)">
+    Update
+  </button>
 
 
 </form>

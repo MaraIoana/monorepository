@@ -3,11 +3,13 @@
 // =================================================================================================
 package msg.user.boundary;
 
-import msg.permission.entity.Permission;
 import msg.exeptions.BusinessException;
+import msg.permission.entity.Permission;
 import msg.user.control.UserControl;
 import msg.user.entity.dto.UserDTO;
+import msg.user.entity.dto.UserDataDTO;
 import msg.user.entity.dto.UserInputDTO;
+import msg.user.entity.dto.UserRolesDTO;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
@@ -45,7 +47,7 @@ public class UserFacade {
 
     @PermitAll
     @RolesAllowed(Permission.USER_MANAGEMENT)
-    public Object updateUser(UserDTO user) {
+    public Object updateUser(UserInputDTO user) {
         return this.userControl.updateUser(user);
     }
 
@@ -53,12 +55,37 @@ public class UserFacade {
         return userControl.getAll();
     }
 
-    public UserDTO getUser(String username){
+    public UserInputDTO getUser(String username) {
         return userControl.getUser(username);
+    }
+
+    public UserRolesDTO getUserRoles(String username) {
+        return userControl.getUserRoles(username);
     }
 
 
     public Object authenticateUser(UserInputDTO userInputDTO) {
        return userControl.authenticateUser(userInputDTO);
+    }
+
+    public UserDataDTO getUserData(String username) {
+        return userControl.getUserData(username);
+    }
+
+    public UserDataDTO activateOrReset(String username) { return userControl.activateOrReset(username);}
+
+    public UserDataDTO deactivate(String username) { return userControl.deactivate(username);}
+
+    public Object decrementUser(String username){
+        try{
+            return userControl.decrementCounter(username);
+        }
+        catch (BusinessException e){
+            return e.getExceptionMessage();
+        }
+    }
+
+    public UserDTO getUserWithId(int id){
+        return userControl.getUserWithId(id);
     }
 }

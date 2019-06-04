@@ -13,9 +13,10 @@ import msg.role.entity.RoleEntity;
 import msg.user.MessageCatalog;
 import msg.user.entity.UserDao;
 import msg.user.entity.UserEntity;
+import msg.user.entity.dto.*;
 import msg.user.entity.dto.UserConverter;
-import msg.user.entity.dto.UserDTO;
 import msg.user.entity.dto.UserInputDTO;
+import msg.user.entity.dto.UserRolesDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -68,6 +69,7 @@ public class UserControl {
                 new NotificationParamsWelcomeUser(userFullName, newUserEntity.getUsername()));
         UserInputDTO responseUser = new UserInputDTO();
         responseUser.setFirstName(newUserEntity.getUsername());
+        responseUser.setRoles(userDTO.getRoles());
         return responseUser;
     }
 
@@ -79,14 +81,14 @@ public class UserControl {
      * todo Message for updating the user (showing them on the UI is belongs to anther User Stroy)
      * todo Exception handling if username does not exist
      */
-    public UserDTO updateUser(final UserDTO userDTO) {
+    public UserInputDTO updateUser(final UserInputDTO userDTO) {
         //userDTO = null;
        /* if (userDao.existsEmail(userDTO.getEmail())){
             throw new BusinessException(MessageCatalog.USER_WITH_SAME_MAIL_EXISTS);
         }*/
 
-        UserEntity updateUserEntity = userConverter.convertDTOToEntity(userDTO);
-        UserDTO result = userConverter.convertEntityDTO(userDao.updateUser(updateUserEntity));
+        UserEntity updateUserEntity = userConverter.convertInputDTOtoEntity(userDTO);
+        UserInputDTO result = userConverter.convertEntityDTOO(userDao.updateUser(updateUserEntity));
 
 
         return result;
@@ -123,11 +125,16 @@ public class UserControl {
 
     }
 
-    public UserDTO getUser(String username){
+    public UserInputDTO getUser(String username) {
         UserEntity user = userDao.getUser(username);
-         return userConverter.convertEntityDTO(user);
+        System.out.println("getUser:");
+        System.out.println("getUser:");
+        return userConverter.convertEntityDTOO(user);
 
+    }
 
+    public UserRolesDTO getUserRoles(String username) {
+        return userConverter.entityToUserRolesDto(userDao.getUser(username));
     }
 
     public String authenticateUser(UserInputDTO userInputDTO) {
@@ -142,5 +149,40 @@ public class UserControl {
         } else {
             throw new BusinessException(MessageCatalog.INVALID_CREDENTIALS);
         }
+    }
+
+    public UserDataDTO getUserData(String username){
+        UserDataDTO userDataDTO = userConverter.entityToUserDataDto(userDao.getUser(username));
+        userDataDTO.setHasTasks(userDao.hasTasks(username));
+
+        return userDataDTO;
+    }
+
+    public UserDataDTO activateOrReset(String username){
+
+        return userConverter.entityToUserDataDto(userDao.activateOrReset(username));
+    }
+
+    public UserDataDTO deactivate(String username){
+        return userConverter.entityToUserDataDto(userDao.deactivate(username));
+    }
+
+    public UserDataDTO decrementCounter(String username){
+        if(!userDao.isActive(username)){
+            throw new BusinessException(MessageCatalog.NOT_ACTIVE_USER);
+        }
+
+        UserEntity userEntity = userDao.decrementCounter(username);
+
+        if(userEntity.getCounter() == 0){
+            throw new BusinessException(MessageCatalog.TOO_MANY_ATTEMPTS);
+        }
+
+        return userConverter.entityToUserDataDto(userEntity);
+
+    }
+
+    public UserDTO getUserWithId(int id){
+        return userConverter.convertEntityDTO(userDao.getUserWithId(id));
     }
 }

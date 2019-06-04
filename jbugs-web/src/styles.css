@@ -2,8 +2,13 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~ag-grid-community/dist/styles/ag-grid.css";
 @import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham-dark.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body {
   padding: 20px;
-  max-width: 400px;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

@@ -1,0 +1,66 @@
+<mat-dialog-content>
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Title</mat-label>
+      <input matInput
+             [(ngModel)]="data.title"
+             name="title"
+             value="{{data.title}}"
+      >
+    </mat-form-field>
+    <mat-form-field class="example-full-width" floatLabel="always">
+      <mat-label>Description</mat-label>
+      <textarea matInput
+                [(ngModel)]="data.description"
+                name="description"
+      >
+        {{data.description}}
+      </textarea>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Version</mat-label>
+      <input matInput
+             [(ngModel)]="data.version"
+             name="version"
+             value="{{data.version}}"
+      >
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>FixedVersion</mat-label>
+      <input matInput
+             [(ngModel)]="data.fixedVersion"
+             name="fixedVersion"
+             value="{{data.fixedVersion}}"
+      >
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Severity</mat-label>
+      <mat-form-field>
+        <mat-select
+          [(ngModel)]="data.severity"
+          name="severity"
+          [(value)]="data.severity"
+        >
+          <mat-option value="CRITICAL">CRITICAL</mat-option>
+          <mat-option value="HIGH">HIGH</mat-option>
+          <mat-option value="MEDIUM">MEDIUM</mat-option>
+          <mat-option value="LOW">LOW</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-select
+        [(value)]="username"
+      >
+        <mat-option *ngFor="let user of userList" [(value)]="user.username">
+          {{user.username}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="close()">Close</button>
+  <button mat-raised-button (click)="save()">Save</button>
+</mat-dialog-actions>

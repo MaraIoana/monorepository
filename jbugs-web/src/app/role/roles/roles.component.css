@@ -1,0 +1,6 @@
+.float-left { width: 25%; float: left; }
+.float-right {width: 70%; float: right; }
+
+button{
+  padding: 24px 24px;
+}

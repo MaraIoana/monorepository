@@ -1,0 +1,14 @@
+<ag-grid-angular
+  #myGrid
+  id="myGrid"
+  style="width:300px;height: auto"
+  class="ag-theme-balham-dark shadow p-3 mb-5 bg-dark rounded"
+  [rowData]="roleList"
+  [columnDefs]="columnDefs"
+  [rowSelection]="false"
+  [animateRows]="true"
+  rowHeight="33"
+  domLayout="print"
+  (gridReady)="onGridReady($event)"
+>
+</ag-grid-angular>
