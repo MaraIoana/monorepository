@@ -6,7 +6,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -55,28 +54,28 @@ public class PermissionDao {
                 .getResultList();
     }
 
-    public List<PermissionEntity> getPermissionsForUser(String username){
+    public List<PermissionEntity> getPermissionsForUser(String username) {
         List<String> roles;
 
-        roles = em.createNamedQuery(PermissionEntity.GET_PERMISSIONS_FOR_USER,RoleEntity.class)
-                .setParameter("username",username)
+        roles = em.createNamedQuery(PermissionEntity.GET_PERMISSIONS_FOR_USER, RoleEntity.class)
+                .setParameter("username", username)
                 .getResultList()
                 .stream()
                 .map(RoleEntity::getType)
                 .collect(Collectors.toList());
 
         HashSet<PermissionEntity> perms = new HashSet<>(
-                em.createNamedQuery(PermissionEntity.QUERY_GET_PERMISSIONS_BY_ROLES,PermissionEntity.class)
-                        .setParameter(PermissionEntity.INPUT_ROLES,roles)
+                em.createNamedQuery(PermissionEntity.QUERY_GET_PERMISSIONS_BY_ROLES, PermissionEntity.class)
+                        .setParameter(PermissionEntity.INPUT_ROLES, roles)
                         .getResultList()
         );
 
         return new ArrayList<>(perms);
     }
 
-    public boolean existsUser(String username){
+    public boolean existsUser(String username) {
         long count = em.createNamedQuery(PermissionEntity.USER_COUNT, Long.class)
-                .setParameter("username",username)
+                .setParameter("username", username)
                 .getSingleResult();
         return (count > 0);
     }

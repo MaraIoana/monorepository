@@ -7,7 +7,6 @@ import msg.user.entity.dto.UserRolesDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -108,5 +107,16 @@ public class UserResource {
                 .entity(userFacade.decrementUser(userDataDTO.getUsername()))
                 .build();
     }
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateUser(UserInputDTO userDTO) {
+        //userFacade = null;
+        //userFacade.updateUser(userDTO)
+        return Response.status(200).entity(userFacade.updateUser(userDTO)).build();
+
+    }
+
 }
+
 

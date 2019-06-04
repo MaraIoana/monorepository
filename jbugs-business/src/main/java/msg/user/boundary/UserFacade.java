@@ -3,8 +3,8 @@
 // =================================================================================================
 package msg.user.boundary;
 
-import msg.permission.entity.Permission;
 import msg.exeptions.BusinessException;
+import msg.permission.entity.Permission;
 import msg.user.control.UserControl;
 import msg.user.entity.dto.UserDTO;
 import msg.user.entity.dto.UserDataDTO;
@@ -47,7 +47,7 @@ public class UserFacade {
 
     @PermitAll
     @RolesAllowed(Permission.USER_MANAGEMENT)
-    public Object updateUser(UserDTO user) {
+    public Object updateUser(UserInputDTO user) {
         return this.userControl.updateUser(user);
     }
 
@@ -55,11 +55,11 @@ public class UserFacade {
         return userControl.getAll();
     }
 
-    public UserDTO getUser(String username){
+    public UserInputDTO getUser(String username) {
         return userControl.getUser(username);
     }
 
-    public UserRolesDTO getUserRoles(String username){
+    public UserRolesDTO getUserRoles(String username) {
         return userControl.getUserRoles(username);
     }
 

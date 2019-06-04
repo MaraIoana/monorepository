@@ -1,5 +1,8 @@
 package msg.user.entity.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Document me.
  *
@@ -13,17 +16,26 @@ public class UserDTO {
     private String lastName;
     private String email;
     private String mobileNumber;
+    private List<String> roles = new ArrayList<>();
 
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
 
     public UserDTO() {
     }
 
-    public UserDTO(String username, String firstName, String lastName, String email, String mobileNumber) {
+    public UserDTO(String username, String firstName, String lastName, String email, String mobileNumber, List<String> roles) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.mobileNumber = mobileNumber;
+        this.roles = roles;
     }
 
     public String getUsername() {
