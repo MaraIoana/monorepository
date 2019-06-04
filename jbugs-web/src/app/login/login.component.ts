@@ -9,7 +9,7 @@ import {PermissionService} from "../role/services/permission.service";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router,private permissionService:PermissionService) {
+  constructor(private router: Router, private permissionService: PermissionService) {
   }
 
   ngOnInit() {
@@ -19,11 +19,11 @@ export class LoginComponent implements OnInit {
   login(x) {
     //todo When session is ready here you should set the permissions on the active session.
     let username = x.control.controls.username.value;
-    this.permissionService.getUserPermissions(username).subscribe(data =>{
-      if(data.message)
+    this.permissionService.getUserPermissions(username).subscribe(data => {
+      if (data.message)
         document.getElementById("loginMessage").innerHTML = data.message;
       else
-        this.router.navigateByUrl("/dashboard",{state:{permissions:data.permissions}});
-      })
+        this.router.navigateByUrl("/dashboard", {state: {permissions: data.permissions}});
+    })
   }
 }

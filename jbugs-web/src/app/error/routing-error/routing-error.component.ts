@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
@@ -8,7 +8,7 @@ import {Router} from "@angular/router";
 })
 export class RoutingErrorComponent implements OnInit {
 
-  constructor(public router:Router) {
+  constructor(public router: Router) {
 
   }
 
@@ -16,7 +16,7 @@ export class RoutingErrorComponent implements OnInit {
     document.getElementById("errorMessage").innerHTML = "Thats not cute or something went terribly wrong(maybe permissions)";
     setTimeout(() => {
       this.router.navigateByUrl("/login");
-    },4000);
+    }, 4000);
   }
 
 }

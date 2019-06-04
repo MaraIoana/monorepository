@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 
+
 @Component({
 
   selector: 'dashboard',
@@ -20,66 +21,65 @@ export class DashboardComponent implements OnInit {
   public bugExportPDF = false;
   public isMine = false;
 
-  private permissions:string[];
+  private permissions: string[];
 
-  constructor(private router:Router) {
-    this.permissions= this.router.getCurrentNavigation().extras.state.permissions;
+  constructor(private router: Router) {
+    this.permissions = this.router.getCurrentNavigation().extras.state.permissions;
     console.log(this.router.getCurrentNavigation().extras.state.permissions);
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.checkPermissions();
   }
 
-  checkPermissions(){
+  checkPermissions() {
     this.checkPermissionManagement();
     this.checkUserManagement();
     this.checkBugManagement();
-    this. checkBugClose();
+    this.checkBugClose();
     this.checkBugExportPDF();
     this.checkIsMine();
   }
 
-  checkPermissionManagement(){
-    if(this.permissions.includes("PERMISSION_MANAGEMENT")){
+  checkPermissionManagement() {
+    if (this.permissions.includes("PERMISSION_MANAGEMENT")) {
       this.permissionManagement = false;
-    }
-    else
+    } else
       this.permissionManagement = true;
   }
-  checkUserManagement(){
-    if(this.permissions.includes("USER_MANAGEMENT")){
+
+  checkUserManagement() {
+    if (this.permissions.includes("USER_MANAGEMENT")) {
       this.userManagement = false;
-    }
-    else
+    } else
       this.userManagement = true;
   }
-  checkBugManagement(){
-    if(this.permissions.includes("BUG_MANAGEMENT")){
+
+  checkBugManagement() {
+    if (this.permissions.includes("BUG_MANAGEMENT")) {
       this.bugManagement = false;
-    }
-    else
+    } else
       this.bugManagement = true;
   }
-  checkBugClose(){
-    if(this.permissions.includes("BUG_CLOSE")){
+
+  checkBugClose() {
+    if (this.permissions.includes("BUG_CLOSE")) {
       this.bugClose = false;
-    }
-    else
+    } else
       this.bugClose = true;
   }
-  checkBugExportPDF(){
-    if(this.permissions.includes("BUG_EXPORT_PDF")){
+
+  checkBugExportPDF() {
+    if (this.permissions.includes("BUG_EXPORT_PDF")) {
       this.bugExportPDF = false;
-    }
-    else
+    } else
       this.bugExportPDF = true;
   }
-  checkIsMine(){
-    if(this.permissions.includes("IS_MINE")){
+
+  checkIsMine() {
+    if (this.permissions.includes("IS_MINE")) {
       this.isMine = false;
-    }
-    else
+    } else
       this.isMine = true;
   }
 }

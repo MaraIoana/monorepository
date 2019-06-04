@@ -13,19 +13,32 @@ import {UserService} from "../services/user.service";
 export class UserEditComponent implements OnInit {
   public user: RestUser = {};
   public username: string;
-  private sub: any;
+  roles = [
+    {name: 'ADMINISTRATOR', value: '1', checked: false},
+    {name: 'PROJECT MANAGER', value: '2', checked: false},
+    {name: 'TEST MANAGER', value: '3', checked: false},
+    {name: 'DEVELOPER', value: '4', checked: false},
+    {name: 'TESTER', value: '5', checked: false/*this.isChecked()*/}
+  ]
 
-   currenntUser: RestUser;
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService) {
+    console.log(this.user.roles);
+  }
+
+  isChecked() {
+    console.log(this.user.roles);
+    return true;
 
   }
 
   submit(form: NgForm) {
+    console.log(this.user.roles);
     this.user.firstName = form.value.firstName;
     this.user.lastName = form.value.lastName;
     this.user.email = form.value.email;
     this.user.mobileNumber = form.value.mobileNumber;
+    alert(this.user.roles);
     //only for test
     //todo remove this line
     //this.userService.updateUser(this.user);
@@ -48,10 +61,16 @@ export class UserEditComponent implements OnInit {
          }
        );
 
-       console.log(this.username);
+
        this.userService.getUser(this.username).subscribe((user) => {
          this.user = user;
+         for (let i = 0; i < this.user.roles.length; i++) {
+           this.roles.forEach((role) => {
+             this.setRole(this.roles[i], role);
+           });
+         }
        });
+       console.log(this.user.roles);
        //this.user.mobileNumber = "0040666666"
        //console.log(this.user.mobileNumber);
 
@@ -64,7 +83,12 @@ export class UserEditComponent implements OnInit {
          this.id = +params['id'];*/
        //console.log(this.userComponent.currentUser.email);
       /* });*/
+       console.log(this.user.roles);
      }
 
-
+  setRole(role: any, userRole: any) {
+    if (role == userRole) {
+      role.checked = true;
+    }
+  }
 }

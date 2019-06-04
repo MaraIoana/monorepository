@@ -6,7 +6,6 @@ package msg.user.control;
 import msg.notifications.boundary.NotificationFacade;
 import msg.user.entity.UserDao;
 import msg.user.entity.dto.UserConverter;
-import msg.user.entity.dto.UserDTO;
 import msg.user.entity.dto.UserInputDTO;
 import org.junit.Assert;
 import org.junit.Before;
@@ -61,7 +60,7 @@ public class UserControlTest {
 
     @Test
     public void updateCreateUserWithSuccess() {
-        UserDTO user = createTestUpdateDTO();
+        UserInputDTO user = createTestUpdateDTO();
 
         Mockito.when(userConverter.convertDTOToEntity(Mockito.any())).thenCallRealMethod();
         // Mockito.when(userDao.findUserByUsername(Mockito.any())).thenCallRealMethod();
@@ -107,8 +106,8 @@ public class UserControlTest {
         return user;
     }
 
-    private UserDTO createTestUpdateDTO() {
-        UserDTO user = new UserDTO();
+    private UserInputDTO createTestUpdateDTO() {
+        UserInputDTO user = new UserInputDTO();
         user.setUsername("S4K283IO");
         user.setLastName("Malinas");
         user.setFirstName("Ionut-Calin");
