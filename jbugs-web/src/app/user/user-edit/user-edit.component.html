@@ -69,14 +69,15 @@
       <label>
         <input type="checkbox"
                name="{{role.name}}"
-               required
                value="{{role.name}}"
                [(ngModel)]="role.checked"/>
         {{role.name}}
       </label>
     </div>
   </div>
-  <button type="submit" (click)="submit(form)" class="btn btn-primary" [disabled]="form.invalid">Update</button>
+  <button type="submit" (click)="submit(form)" class="btn btn-primary" [disabled]="(!validForm && form.invalid)">
+    Update
+  </button>
 
 
 </form>

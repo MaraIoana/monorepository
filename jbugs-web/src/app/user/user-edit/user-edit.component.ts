@@ -13,6 +13,7 @@ import {UserService} from "../services/user.service";
 export class UserEditComponent implements OnInit {
   public user: RestUser = {};
   public username: string;
+
   roles = [
     {name: 'ADMINISTRATOR', value: '1', checked: false},
     {name: 'PROJECT MANAGER', value: '2', checked: false},
@@ -20,6 +21,7 @@ export class UserEditComponent implements OnInit {
     {name: 'DEVELOPER', value: '4', checked: false},
     {name: 'TESTER', value: '5', checked: false/*this.isChecked()*/}
   ]
+  private validForm: boolean = false;
 
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService) {
@@ -32,6 +34,14 @@ export class UserEditComponent implements OnInit {
 
   }
 
+  get selectedOptions() {
+    return this.roles
+      .filter(opt => opt.checked)
+      .map(opt => opt.name)
+  }
+
+
+
   submit(form: NgForm) {
     console.log(this.user.roles);
     this.user.firstName = form.value.firstName;
@@ -42,6 +52,7 @@ export class UserEditComponent implements OnInit {
     //only for test
     //todo remove this line
     //this.userService.updateUser(this.user);
+    this.user.roles = this.selectedOptions;
 
     this.userService.updateUser(this.user).subscribe(
       result => alert("User with username: " + result.username + " updated successfully"),
@@ -91,4 +102,14 @@ export class UserEditComponent implements OnInit {
       role.checked = true;
     }
   }
+
+  validateForm() {
+    if (this.selectedOptions.length !== 0) {
+      this.validForm = true;
+    } else {
+      this.validForm = false;
+    }
+  }
+
+
 }
