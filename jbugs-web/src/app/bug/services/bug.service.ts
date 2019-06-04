@@ -14,4 +14,8 @@ export class BugService {
   public getAllBugs(): Observable<Bug[]> {
     return this.backendService.get('http://localhost:8080/jbugs/jbugs-api/bugs');
   }
+
+  public addBug(bug: Bug) {
+    return this.backendService.post('http://localhost:8080/jbugs/jbugs-api/bugs', bug);
+  }
 }

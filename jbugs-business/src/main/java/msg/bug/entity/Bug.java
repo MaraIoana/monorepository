@@ -52,6 +52,21 @@ public class Bug extends BaseEntity<Long>{
 
     public Bug() { }
 
+    @Override
+    public String toString() {
+        return "Bug{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", version='" + version + '\'' +
+                ", date=" + date +
+                ", status=" + status +
+                ", fixedVersion='" + fixedVersion + '\'' +
+                ", severity=" + severity +
+                ", createdBy=" + createdBy +
+                ", assignedTo=" + assignedTo +
+                '}';
+    }
+
     public String getTitle() {
         return title;
     }

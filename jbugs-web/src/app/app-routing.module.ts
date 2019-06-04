@@ -8,10 +8,7 @@ import {LoggedInGuard} from "./guards/logged-in.guard";
 import {LoginComponent} from "./login/login.component";
 import {UserAddComponent} from "./user/user-add/user-add.component";
 import {RolesComponent} from "./role/roles/roles.component";
-import {PermManagementGuard} from "./guards/perm-management.guard";
 import {RoutingErrorComponent} from "./error/routing-error/routing-error.component";
-import {UserManagementGuard} from "./guards/user-management.guard";
-import {BugManagementGuard} from "./guards/bug-management.guard";
 
 const routes: Routes = [
   {

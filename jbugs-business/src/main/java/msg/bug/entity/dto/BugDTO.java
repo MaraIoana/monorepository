@@ -1,8 +1,5 @@
 package msg.bug.entity.dto;
 
-import edu.msg.ro.persistence.entity.BaseEntity;
-import msg.bug.entity.Severity;
-import msg.bug.entity.Status;
 import java.util.Date;
 
 /**
@@ -13,6 +10,7 @@ import java.util.Date;
  */
 public class BugDTO {
 
+    private Long id;
     private String title;
     private String description;
     private String version;
@@ -24,6 +22,30 @@ public class BugDTO {
     private Long  assignedTo;
 
     public BugDTO() { }
+
+    @Override
+    public String toString() {
+        return "BugDTO{" +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", version='" + version + '\'' +
+                ", date=" + date +
+                ", status='" + status + '\'' +
+                ", fixedVersion='" + fixedVersion + '\'' +
+                ", severity='" + severity + '\'' +
+                ", createdBy=" + createdBy +
+                ", assignedTo=" + assignedTo +
+                '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 
     public String getTitle() {
         return title;

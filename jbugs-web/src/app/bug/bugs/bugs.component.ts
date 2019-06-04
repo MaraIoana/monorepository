@@ -1,6 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Bug} from "../../models/bug.model";
 import {BugService} from "../services/bug.service";
+import {MatDialog, MatDialogConfig} from "@angular/material";
+import {BugDialogComponent} from "../bug-dialog/bug-dialog.component";
 
 @Component({
   selector: 'app-bugs',
@@ -18,7 +20,7 @@ export class BugsComponent implements OnInit {
   @Output()
   public output = new EventEmitter<Bug>();
 
-  constructor(private bugService: BugService) {
+  constructor(private dialog: MatDialog, private bugService: BugService) {
     this.columnDefs = [
       {headerName: 'Title', field: 'title',sortable:true,filter:true},
       {headerName: 'Description', field: 'description',sortable:true,filter:true},
@@ -34,8 +36,6 @@ export class BugsComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("initialize bugList with backend stuff");
-
     this.bugService.getAllBugs()
       .subscribe((bugList)=>{
         this.bugList=bugList;
@@ -49,6 +49,17 @@ export class BugsComponent implements OnInit {
 
 
   }
+
+  openCreateDialog() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    //this.dialog.open(BugDialogComponent);
+    const dialogRef = this.dialog.open(BugDialogComponent);
+  }
+
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;

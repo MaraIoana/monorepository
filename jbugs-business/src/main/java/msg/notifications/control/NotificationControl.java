@@ -3,15 +3,16 @@ package msg.notifications.control;
 import msg.exeptions.BusinessException;
 import msg.notifications.MessageCatalog;
 import msg.notifications.boundary.notificationParams.NotificationParams;
+import msg.notifications.boundary.notificationParams.NotificationParamsBugUpdated;
 import msg.notifications.boundary.notificationParams.NotificationParamsUserChanges;
 import msg.notifications.boundary.notificationParams.NotificationParamsWelcomeUser;
 import msg.notifications.entity.NotificationDao;
 import msg.notifications.entity.NotificationEntity;
 import msg.notifications.entity.NotificationType;
 
-import java.util.Date;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.Date;
 
 /**
  * Control operations for all the Notification related operations.
@@ -38,7 +39,27 @@ public class NotificationControl {
                 break;
             case USER_UPDATED: this.createUserUpdateNotification(params);
                 break;
+            case BUG_UPDATED:
+                this.createBugUpdated(params);
         }
+    }
+
+    private void createBugUpdated(NotificationParams params) {
+        if (!(params instanceof NotificationParamsBugUpdated)) {
+            throw new BusinessException(MessageCatalog.MESSAGE_PARAMS_AND_TYPE_ARE_INCOMPATIBLE);
+        }
+
+        final NotificationParamsBugUpdated messageParams = (NotificationParamsBugUpdated) params;
+
+        final NotificationEntity notificationEntity = new NotificationEntity();
+        notificationEntity.setMessage(
+                NotificationMessageCatalog.getFullMessageForBugUpdated(
+                        messageParams.getBugData(), messageParams.getStatus()));
+        notificationEntity.setNotificationType(NotificationType.BUG_UPDATED);
+        //todo update with correct link when routing is available
+        notificationEntity.setUrl(SERVER_ADDRESS + "someOtherInfo");
+        notificationEntity.setDate(new Date());
+        this.notificationDao.createNotification(notificationEntity);
     }
 
     /**
