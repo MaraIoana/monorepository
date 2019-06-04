@@ -42,6 +42,11 @@ public class BugDAO {
     public Bug UpdateBug(Bug bug) {
         Bug updateBug = findBugById(bug.getId());
         updateBug.setTitle(bug.getTitle());
+        updateBug.setDescription(bug.getDescription());
+        updateBug.setDate(bug.getDate());
+        updateBug.setSeverity(bug.getSeverity());
+        updateBug.setCreatedBy(bug.getCreatedBy());
+        updateBug.setAssignedTo(bug.getAssignedTo());
 
         em.merge(updateBug);
 

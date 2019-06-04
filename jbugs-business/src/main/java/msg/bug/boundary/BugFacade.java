@@ -34,9 +34,9 @@ public class BugFacade {
         return bugControl.getBug(id);
     }
 
-//    public Object   updateBug(BugDTO bug){
-//        return this.bugControl.updateBug(bug);
-//
-//    }
+    public Object updateBug(BugDTO bug) {
+        return this.bugControl.updateBug(bug);
+
+    }
 
 }

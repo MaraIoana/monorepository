@@ -40,12 +40,11 @@ public class BugControl {
     }
 
 
-//    public BugDTO updateBug(BugDTO bugDTO){
-//        Bug updateBug = bugConverter
-//        bugDTO result = bugConverter.convertEntityDTO(bugDao.updateBug(updateBug));
-//
-//
-//        return result;
-//
-//    }
+    public BugDTO updateBug(BugDTO bugDTO) {
+        Bug updateBug = bugConverter.convertDTOtoEntity(bugDTO);
+        BugDTO result = bugConverter.convertEntitytoDTO(bugDao.UpdateBug(updateBug));
+
+        return result;
+
+    }
 }
