@@ -4,7 +4,7 @@
       <mat-label>Title</mat-label>
       <input matInput value="{{data.title}}">
     </mat-form-field>
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="example-full-width" floatLabel="always">
       <mat-label>Description</mat-label>
       <textarea matInput>{{data.description}}</textarea>
     </mat-form-field>
@@ -28,8 +28,11 @@
       </mat-form-field>
     </mat-form-field>
     <mat-form-field class="example-full-width">
-      <mat-label>AssignedTo</mat-label>
-      <input matInput value="{{data.assignedTo}}">
+      <mat-select [(value)]="username">
+        <mat-option *ngFor="let user of userList" [(value)]="user.username">
+          {{user.username}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
   </form>
 </mat-dialog-content>

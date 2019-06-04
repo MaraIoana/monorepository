@@ -35,7 +35,7 @@ export class UsersCellComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result=>{
-      if(result.message)
+      if(result)
         console.log(result.message);
     })
   }

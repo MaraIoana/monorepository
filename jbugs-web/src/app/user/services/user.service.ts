@@ -33,6 +33,10 @@ export class UserService {
     return this.backendService.get(urlGet);
   }
 
+  public getUserWithId(userId:number){
+    return this.backendService.get(this.baseUrl + '/users/' + userId);
+  }
+
   public activateOrResetUser(username:string){
     return this.backendService.put(this.baseUrl + '/users/activate',{
       'username':username
