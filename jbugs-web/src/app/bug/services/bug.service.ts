@@ -14,4 +14,13 @@ export class BugService {
   public getAllBugs(): Observable<Bug[]> {
     return this.backendService.get('http://localhost:8080/jbugs/jbugs-api/bugs');
   }
+
+  public modifyStatus(b: Bug): Observable<Bug[]> {
+    console.log(b);
+    return this.backendService.put('http://localhost:8080/jbugs/jbugs-api/bugs', {
+      'id': b.id,
+      'status': b.status,
+      'severity': b.severity
+    });
+  }
 }

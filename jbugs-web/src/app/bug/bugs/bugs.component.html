@@ -5,7 +5,7 @@
 <!--</div>-->
 <ag-grid-angular
   id="myGrid"
-  style="width: 1500px; height: 1500px;"
+
   class="ag-theme-balham-dark"
   [rowData]="bugList"
   [columnDefs]="columnDefs"
@@ -17,3 +17,13 @@
   domLayout="print"
 >
 </ag-grid-angular>
+
+<!--todo disable button if drept != BUG_CLOSE-->
+
+<div>
+  <button>Add bug</button>
+  <button>Update bug</button>
+  <button mat-raised-button (click)="openDialog()">Close bug</button>
+</div>
+
+

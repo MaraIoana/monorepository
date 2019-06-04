@@ -1,8 +1,10 @@
 package msg.bug.control;
+
 import msg.bug.entity.Bug;
 import msg.bug.entity.BugDAO;
 import msg.bug.entity.dto.BugConverter;
 import msg.bug.entity.dto.BugDTO;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.util.List;
@@ -30,4 +32,11 @@ public class BugControl {
                 .map(bugConverter::convertEntitytoDTO)
                 .collect(Collectors.toList());
     }
+
+    public BugDTO modifyStatus(final BugDTO bugDTO) {
+        Bug bug = bugConverter.convertDTOtoEntity(bugDTO);
+        BugDTO result = bugConverter.convertEntitytoDTO(bugDao.modifyStatus(bug));
+        return result;
+    }
+
 }

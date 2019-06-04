@@ -6,19 +6,28 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
+
 /**
- * Document me.
+ * Bug entity.
  *
  * @author msg systems AG; User Name.
  * @since 19.1.2
  */
 @Entity
 @Table(name = "bugs")
-@NamedQuery(name = Bug.BUG_FIND_ALL, query =  "select b from Bug b")
-
+@NamedQueries({
+        @NamedQuery(name = Bug.BUG_FIND_ALL, query = "select b from Bug b"),
+        @NamedQuery(name = Bug.MODIFY_STATUS, query = "select b from Bug b where b.id=:id")
+}
+)
 public class Bug extends BaseEntity<Long>{
 
    public static final String BUG_FIND_ALL = "Bug.findAll";
+    public static final String MODIFY_STATUS = "Bug.modifyStatus";
+//public static final String ID="id" ;
+//    @Id
+//    @GeneratedValue(strategy= GenerationType.IDENTITY)
+//    private Long id;
 
     @Column(name = "title",nullable = false)
     private String title;

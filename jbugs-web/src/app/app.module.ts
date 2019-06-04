@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {UserModule} from "./user/user.module";
@@ -10,14 +9,13 @@ import {FormsModule} from "@angular/forms";
 import {SummaryPipe} from "./summary.pipe";
 import {LoginComponent} from './login/login.component';
 import {UserEditComponent} from './user/user-edit/user-edit.component';
-import {BugsComponent} from './bug/bugs/bugs.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
-import { AgGridModule } from 'ag-grid-angular';
-import { UserAddComponent } from './user/user-add/user-add.component';
+import {AgGridModule} from 'ag-grid-angular';
+import {UserAddComponent} from './user/user-add/user-add.component';
 import {RoleModule} from "./role/role.module";
 import {BugModule} from "./bug/bug.module";
-
-;
+import {StatusDialogComponent} from "./bug/status-dialog/status-dialog.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -25,7 +23,6 @@ import {BugModule} from "./bug/bug.module";
     UserManagementComponent,
     SummaryPipe,
     LoginComponent,
-    BugsComponent,
     UserEditComponent,
     DashboardComponent,
     UserAddComponent,
@@ -39,9 +36,11 @@ import {BugModule} from "./bug/bug.module";
     FormsModule,
     AgGridModule.withComponents([]),
     BugModule,
-    RoleModule
+    RoleModule,
+    BrowserAnimationsModule
   ],
   providers: [],
+  entryComponents: [StatusDialogComponent],
   bootstrap: [AppComponent],
 
 })

@@ -1,12 +1,8 @@
 package msg.bug.boundary;
 
 import msg.bug.control.BugControl;
-import msg.bug.entity.Bug;
 import msg.bug.entity.dto.BugDTO;
 
-
-import javax.annotation.security.PermitAll;
-import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.util.List;
@@ -34,4 +30,7 @@ public class BugFacade {
         return bugControl.getAll();
     }
 
+    public BugDTO modifyStatus(BugDTO bug) {
+        return bugControl.modifyStatus(bug);
+    }
 }

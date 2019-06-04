@@ -1,8 +1,11 @@
 package msg.bug.boundary;
 
+import msg.bug.entity.dto.BugDTO;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -33,6 +36,16 @@ public class BugResource {
                 .header("Access-Control-Allow-Methods",
                         "GET, POST, PUT, DELETE, OPTIONS, HEAD")
                 .entity(bugFacade.getAll())
+                .build();
+        //return Response.ok(userFacade.getAll()).build();
+    }
+
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response modifyStatus(BugDTO bug) {
+        return Response
+                .status(200)
+                .entity(bugFacade.modifyStatus(bug))
                 .build();
         //return Response.ok(userFacade.getAll()).build();
     }
