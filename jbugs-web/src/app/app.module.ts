@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {UserModule} from "./user/user.module";
@@ -16,36 +15,24 @@ import {AgGridModule} from 'ag-grid-angular';
 import {UserAddComponent} from './user/user-add/user-add.component';
 import {RoleModule} from "./role/role.module";
 import {ErrorModule} from "./error/error.module";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import {
-  MatDialogModule,
-  MatIconModule,
-  MatFormField,
-  MatFormFieldModule,
-  MatInputModule,
-  MatSelectModule
-} from "@angular/material";
-import { RolesCellComponent } from './role/customs/roles-cell/roles-cell.component';
-import { PermissionsDialogComponent } from './role/customs/permissions-dialog/permissions-dialog.component';
-import { UsersCellComponent } from './user/customs/users-cell/users-cell.component';
-import { UserDetailsComponent } from './user/customs/user-details/user-details.component';
-import { BugsCellComponent } from './bug/customs/bugs-cell/bugs-cell.component';
-import { BugEditComponent } from './bug/customs/bug-edit/bug-edit.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {RolesCellComponent} from './role/customs/roles-cell/roles-cell.component';
+import {PermissionsDialogComponent} from './role/customs/permissions-dialog/permissions-dialog.component';
+import {UsersCellComponent} from './user/customs/users-cell/users-cell.component';
+import {UserDetailsComponent} from './user/customs/user-details/user-details.component';
+import {BugsCellComponent} from './bug/customs/bugs-cell/bugs-cell.component';
+import {BugEditComponent} from './bug/customs/bug-edit/bug-edit.component';
 import {
   MatDatepickerModule,
   MatDialogModule,
   MatFormFieldModule,
   MatIconModule,
+  MatInputModule,
   MatNativeDateModule,
   MatSelectModule
 } from "@angular/material";
-import {RolesCellComponent} from './role/customs/roles-cell/roles-cell.component';
-import {PermissionsDialogComponent} from './role/customs/permissions-dialog/permissions-dialog.component';
 import {BugDialogComponent} from './bug/bug-dialog/bug-dialog.component';
 
 @NgModule({
@@ -60,7 +47,7 @@ import {BugDialogComponent} from './bug/bug-dialog/bug-dialog.component';
     UserEditComponent,
     RolesCellComponent,
     PermissionsDialogComponent,
-    BugDialogComponent
+    BugDialogComponent,
     PermissionsDialogComponent,
     UsersCellComponent,
     UserDetailsComponent,
@@ -97,9 +84,9 @@ import {BugDialogComponent} from './bug/bug-dialog/bug-dialog.component';
     UsersCellComponent,
     UserDetailsComponent,
     BugsCellComponent,
-    BugEditComponent
+    BugEditComponent,
+    BugDialogComponent
   ],
-  entryComponents: [RolesCellComponent, PermissionsDialogComponent, BugDialogComponent],
   bootstrap: [AppComponent],
 
 })
