@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Modify status</h1>
+<div mat-dialog-content>
+  <p>Choose status</p>
+
+  <mat-radio-group (change)="onChange($event)" aria-label="Select an option">
+    <ol>
+      <mat-radio-button [hidden]="inprogress" type="radio" value="INPROGRESS">INPROGRESS</mat-radio-button>
+      <mat-radio-button [hidden]="fixed" type="radio" value="FIXED">FIXED</mat-radio-button>
+      <mat-radio-button [hidden]="closed" type="radio" value="CLOSED">CLOSED</mat-radio-button>
+      <mat-radio-button [hidden]="rejected" type="radio" value="REJECTED">REJECTED</mat-radio-button>
+      <mat-radio-button [hidden]="info" type="radio" value="INFONEEDED">INFO NEEDED</mat-radio-button>
+    </ol>
+  </mat-radio-group>
+
+  <button mat-button (click)="onNoClick()">Update</button>
+</div>
