@@ -48,7 +48,7 @@ public class BugResource {
     }
 
     @PUT
-    //@Path("/edit")
+    @Path("/edit")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateUser(BugDTO bugDTO) {
         //userFacade = null;

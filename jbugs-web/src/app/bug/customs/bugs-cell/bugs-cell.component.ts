@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material";
-import {UserDetailsComponent} from "../../../user/customs/user-details/user-details.component";
 import {BugEditComponent} from "../bug-edit/bug-edit.component";
+import {BugService} from "../../services/bug.service";
 
 @Component({
   selector: 'app-bugs-cell',
@@ -12,10 +12,14 @@ export class BugsCellComponent implements OnInit {
 
   private rowData;
 
-  constructor(private dialog:MatDialog) { }
+  private gridApi;
+
+  constructor(private dialog: MatDialog, private bugService: BugService) {
+  }
 
   agInit(params){
     this.rowData = params.data;
+    this.gridApi = params.api;
   }
 
   ngOnInit() {
@@ -29,6 +33,7 @@ export class BugsCellComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result=>{
       console.log(result);
+      this.gridApi.setRowData(result.data);
     })
   }
 
