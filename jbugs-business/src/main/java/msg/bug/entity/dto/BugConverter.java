@@ -1,9 +1,7 @@
 package msg.bug.entity.dto;
 
 import msg.bug.entity.Bug;
-import msg.role.control.RoleControl;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 /**
  * Document me.
@@ -60,6 +58,7 @@ public class BugConverter {
         b.setSeverity(severity);
         b.setCreatedBy(bug.getCreatedBy());
         b.setAssignedTo(bug.getAssignedTo());
+        b.setId(bug.getId());
 
         return b;
     }

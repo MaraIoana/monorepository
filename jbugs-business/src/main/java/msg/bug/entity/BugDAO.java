@@ -1,7 +1,8 @@
 package msg.bug.entity;
 
 import javax.ejb.Stateless;
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
@@ -23,5 +24,27 @@ public class BugDAO {
 
     public List<Bug> getAll(){
        return em.createNamedQuery(Bug.BUG_FIND_ALL, Bug.class).getResultList();
+    }
+
+    public Bug getBug(Long id) {
+        return em.createNamedQuery(Bug.BUG_FIND_BY_ID, Bug.class).
+                setParameter("id", id)
+                .getSingleResult();
+    }
+
+    public Bug findBugById(Long id) {
+        Bug bug = em.createNamedQuery(Bug.BUG_FIND_BY_ID, Bug.class)
+                .setParameter(Bug.ID, id)
+                .getSingleResult();
+        return (bug);
+    }
+
+    public Bug UpdateBug(Bug bug) {
+        Bug updateBug = findBugById(bug.getId());
+        updateBug.setTitle(bug.getTitle());
+
+        em.merge(updateBug);
+
+        return updateBug;
     }
 }
