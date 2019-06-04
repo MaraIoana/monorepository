@@ -1,0 +1,40 @@
+<mat-dialog-content>
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Title</mat-label>
+      <input matInput value="{{data.title}}">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput>{{data.description}}</textarea>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Version</mat-label>
+      <input matInput value="{{data.version}}">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>FixedVersion</mat-label>
+      <input matInput value="{{data.fixedVersion}}">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Severity</mat-label>
+      <mat-form-field>
+        <mat-select [(value)]="data.severity">
+          <mat-option value="CRITICAL">CRITICAL</mat-option>
+          <mat-option value="HIGH">HIGH</mat-option>
+          <mat-option value="MEDIUM">MEDIUM</mat-option>
+          <mat-option value="LOW">LOW</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>AssignedTo</mat-label>
+      <input matInput value="{{data.assignedTo}}">
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="close()">Close</button>
+  <button mat-raised-button (click)="save()">Save</button>
+</mat-dialog-actions>

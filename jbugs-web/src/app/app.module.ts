@@ -19,11 +19,20 @@ import {ErrorModule} from "./error/error.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {MatDialogModule, MatIconModule} from "@angular/material";
+import {
+  MatDialogModule,
+  MatIconModule,
+  MatFormField,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule
+} from "@angular/material";
 import { RolesCellComponent } from './role/customs/roles-cell/roles-cell.component';
 import { PermissionsDialogComponent } from './role/customs/permissions-dialog/permissions-dialog.component';
 import { UsersCellComponent } from './user/customs/users-cell/users-cell.component';
 import { UserDetailsComponent } from './user/customs/user-details/user-details.component';
+import { BugsCellComponent } from './bug/customs/bugs-cell/bugs-cell.component';
+import { BugEditComponent } from './bug/customs/bug-edit/bug-edit.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +47,9 @@ import { UserDetailsComponent } from './user/customs/user-details/user-details.c
     RolesCellComponent,
     PermissionsDialogComponent,
     UsersCellComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    BugsCellComponent,
+    BugEditComponent
   ],
   imports: [
     BrowserModule,
@@ -53,14 +64,19 @@ import { UserDetailsComponent } from './user/customs/user-details/user-details.c
     MatButtonModule,
     MatCheckboxModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [],
   entryComponents:[
     RolesCellComponent,
     PermissionsDialogComponent,
     UsersCellComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    BugsCellComponent,
+    BugEditComponent
   ],
   bootstrap: [AppComponent],
 

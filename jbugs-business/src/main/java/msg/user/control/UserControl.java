@@ -160,4 +160,19 @@ public class UserControl {
     public UserDataDTO deactivate(String username){
         return userConverter.entityToUserDataDto(userDao.deactivate(username));
     }
+
+    public UserDataDTO decrementCounter(String username){
+        if(!userDao.isActive(username)){
+            throw new BusinessException(MessageCatalog.NOT_ACTIVE_USER);
+        }
+
+        UserEntity userEntity = userDao.decrementCounter(username);
+
+        if(userEntity.getCounter() == 0){
+            throw new BusinessException(MessageCatalog.TOO_MANY_ATTEMPTS);
+        }
+
+        return userConverter.entityToUserDataDto(userEntity);
+
+    }
 }

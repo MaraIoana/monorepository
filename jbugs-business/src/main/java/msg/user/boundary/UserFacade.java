@@ -75,4 +75,13 @@ public class UserFacade {
     public UserDataDTO activateOrReset(String username) { return userControl.activateOrReset(username);}
 
     public UserDataDTO deactivate(String username) { return userControl.deactivate(username);}
+
+    public Object decrementUser(String username){
+        try{
+            return userControl.decrementCounter(username);
+        }
+        catch (BusinessException e){
+            return e.getExceptionMessage();
+        }
+    }
 }

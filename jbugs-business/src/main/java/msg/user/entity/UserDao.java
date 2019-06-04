@@ -1,5 +1,6 @@
 package msg.user.entity;
 
+import msg.exeptions.BusinessException;
 import msg.role.entity.RoleEntity;
 import msg.user.entity.dto.UserDataDTO;
 
@@ -7,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.management.relation.Role;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.xml.registry.infomodel.User;
 import java.util.List;
 
 /**
@@ -116,5 +118,24 @@ public class UserDao {
         em.merge(userEntity);
 
         return userEntity;
+    }
+
+    public UserEntity decrementCounter(String username){
+        UserEntity userEntity = getUser(username);
+        userEntity.setCounter(userEntity.getCounter() - 1);
+
+        if(userEntity.getCounter() < 0){
+            userEntity.setCounter(0);
+        }
+
+        em.merge(userEntity);
+
+        return userEntity;
+    }
+
+    public boolean isActive(String username){
+        return em.createNamedQuery(UserEntity.IS_ACTIVE,Integer.class)
+                .setParameter("username",username)
+                .getSingleResult() > 0;
     }
 }

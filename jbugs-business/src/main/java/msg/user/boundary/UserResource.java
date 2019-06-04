@@ -97,5 +97,16 @@ public class UserResource {
                 .entity(userFacade.deactivate(userDataDTO.getUsername()))
                 .build();
     }
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/decrement")
+    public Response decrementUser(UserDataDTO userDataDTO){
+        return Response
+                .status(200)
+                .entity(userFacade.decrementUser(userDataDTO.getUsername()))
+                .build();
+    }
 }
 

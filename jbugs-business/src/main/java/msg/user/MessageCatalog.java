@@ -18,4 +18,8 @@ public class MessageCatalog {
             = new ExceptionMessage("USER-01", "A user with the same email already exists.");
     public static final ExceptionMessage INVALID_CREDENTIALS
             = new ExceptionMessage("USER-02", "Username or password invalid");
+    public static final ExceptionMessage NOT_ACTIVE_USER
+            = new ExceptionMessage("USER-03", "User is not active. Please contact support ");
+    public static final ExceptionMessage TOO_MANY_ATTEMPTS
+            = new ExceptionMessage("USER-04", "User has been blocked. Please contact support");
 }
