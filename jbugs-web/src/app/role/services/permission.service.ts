@@ -16,8 +16,9 @@ export class PermissionService {
     return this.backendService.get(this.baseUrl + '/permissions');
   }
 
-  public getUserPermissions(username:string):Observable<any>{
-    return this.backendService.post(this.baseUrl+ '/permissions/userPermissions',{'username':username
+  public getUserPermissions(username: string): Observable<any> {
+    return this.backendService.post(this.baseUrl + '/permissions/userPermissions', {
+      'username': username
     });
   }
 

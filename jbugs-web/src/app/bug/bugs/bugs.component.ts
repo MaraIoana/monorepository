@@ -3,6 +3,7 @@ import {Bug} from "../../models/bug.model";
 import {BugService} from "../services/bug.service";
 import {MatDialog, MatDialogConfig} from "@angular/material";
 import {BugDialogComponent} from "../bug-dialog/bug-dialog.component";
+import {BugsCellComponent} from "../customs/bugs-cell/bugs-cell.component";
 
 @Component({
   selector: 'app-bugs',
@@ -22,13 +23,14 @@ export class BugsComponent implements OnInit {
 
   constructor(private dialog: MatDialog, private bugService: BugService) {
     this.columnDefs = [
-      {headerName: 'Title', field: 'title',sortable:true,filter:true},
-      {headerName: 'Description', field: 'description',sortable:true,filter:true},
-      {headerName: 'Version', field: 'version',sortable:true,filter:true},
-      {headerName: 'Date', field: 'date',sortable:true,filter:true},
-      {headerName: 'Status', field: 'status',sortable:true,filter:true},
-      {headerName: 'Fixed Version', field: 'fixedVersion',sortable:true,filter:true},
-      {headerName: 'Severity', field: 'severity',sortable:true,filter:true},
+      {headerName: 'Title', field: 'title',sortable:true,filter:true,width:100},
+      {headerName: 'Description', field: 'description',sortable:true,filter:true,width:200,cellClass:"cell-wrap-text"},
+      {headerName: 'Version', field: 'version',sortable:true,filter:true,width:100},
+      {headerName: 'Date', field: 'date',sortable:true,filter:true,width:200},
+      {headerName: 'Status', field: 'status',sortable:true,filter:true,width:100},
+      {headerName: 'Fixed Version', field: 'fixedVersion',sortable:true,filter:true,width:150},
+      {headerName: 'Severity', field: 'severity',sortable:true,filter:true,width:100},
+      {width:110,cellRendererFramework:BugsCellComponent}
     //   {headerName: 'Created by', field: 'createdByUser',sortable:true,filter:true},
     //   {headerName: 'Assigned to', field: 'assignedTo',sortable:true,filter:true},
      ];
@@ -36,6 +38,8 @@ export class BugsComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("initialize bugList with backend stuff");
+
     this.bugService.getAllBugs()
       .subscribe((bugList)=>{
         this.bugList=bugList;

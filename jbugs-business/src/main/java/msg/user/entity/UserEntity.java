@@ -22,7 +22,10 @@ import java.util.Objects;
         @NamedQuery(name = UserEntity.USER_FIND_BY_USERNAME, query = "SELECT u from UserEntity u where u.username = :" + UserEntity.USERNAME),
         @NamedQuery(name = UserEntity.USER_FIND_ALL,
                     query =  "select u from UserEntity u"),
-        @NamedQuery(name= UserEntity.USER_COUNT_BY_USERNAME,query= "SELECT count(u) from UserEntity u where u.username = :" + UserEntity.USERNAME)
+        @NamedQuery(name= UserEntity.USER_COUNT_BY_USERNAME,query= "SELECT count(u) from UserEntity u where u.username = :" + UserEntity.USERNAME),
+        @NamedQuery(name= UserEntity.HAS_TASKS,query = "SELECT count(b) from Bug b JOIN UserEntity u ON b.assignedTo = u.id " +
+                " where u.username = :username"),
+        @NamedQuery(name = UserEntity.IS_ACTIVE,query = "SELECT u.counter from UserEntity u where u.username= :username")
 })
 public class UserEntity extends BaseEntity<Long> {
     public static final String USER_FIND_ALL = "UserEntity.findAll";
@@ -32,6 +35,8 @@ public class UserEntity extends BaseEntity<Long> {
     public static final String USER_FIND_BY_EMAIL = "UserEntity.findByEmail";
     public static final String USER_FIND_BY_USERNAME = "UserEntity.findByUsername";
     public static final String USER_COUNT_BY_USERNAME = "UserEntity.countByUsername";
+    public static final String HAS_TASKS = "hasTasks";
+    public static final String IS_ACTIVE = "isActive";
 
     @Column(name="first_name",nullable = false)
     private String firstName;

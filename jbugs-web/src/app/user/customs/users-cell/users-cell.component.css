@@ -1,0 +1,5 @@
+button.mat-button{
+  padding: 3px 3px !important;
+  min-width: 24px;
+  line-height: 24px;
+}

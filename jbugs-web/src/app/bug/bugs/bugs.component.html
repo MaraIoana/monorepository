@@ -8,11 +8,12 @@
 <div class="test-header">Selection: <span id="selectedRow"></span></div>
 <ag-grid-angular
   id="myGrid"
-  style="width: 1500px; height: 1500px;"
+  style="width: 1062px; height: 500px;"
   class="ag-theme-balham"
   [rowData]="bugList"
   [columnDefs]="columnDefs"
   [rowSelection]="rowSelection"
+  rowHeight="33"
   (selectionChanged)="onSelectionChanged()"
   (gridReady)="onGridReady($event)"
 >

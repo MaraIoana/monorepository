@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RoleService} from "../services/role.service";
 import {Role} from "../../models/role.model";
-import {Permission} from "../../models/permission.model";
-import {PermissionService} from "../services/permission.service";
 import {RolesCellComponent} from "../customs/roles-cell/roles-cell.component";
 
 @Component({
@@ -21,8 +19,7 @@ export class RolesComponent implements OnInit {
   constructor(private roleService: RoleService) {
     this.columnDefs = [
       {headerName: 'Type', field: 'type', sortable: true, filter: true, width:200,cellClass:"cell-wrap-text"},
-      { width: 60,cellRendererFramework:RolesCellComponent
-      }
+      { width: 60,cellRendererFramework:RolesCellComponent}
     ];
   }
 

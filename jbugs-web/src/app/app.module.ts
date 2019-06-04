@@ -16,6 +16,23 @@ import {AgGridModule} from 'ag-grid-angular';
 import {UserAddComponent} from './user/user-add/user-add.component';
 import {RoleModule} from "./role/role.module";
 import {ErrorModule} from "./error/error.module";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import {
+  MatDialogModule,
+  MatIconModule,
+  MatFormField,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule
+} from "@angular/material";
+import { RolesCellComponent } from './role/customs/roles-cell/roles-cell.component';
+import { PermissionsDialogComponent } from './role/customs/permissions-dialog/permissions-dialog.component';
+import { UsersCellComponent } from './user/customs/users-cell/users-cell.component';
+import { UserDetailsComponent } from './user/customs/user-details/user-details.component';
+import { BugsCellComponent } from './bug/customs/bugs-cell/bugs-cell.component';
+import { BugEditComponent } from './bug/customs/bug-edit/bug-edit.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -44,6 +61,11 @@ import {BugDialogComponent} from './bug/bug-dialog/bug-dialog.component';
     RolesCellComponent,
     PermissionsDialogComponent,
     BugDialogComponent
+    PermissionsDialogComponent,
+    UsersCellComponent,
+    UserDetailsComponent,
+    BugsCellComponent,
+    BugEditComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +81,9 @@ import {BugDialogComponent} from './bug/bug-dialog/bug-dialog.component';
     MatCheckboxModule,
     MatIconModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatDatepickerModule,
@@ -66,6 +91,14 @@ import {BugDialogComponent} from './bug/bug-dialog/bug-dialog.component';
     MatNativeDateModule
   ],
   providers: [],
+  entryComponents:[
+    RolesCellComponent,
+    PermissionsDialogComponent,
+    UsersCellComponent,
+    UserDetailsComponent,
+    BugsCellComponent,
+    BugEditComponent
+  ],
   entryComponents: [RolesCellComponent, PermissionsDialogComponent, BugDialogComponent],
   bootstrap: [AppComponent],
 

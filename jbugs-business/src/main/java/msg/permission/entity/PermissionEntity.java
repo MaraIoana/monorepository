@@ -2,8 +2,8 @@ package msg.permission.entity;
 
 import edu.msg.ro.persistence.entity.BaseEntity;
 
-import java.util.Objects;
 import javax.persistence.*;
+import java.util.Objects;
 
 /**
  * The permission entity.

@@ -58,6 +58,8 @@ public class UserConverter {
         u.setEmail(userEntity.getEmail());
         u.setMobileNumber(userEntity.getMobileNumber());
         u.setUsername(userEntity.getUsername());
+        u.setRoles(roleConverter.RoleToStringList(userEntity.getRoles()));
+        System.out.println(u.getRoles());
         return u;
     }
 
@@ -116,6 +118,19 @@ public class UserConverter {
         }
 
         return userEntity;
+    }
+
+    public UserDataDTO entityToUserDataDto(UserEntity userEntity){
+        UserDataDTO userDataDTO = new UserDataDTO();
+
+        userDataDTO.setUsername(userEntity.getUsername());
+        userDataDTO.setFirstName(userEntity.getFirstName());
+        userDataDTO.setLastName(userEntity.getLastName());
+        userDataDTO.setMobileNumber(userEntity.getMobileNumber());
+        userDataDTO.setEmail(userEntity.getEmail());
+        userDataDTO.setCounter(userEntity.getCounter());
+
+        return userDataDTO;
     }
 
 

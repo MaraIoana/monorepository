@@ -1,6 +1,6 @@
-import { TestBed, async, inject } from '@angular/core/testing';
+import {inject, TestBed} from '@angular/core/testing';
 
-import { PermManagementGuard } from './perm-management.guard';
+import {PermManagementGuard} from './perm-management.guard';
 
 describe('PermManagementGuard', () => {
   beforeEach(() => {

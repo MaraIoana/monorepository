@@ -7,6 +7,7 @@ import msg.role.entity.RoleEntity;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,5 +56,12 @@ public class RoleConverter {
         }
 
         return dto;
+    }
+
+    public List<String> RoleToStringList(List<RoleEntity> roleEntities) {
+        List<String> roles = new ArrayList<>();
+        roleEntities.forEach((role) -> roles.add(role.getType()));
+        return roles;
+
     }
 }

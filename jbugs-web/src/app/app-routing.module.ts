@@ -27,7 +27,7 @@ const routes: Routes = [
     children: [
       {
         path: 'users',
-        canActivate:[],
+        canActivate: [],
         children: [
           {
             path: '',
@@ -54,12 +54,12 @@ const routes: Routes = [
       },
       {
         path: 'bugs',
-        canActivate:[],
+        canActivate: [],
         component: BugsComponent
       },
       {
         path:'roles',
-        canActivate:[],
+        canActivate: [],
         children:[
           {
             path:'',
@@ -70,8 +70,8 @@ const routes: Routes = [
     ]
   },
   {
-    path:'error',
-    component:RoutingErrorComponent
+    path: 'error',
+    component: RoutingErrorComponent
   }
 ];
 
