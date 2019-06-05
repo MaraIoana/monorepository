@@ -33,6 +33,7 @@ import {
   MatSelectModule
 } from "@angular/material";
 import {BugDialogComponent} from './bug/bug-dialog/bug-dialog.component';
+import {BugsComponent} from "./bug/bugs/bugs.component";
 
 
 @NgModule({
@@ -51,7 +52,7 @@ import {BugDialogComponent} from './bug/bug-dialog/bug-dialog.component';
     UsersCellComponent,
     UserDetailsComponent,
     BugsCellComponent,
-    BugEditComponent,
+    BugEditComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +86,7 @@ import {BugDialogComponent} from './bug/bug-dialog/bug-dialog.component';
     UserDetailsComponent,
     BugEditComponent,
     StatusDialogComponent,
-
+    BugsCellComponent,
     BugEditComponent,
     BugDialogComponent
   ],
