@@ -47,7 +47,7 @@ export class LoggedInGuard implements CanActivate {
   }
 
   hasRoles() {
-    if (this.permissions.length) {
+    if (this.permissions && this.permissions.length) {
       return true;
     } else {
       return false;
