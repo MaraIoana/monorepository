@@ -36,13 +36,13 @@ import { UserDetailsComponent } from './user/customs/user-details/user-details.c
 import { BugsCellComponent } from './bug/customs/bugs-cell/bugs-cell.component';
 import { BugEditComponent } from './bug/customs/bug-edit/bug-edit.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     UserManagementComponent,
     SummaryPipe,
     LoginComponent,
-    BugsComponent,
     DashboardComponent,
     UserAddComponent,
     UserEditComponent,
@@ -51,7 +51,7 @@ import { BugEditComponent } from './bug/customs/bug-edit/bug-edit.component';
     UsersCellComponent,
     UserDetailsComponent,
     BugsCellComponent,
-    BugEditComponent
+    BugEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,13 +65,9 @@ import { BugEditComponent } from './bug/customs/bug-edit/bug-edit.component';
     BrowserAnimationsModule,
     RoleModule,
     ErrorModule,
-    BrowserAnimationsModule,
     MatButtonModule,
-    MatCheckboxModule,
-    MatIconModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule,
     MatSelectModule
   ],
   providers: [],
@@ -82,10 +78,10 @@ import { BugEditComponent } from './bug/customs/bug-edit/bug-edit.component';
     UserDetailsComponent,
     BugsCellComponent,
     BugEditComponent,
-    StatusDialogComponent
+    StatusDialogComponent,
+
   ],
   bootstrap: [AppComponent],
-
 })
 export class AppModule { }
 

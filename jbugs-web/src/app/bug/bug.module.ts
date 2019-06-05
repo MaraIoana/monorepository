@@ -4,30 +4,26 @@ import {BugsComponent} from "./bugs/bugs.component";
 import {AgGridModule} from 'ag-grid-angular';
 import {StatusDialogComponent} from './status-dialog/status-dialog.component';
 import {MatButtonModule} from "@angular/material/button";
-import {MatDialogModule} from "@angular/material/dialog";
-import {MatInputModule} from "@angular/material/input";
+import {MatDialogActions, MatDialogModule} from "@angular/material/dialog";
 import {MatRadioModule} from "@angular/material";
 import {FormsModule} from "@angular/forms";
-
 
 @NgModule({
   declarations: [
     BugsComponent,
-    StatusDialogComponent
+    StatusDialogComponent,
   ],
   imports: [
     CommonModule,
     AgGridModule.withComponents([]),
-    MatDialogModule,
-    MatInputModule,
+    FormsModule,
     MatButtonModule,
-    AgGridModule,
     MatRadioModule,
-    FormsModule
+    MatDialogModule,
   ],
   exports:[
     BugsComponent,
-    StatusDialogComponent
+    StatusDialogComponent,
   ]
 })
 export class BugModule { }

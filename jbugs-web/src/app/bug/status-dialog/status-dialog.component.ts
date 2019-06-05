@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {MatRadioChange} from "@angular/material";
-
+import {empty} from "rxjs/internal/Observer";
 
 @Component({
   selector: 'app-status-dialog',
@@ -16,6 +16,8 @@ export class StatusDialogComponent implements OnInit {
   private closed;
   private inprogress;
   private rejected;
+  private nulll;
+  private title;
 
   private statusValue;
 
@@ -26,6 +28,10 @@ export class StatusDialogComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close(this.statusValue);
+  }
+
+  close(): void {
+    this.dialogRef.close();
   }
 
   onChange(mrChange: MatRadioChange) {
@@ -43,6 +49,8 @@ export class StatusDialogComponent implements OnInit {
     this.closed = true;
     this.inprogress = true;
     this.rejected = true;
+    this.nulll=true;
+    this.title=false;
     this.visibleRadioButtons();
   }
 
@@ -61,6 +69,8 @@ export class StatusDialogComponent implements OnInit {
       this.inprogress = false;
     } else if (this.rowData === "FIXED") {
       this.closed = false;
-    }
+    } else if(this.rowData==="CLOSED")
+      this.nulll=false;
+    this.title=true;
   }
 }

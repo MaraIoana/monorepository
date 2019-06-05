@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Modify status</h1>
 <div mat-dialog-content>
-  <p>Choose status</p>
+  <p [hidden]="title">Choose status</p>
 
   <mat-radio-group (change)="onChange($event)" aria-label="Select an option">
     <ol>
@@ -12,5 +12,8 @@
     </ol>
   </mat-radio-group>
 
+  <label [hidden]="nulll" >Cannot modify status for this bug</label>
+
   <button mat-button (click)="onNoClick()">Update</button>
+  <button mat-button (click)="close()">Close</button>
 </div>

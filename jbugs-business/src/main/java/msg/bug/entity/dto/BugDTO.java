@@ -20,7 +20,6 @@ public class BugDTO {
     private String severity;
     private Long  createdBy;
     private Long  assignedTo;
-    private Long id;
 
     public Long getId() {
         return id;
@@ -31,14 +30,6 @@ public class BugDTO {
     }
 
     public BugDTO() { }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;

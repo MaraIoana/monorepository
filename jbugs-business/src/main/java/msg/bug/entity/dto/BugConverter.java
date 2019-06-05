@@ -1,7 +1,9 @@
 package msg.bug.entity.dto;
 
 import msg.bug.entity.Bug;
-import javax.ejb.EJB;
+import msg.bug.entity.Severity;
+import msg.bug.entity.Status;
+
 import javax.ejb.Stateless;
 /**
  * Bug Converter.
