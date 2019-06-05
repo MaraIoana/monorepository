@@ -33,6 +33,7 @@ import {
   MatSelectModule
 } from "@angular/material";
 import {BugDialogComponent} from './bug/bug-dialog/bug-dialog.component';
+import {BugsComponent} from "./bug/bugs/bugs.component";
 
 import {AddHeader} from "./services/add-header.service";
 
@@ -52,7 +53,7 @@ import {AddHeader} from "./services/add-header.service";
     UsersCellComponent,
     UserDetailsComponent,
     BugsCellComponent,
-    BugEditComponent,
+    BugEditComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +93,7 @@ import {AddHeader} from "./services/add-header.service";
     UserDetailsComponent,
     BugEditComponent,
     StatusDialogComponent,
-
+    BugsCellComponent,
     BugEditComponent,
     BugDialogComponent
   ],
