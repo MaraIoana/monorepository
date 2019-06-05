@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from "@angular/material";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {Bug} from "../../models/bug.model";
+import {UserService} from "../../user/services/user.service";
+import {addUser} from "../../models/addUser.model";
 
 @Component({
   selector: 'app-bug-dialog',
@@ -12,16 +14,19 @@ export class BugDialogComponent implements OnInit {
   public bugNew: Bug = {};
   form: FormGroup;
   selectedValue: string;
+  private userList: addUser[];
+  selectedUsername: String;
+  title = new FormControl();
 
-  constructor(private formBuilder: FormBuilder, private dialogRef: MatDialogRef<BugDialogComponent>) {
+  constructor(private userService: UserService,
+              private formBuilder: FormBuilder, private dialogRef: MatDialogRef<BugDialogComponent>) {
   }
 
   ngOnInit() {
-    this.form = this.formBuilder.group({
-      title: '',
-      description: '',
+    this.userService.getAllUsers().subscribe(data => {
+      this.userList = data;
+    });
 
-    })
   }
 
   save() {
@@ -34,6 +39,6 @@ export class BugDialogComponent implements OnInit {
 
 
   submit(form: FormGroup) {
-
+    console.log("sadas");
   }
 }

@@ -35,13 +35,13 @@ public class BugControl {
     public List<BugDTO> getAll(){
         return bugDao.getAll()
                 .stream()
-                .map(bugConverter::convertEntitytoDTO)
+                .map(bugConverter::convertEntityToDTO)
                 .collect(Collectors.toList());
     }
 
     public BugDTO createBug(final BugDTO bugDTO) {
         final Bug newBug = bugConverter.convertDTOtoEntity(bugDTO);
-        BugDTO result = bugConverter.convertEntitytoDTO(newBug);
+        BugDTO result = bugConverter.convertEntityToDTO(newBug);
         bugDao.createBug(newBug);
         this.notificationFacade.createNotification(
                 NotificationType.BUG_UPDATED,
@@ -51,14 +51,14 @@ public class BugControl {
 
     public BugDTO getBug(Long ID) {
         Bug bug = bugDao.getBug(ID);
-        return bugConverter.convertEntitytoDTO(bug);
+        return bugConverter.convertEntityToDTO(bug);
 
     }
 
 
     public BugDTO updateBug(BugDTO bugDTO) {
         Bug updateBug = bugConverter.convertDTOtoEntity(bugDTO);
-        BugDTO result = bugConverter.convertEntitytoDTO(bugDao.UpdateBug(updateBug));
+        BugDTO result = bugConverter.convertEntityToDTO(bugDao.UpdateBug(updateBug));
 
         return result;
 

@@ -54,13 +54,22 @@
     </mat-form-field>
       <br>
     <mat-form-field>
-      <mat-select [(value)]="selectedValue" name="food" placeholder="Severity">
+      <mat-select [(value)]="selectedValue" name="severity" placeholder="Severity">
         <mat-option value="CRITICAL">CRITICAL</mat-option>
         <mat-option value="HIGH">HIGH</mat-option>
         <mat-option value="MEDIUM">MEDIUM</mat-option>
         <mat-option value="LOW">LOW</mat-option>
       </mat-select>
     </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-select [(ngModel)]="selectedUsername" name="username" placeholder="Assigned To">
+          <mat-option *ngFor="let user of userList" [value]="user.username">
+            {{user.username}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
     </ol>
   </form>
 </mat-dialog-content>
