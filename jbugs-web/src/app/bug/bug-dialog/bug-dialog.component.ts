@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from "@angular/material";
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Bug} from "../../models/bug.model";
 
 @Component({
@@ -10,35 +10,30 @@ import {Bug} from "../../models/bug.model";
 })
 export class BugDialogComponent implements OnInit {
   public bugNew: Bug = {};
-  public title: string;
+  form: FormGroup;
+  selectedValue: string;
 
-  constructor(private fb: FormBuilder,
-              private dialogRef: MatDialogRef<BugDialogComponent>) {
+  constructor(private formBuilder: FormBuilder, private dialogRef: MatDialogRef<BugDialogComponent>) {
   }
 
   ngOnInit() {
-  }
+    this.form = this.formBuilder.group({
+      title: '',
+      description: '',
 
-  WordpressForm = this.fb.group({
-    title: ['', [Validators.required]]
-  });
-
-  getTitle() {
-    return this.WordpressForm.get('title');
+    })
   }
 
   save() {
-    const template_Title = this.title;
-    console.log(template_Title);
+    console.log();
   }
 
-  // save(form: NgForm) {
-  //   this.dialogRef.close();
-  //   //console.log(form.value.firstName);
-  // }
-  //
-  // close() {
-  //   this.dialogRef.close();
-  // }
+  close() {
+    this.dialogRef.close();
+  }
 
+
+  submit(form: FormGroup) {
+
+  }
 }

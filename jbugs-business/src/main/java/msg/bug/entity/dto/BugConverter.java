@@ -43,7 +43,7 @@ public class BugConverter {
      * @param bug the input entity.
      * @return the output un-managed dto.
      */
-    public BugDTO convertEntitytoDTO(Bug bug){
+    public BugDTO convertEntityToDTO(Bug bug){
         final BugDTO b = new BugDTO();
 
         b.setTitle(bug.getTitle());
