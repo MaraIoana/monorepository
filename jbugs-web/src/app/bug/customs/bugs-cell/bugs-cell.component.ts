@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from "@angular/material";
-import {UserDetailsComponent} from "../../../user/customs/user-details/user-details.component";
 import {BugEditComponent} from "../bug-edit/bug-edit.component";
+import {BugService} from "../../services/bug.service";
 
 @Component({
   selector: 'app-bugs-cell',
