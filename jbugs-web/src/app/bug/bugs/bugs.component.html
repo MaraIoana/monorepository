@@ -4,15 +4,29 @@
 
 <!--</div>-->
 
-<div class="test-header">Selection: <span id="selectedRow"></span></div>
+<div class="test-header"><span id="selectedRow"></span></div>
 <ag-grid-angular
   id="myGrid"
-  style="width: 1500px; height: 1500px;"
-  class="ag-theme-balham"
+  style="width: 1090px; height: 930px;"
+  class="ag-theme-balham-dark shadow p-3 mb-5 bg-dark rounded"
   [rowData]="bugList"
   [columnDefs]="columnDefs"
   [rowSelection]="rowSelection"
+  rowHeight="33"
   (selectionChanged)="onSelectionChanged()"
   (gridReady)="onGridReady($event)"
+  [pagination]="true"
+  [paginationPageSize]="paginationPageSize"
+  domLayout="print"
 >
 </ag-grid-angular>
+
+<!--todo disable button if drept != BUG_CLOSE-->
+
+<div>
+  <button mat-raised-button (click)="openDialog()">Modify status</button>
+</div>
+
+
+
+

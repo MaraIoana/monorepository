@@ -6,19 +6,31 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
+
 /**
- * Document me.
+ * Bug entity.
  *
  * @author msg systems AG; User Name.
  * @since 19.1.2
  */
 @Entity
 @Table(name = "bugs")
-@NamedQuery(name = Bug.BUG_FIND_ALL, query =  "select b from Bug b")
-
+@NamedQueries({
+        @NamedQuery(name = Bug.BUG_FIND_ALL, query = "select b from Bug b"),
+        @NamedQuery(name = Bug.MODIFY_STATUS, query = "select b from Bug b where b.id=:id"),
+        @NamedQuery(name = Bug.BUG_FIND_BY_ID, query = "select b from Bug b where b.id = :id")
+}
+)
 public class Bug extends BaseEntity<Long>{
 
    public static final String BUG_FIND_ALL = "Bug.findAll";
+    public static final String MODIFY_STATUS = "Bug.modifyStatus";
+    //public static final String ID="id" ;
+//    @Id
+//    @GeneratedValue(strategy= GenerationType.IDENTITY)
+//    private Long id;
+    public static final String BUG_FIND_BY_ID = "Bug.ByID";
+    public static final String ID = "id";
 
     @Column(name = "title",nullable = false)
     private String title;
@@ -51,6 +63,21 @@ public class Bug extends BaseEntity<Long>{
     /* todo: createByUser assigned to */
 
     public Bug() { }
+
+    @Override
+    public String toString() {
+        return "Bug{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", version='" + version + '\'' +
+                ", date=" + date +
+                ", status=" + status +
+                ", fixedVersion='" + fixedVersion + '\'' +
+                ", severity=" + severity +
+                ", createdBy=" + createdBy +
+                ", assignedTo=" + assignedTo +
+                '}';
+    }
 
     public String getTitle() {
         return title;

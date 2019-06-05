@@ -1,8 +1,5 @@
 package msg.permission.boundary;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
-import msg.exeptions.BusinessException;
-import msg.exeptions.BusinessExceptionMapper;
 import msg.permission.entity.dto.PermissionTypeDTO;
 import msg.permission.entity.dto.UserPermissionsDTO;
 
@@ -11,7 +8,6 @@ import javax.ejb.Stateless;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.awt.*;
 
 /**
  * Document me.
@@ -45,9 +41,19 @@ public class PermissionResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/userPermissions")
-    public Response getPermissionsForUser(UserPermissionsDTO userPermissionsDTO){
+    public Response getPermissionsForUser(UserPermissionsDTO userPermissionsDTO) {
         return Response.status(200).entity(permissionFacade.getPermissionsForUser(userPermissionsDTO.getUsername())).build();
     }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/rolePermissions")
+    public Response getRolePermissions(PermissionTypeDTO permissionTypeDTO){
+        return Response.status(200).entity(permissionFacade.getRolePermissions(permissionTypeDTO.getType())).build();
+    }
+
+
 
 
 

@@ -1,8 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham-dark.css";
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 @import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham-dark.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body {
   padding: 20px;
 }
+
+.ag-row-hover {
+  /* putting in !important so it overrides the theme's styling as it hovers the row also */
+  background-color: #064560 !important;
+}
+
+.ag-column-hover {
+  background-color: #27285e;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

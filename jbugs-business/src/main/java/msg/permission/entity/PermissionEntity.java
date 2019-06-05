@@ -2,8 +2,8 @@ package msg.permission.entity;
 
 import edu.msg.ro.persistence.entity.BaseEntity;
 
-import java.util.Objects;
 import javax.persistence.*;
+import java.util.Objects;
 
 /**
  * The permission entity.
@@ -30,7 +30,10 @@ import javax.persistence.*;
                         " where u.username = :username"),
         @NamedQuery(name = PermissionEntity.USER_COUNT,
                 query = "select count(u) from UserEntity u" +
-                        " where u.username = :username")
+                        " where u.username = :username"),
+        @NamedQuery(name = PermissionEntity.GET_ROLE_PERMISSIONS,
+                query = "select r.permissions from RoleEntity r" +
+                        " where r.type = :type")
 }
 )
 public class PermissionEntity extends BaseEntity<Long> {
@@ -43,6 +46,7 @@ public class PermissionEntity extends BaseEntity<Long> {
     public static final String TYPES = "types";
     public static final String GET_PERMISSIONS_FOR_USER = "getPermissionsForUser";
     public static final String USER_COUNT = "userCount";
+    public static final String GET_ROLE_PERMISSIONS = "getRolePermissions";
 
 
     @Column(name="type", nullable = false)

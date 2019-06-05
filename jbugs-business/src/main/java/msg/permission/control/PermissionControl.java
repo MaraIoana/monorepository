@@ -10,7 +10,6 @@ import msg.permission.entity.dto.UserPermissionsDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,9 +44,9 @@ public class PermissionControl {
         return permissionDao.getAll().stream().map(permissionConverter::entityToDto).collect(Collectors.toList());
     }
 
-    public UserPermissionsDTO getPermissionsForUser(String username){
+    public UserPermissionsDTO getPermissionsForUser(String username) {
 
-        if (!permissionDao.existsUser(username)){
+        if (!permissionDao.existsUser(username)) {
             throw new BusinessException(MessageCatalog.USER_DOES_NOT_EXIST);
         }
         UserPermissionsDTO permissions = new UserPermissionsDTO();
@@ -58,5 +57,12 @@ public class PermissionControl {
                 .collect(Collectors.toList())
         );
         return permissions;
+    }
+
+    public List<PermissionDTO> getRolePermissions(String type){
+        return permissionDao.getRolePermissions(type)
+                .stream()
+                .map(permissionConverter::entityToDto)
+                .collect(Collectors.toList());
     }
 }

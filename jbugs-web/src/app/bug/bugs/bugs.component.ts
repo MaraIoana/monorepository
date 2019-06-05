@@ -1,6 +1,10 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Bug} from "../../models/bug.model";
 import {BugService} from "../services/bug.service";
+import {MatDialog, MatDialogConfig} from "@angular/material";
+import {BugDialogComponent} from "../bug-dialog/bug-dialog.component";
+import {StatusDialogComponent} from "../status-dialog/status-dialog.component";
+import {BugsCellComponent} from "../customs/bugs-cell/bugs-cell.component";
 
 @Component({
   selector: 'app-bugs',
@@ -13,29 +17,73 @@ export class BugsComponent implements OnInit {
   private gridColumnApi;
   private rowSelection;
   private columnDefs;
+  private paginationPageSize;
+  private paginationNoFormatter;
   public bugList: Bug[];
+  private bugStatus: Bug = {};
 
+  private rowData;
   @Output()
   public output = new EventEmitter<Bug>();
 
-  constructor(private bugService: BugService) {
+  constructor(private bugService: BugService, public dialog: MatDialog) {
     this.columnDefs = [
-      {headerName: 'Title', field: 'title',sortable:true,filter:true},
-      {headerName: 'Description', field: 'description',sortable:true,filter:true},
-      {headerName: 'Version', field: 'version',sortable:true,filter:true},
-      {headerName: 'Date', field: 'date',sortable:true,filter:true},
-      {headerName: 'Status', field: 'status',sortable:true,filter:true},
-      {headerName: 'Fixed Version', field: 'fixedVersion',sortable:true,filter:true},
-      {headerName: 'Severity', field: 'severity',sortable:true,filter:true},
+      {headerName: 'Id', field: 'id', hide: true},
+      {headerName: 'Title', field: 'title',sortable:true,filter:true,width:100},
+      {headerName: 'Description', field: 'description',sortable:true,filter:true,width:200,cellClass:"cell-wrap-text"},
+      {headerName: 'Version', field: 'version',sortable:true,filter:true,width:100},
+      {headerName: 'Date', field: 'date',sortable:true,filter:true,width:200},
+      {headerName: 'Status', field: 'status',sortable:true,filter:true,width:100},
+      {headerName: 'Fixed Version', field: 'fixedVersion',sortable:true,filter:true,width:150},
+      {headerName: 'Severity', field: 'severity',sortable:true,filter:true,width:100},
+      {width:110,cellRendererFramework:BugsCellComponent}
     //   {headerName: 'Created by', field: 'createdByUser',sortable:true,filter:true},
     //   {headerName: 'Assigned to', field: 'assignedTo',sortable:true,filter:true},
      ];
     this.rowSelection="single";
+    this.paginationPageSize = 25;
+    this.paginationNoFormatter = function (params) {
+      return "[" + params.value.toLocaleString() + "]";
+    };
+  }
+
+  agInit(params) {
+    this.rowData = params.data;
+
+  }
+
+  openDialog(): void {
+    let selectedRows = this.gridApi.getSelectedRows();
+    let status = "";
+    let idBug;
+    selectedRows.forEach(function (selectedRow, index) {
+      if (index !== 0) {
+        status += ", ";
+      }
+      status = selectedRow.status;
+      idBug = selectedRow.id;
+    });
+
+    const dialogRef = this.dialog.open(StatusDialogComponent, {
+      width: '250px',
+      data: status
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Statusul s-a modificat in !!!!!' + result + " !!!!!!!!!!");
+      console.log("bug.status====== " + this.bugStatus);
+
+
+      this.bugStatus.severity = "NULL";
+      this.bugStatus.status = result;
+      console.log("bug.status====== " + this.bugStatus.status);
+      this.bugStatus.id = idBug;
+      console.log("bug.id====== " + this.bugStatus.id);
+      this.bugService.modifyStatus(this.bugStatus).subscribe();
+    });
   }
 
   ngOnInit() {
-    console.log("initialize bugList with backend stuff");
-
     this.bugService.getAllBugs()
       .subscribe((bugList)=>{
         this.bugList=bugList;
@@ -46,9 +94,18 @@ export class BugsComponent implements OnInit {
           this.bugList[b].date=ds;
         }
     })
-
-
   }
+
+  openCreateDialog() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    //this.dialog.open(BugDialogComponent);
+    const dialogRef = this.dialog.open(BugDialogComponent);
+  }
+
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -56,12 +113,12 @@ export class BugsComponent implements OnInit {
 
   onSelectionChanged() {
     let selectedRows = this.gridApi.getSelectedRows();
+    this.rowData = this.gridApi.getSelectedRows();
     let selectedRowsString = "";
     selectedRows.forEach(function(selectedRow, index) {
       if (index !== 0) {
         selectedRowsString += ", ";
       }
-
       var date = selectedRow.date;
       var d = new Date(date);
       var ds = d.toLocaleString();
@@ -70,7 +127,5 @@ export class BugsComponent implements OnInit {
         selectedRow.version+", "+selectedRow.status+", "+selectedRow.fixedVersion+", "+selectedRow.severity;
       alert(selectedRowsString);
     });
-
   }
-
 }

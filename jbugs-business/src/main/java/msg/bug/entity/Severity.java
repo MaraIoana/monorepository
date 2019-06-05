@@ -1,7 +1,5 @@
 package msg.bug.entity;
 
-import javax.persistence.Enumerated;
-
 /**
  * Document me.
  *
@@ -12,5 +10,6 @@ public enum Severity {
     CRITICAL,
     HIGH,
     MEDIUM,
-    LOW
+    LOW,
+    NULL
 }

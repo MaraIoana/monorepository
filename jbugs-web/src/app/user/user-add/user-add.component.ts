@@ -45,11 +45,7 @@ export class UserAddComponent implements OnInit {
         }
       }
     );
-
-  }
-
-  back() {
-    this.router.navigate(['/dashboard/users']);
+    this.router.navigate(['/dashboard/users'],);
   }
 
   validateForm() {

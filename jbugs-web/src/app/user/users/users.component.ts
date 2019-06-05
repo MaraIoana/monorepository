@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../services/user.service";
 import {addUser} from "../../models/addUser.model";
 import {Router} from "@angular/router";
+import {UsersCellComponent} from "../customs/users-cell/users-cell.component";
 
 @Component({
   selector: 'app-user-list',
@@ -16,17 +17,17 @@ export class UsersComponent implements OnInit {
   private rowSelection;
 
   private columnDefs;
-  public self;
 
   public userList: addUser[];
 
   constructor(private userService: UserService, private router: Router) {
     this.columnDefs = [
-      {headerName: 'Firstname', field: 'firstName',sortable:true,filter:true},
-      {headerName: 'Lastname', field: 'lastName',sortable:true,filter:true},
-      {headerName: 'Email', field: 'email',sortable:true,filter:true},
-      {headerName: 'Mobile', field: 'mobileNumber',sortable:true,filter:true},
-      {headerName: 'Username', field: 'username',sortable:true,filter:true}
+      {headerName: 'Firstname', field: 'firstName',sortable:true,filter:true,width:100,cellClass:"cell-wrap-text"},
+      {headerName: 'Lastname', field: 'lastName',sortable:true,filter:true,width:120,cellClass:"cell-wrap-text"},
+      {headerName: 'Email', field: 'email',sortable:true,filter:true,width:180,cellClass:"cell-wrap-text"},
+      {headerName: 'Mobile', field: 'mobileNumber',sortable:true,filter:true,width:150,cellClass:"cell-wrap-text"},
+      {headerName: 'Username', field: 'username',sortable:true,filter:true,width:100,cellClass:"cell-wrap-text"},
+      {width:110,cellRendererFramework:UsersCellComponent}
 
     ];
     this.rowSelection="single";
@@ -38,6 +39,7 @@ export class UsersComponent implements OnInit {
     this.userService.getAllUsers()
       .subscribe((userList) => {
         this.userList = userList;
+        console.log(userList);
       })
   }
 
