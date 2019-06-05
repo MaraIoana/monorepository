@@ -12,7 +12,6 @@ import java.util.List;
 public class UserLoginDTO {
     private String username;
     private String password;
-    private List<String> roles=new ArrayList<>();
 
     public String getUsername() {
         return username;
@@ -30,11 +29,4 @@ public class UserLoginDTO {
         this.password = password;
     }
 
-    public List<String> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<String> roles) {
-        this.roles = roles;
-    }
 }

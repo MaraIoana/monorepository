@@ -1,13 +1,8 @@
 package msg.application;
 
-import msg.bug.boundary.BugResource;
 import msg.exeptions.BusinessExceptionMapper;
-import msg.exeptions.RuntimeExceptionMapper;
-import msg.filters.AuthorizationFilter;
 import msg.filters.RestResponseFilter;
-import msg.permission.boundary.PermissionResource;
-import msg.role.boundary.RoleResource;
-import msg.user.boundary.UserResource;
+import msg.user.boundary.AuthResource;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
 
 import javax.ws.rs.ApplicationPath;
@@ -21,25 +16,19 @@ import java.util.Set;
  * @author msg systems AG; User Name.
  * @since 19.1.2
  */
-@ApplicationPath("jbugs-api")
-public class JBugsApplication extends Application {
+@ApplicationPath("login")
+public class JBugsLogin extends Application {
     @Override
-    public Set<Class<?>> getClasses(){
+    public Set<Class<?>> getClasses() {
         Set<Class<?>> classes = new HashSet<>();
-        classes.add(UserResource.class);
         classes.add(BusinessExceptionMapper.class);
-        classes.add(RuntimeExceptionMapper.class);
-        //classes.add(AuthResource.class);
-        classes.add(BugResource.class);
-        classes.add(RoleResource.class);
-        classes.add(PermissionResource.class);
+        classes.add(AuthResource.class);
         classes.add(RestResponseFilter.class);
-        classes.add(AuthorizationFilter.class);
         return classes;
     }
 
     @Override
-    public Set<Object> getSingletons(){
+    public Set<Object> getSingletons() {
         Set<Object> set = new HashSet<>();
         set.add(new JacksonJsonProvider());
         return set;

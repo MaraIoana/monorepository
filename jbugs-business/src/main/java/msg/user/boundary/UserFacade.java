@@ -64,8 +64,7 @@ public class UserFacade {
     }
 
 
-    @PermitAll
-    public List<String> authenticateUser(UserLoginDTO userLoginDTO) {
-       return userControl.authenticateUser(userLoginDTO);
+    public Object authenticateUser(UserLoginDTO userLoginDTO) {
+        return userControl.authenticateUser(userLoginDTO);
     }
 }

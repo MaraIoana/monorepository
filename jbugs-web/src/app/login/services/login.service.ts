@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {LoginUser} from "../../models/loginUser.model";
-import {map} from "rxjs/operators";
 import {BackendService} from "../../user/services/backend.service";
 import {Router} from "@angular/router";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -13,22 +13,14 @@ export class LoginService {
   constructor(private backendService: BackendService,
               private router: Router) { }
 
-  public login(user: LoginUser) {
-    return this.backendService.post('http://localhost:8080/jbugs/jbugs-api/auth', user)
-      .pipe(map(response => {
-        if (response) {
-          localStorage.setItem('currentUser', JSON.stringify(response));
-        }
-        return response;
-      }));
+  public login(user: LoginUser):Observable<any> {
+    return this.backendService.post('http://localhost:8080/jbugs/login/auth', user);
+    //this.loggedIn = true;
   }
 
   public logout() {
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('auth_token');
     this.router.navigate(['/login']);
   }
 
-  public isLoggedIn(){
-    return this.loggedIn;
-  }
 }

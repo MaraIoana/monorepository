@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from "../login/services/login.service";
 import {Router} from "@angular/router";
-import {UserRoles} from "../models/userRoles.model";
+import {PermissionService} from "../role/services/permission.service";
 
 
 @Component({
@@ -15,7 +15,6 @@ import {UserRoles} from "../models/userRoles.model";
 })
 
 export class DashboardComponent implements OnInit {
-  constructor(private authService: LoginService) {
 
   public permissionManagement = false;
   public userManagement = false;
@@ -26,9 +25,12 @@ export class DashboardComponent implements OnInit {
 
   private permissions:string[];
 
-  constructor(private router:Router) {
-    this.permissions= this.router.getCurrentNavigation().extras.state.permissions;
-    console.log(this.router.getCurrentNavigation().extras.state.permissions);
+  constructor(private router:Router,
+              private permissionService: PermissionService,
+              private authService: LoginService) {
+    this.permissions = permissionService.getPermissionsForCurrentUser();
+    //this.permissions= this.router.getCurrentNavigation().extras.state.permissions;
+    //console.log(this.router.getCurrentNavigation().extras.state.permissions);
   }
 
   ngOnInit(){
@@ -39,7 +41,7 @@ export class DashboardComponent implements OnInit {
     this.checkPermissionManagement();
     this.checkUserManagement();
     this.checkBugManagement();
-    this. checkBugClose();
+    this.checkBugClose();
     this.checkBugExportPDF();
     this.checkIsMine();
   }

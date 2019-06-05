@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {BackendService} from "../../user/services/backend.service";
 import {Observable} from "rxjs";
 import {Permission} from "../../models/permission.model";
-import {UserPermissions} from "../../models/userPermissions.model";
+import * as jwt_decode from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -21,4 +21,28 @@ export class PermissionService {
     return this.backendService.post(this.baseUrl+ '/permissions/userPermissions',{'username':username
     });
   }
+
+  public decode(token: string){
+    try {
+      return jwt_decode(token);
+    }
+    catch (e) {
+      return null;
+    }
+  }
+
+  public getPermissionsForCurrentUser(){
+    let token = localStorage.getItem('auth_token');
+    return this.decode(token).permissions;
+  }
+
+  public getToken(){
+    return localStorage.getItem('auth_token');
+  }
+
+  public getUsername(){
+    let token = localStorage.getItem('auth_token');
+    return this.decode(token).username;
+  }
+
 }
