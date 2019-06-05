@@ -6,7 +6,6 @@ import msg.permission.entity.Permission;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
-
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.util.List;
@@ -49,4 +48,7 @@ public class BugFacade {
 
     }
 
+    public BugDTO modifyStatus(BugDTO bug) {
+        return bugControl.modifyStatus(bug);
+    }
 }

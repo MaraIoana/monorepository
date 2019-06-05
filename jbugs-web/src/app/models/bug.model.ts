@@ -1,5 +1,5 @@
 export interface Bug{
-  id?: bigint,
+  id?: bigint;
   title?: string;
   description?: string;
   version?: string;

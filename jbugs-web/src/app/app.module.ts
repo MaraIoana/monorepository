@@ -9,15 +9,15 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SummaryPipe} from "./summary.pipe";
 import {LoginComponent} from './login/login.component';
 import {UserEditComponent} from './user/user-edit/user-edit.component';
-import {BugsComponent} from './bug/bugs/bugs.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AgGridModule} from 'ag-grid-angular';
 import {UserAddComponent} from './user/user-add/user-add.component';
 import {RoleModule} from "./role/role.module";
+import {BugModule} from "./bug/bug.module";
+import {StatusDialogComponent} from "./bug/status-dialog/status-dialog.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ErrorModule} from "./error/error.module";
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
-import {MatCheckboxModule} from '@angular/material/checkbox';
 import {RolesCellComponent} from './role/customs/roles-cell/roles-cell.component';
 import {PermissionsDialogComponent} from './role/customs/permissions-dialog/permissions-dialog.component';
 import {UsersCellComponent} from './user/customs/users-cell/users-cell.component';
@@ -28,12 +28,12 @@ import {
   MatDatepickerModule,
   MatDialogModule,
   MatFormFieldModule,
-  MatIconModule,
   MatInputModule,
   MatNativeDateModule,
   MatSelectModule
 } from "@angular/material";
 import {BugDialogComponent} from './bug/bug-dialog/bug-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +41,6 @@ import {BugDialogComponent} from './bug/bug-dialog/bug-dialog.component';
     UserManagementComponent,
     SummaryPipe,
     LoginComponent,
-    BugsComponent,
     DashboardComponent,
     UserAddComponent,
     UserEditComponent,
@@ -52,7 +51,7 @@ import {BugDialogComponent} from './bug/bug-dialog/bug-dialog.component';
     UsersCellComponent,
     UserDetailsComponent,
     BugsCellComponent,
-    BugEditComponent
+    BugEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,14 +60,15 @@ import {BugDialogComponent} from './bug/bug-dialog/bug-dialog.component';
     HttpClientModule,
     FormsModule,
     AgGridModule.withComponents([]),
+    BugModule,
+    RoleModule,
+    BrowserAnimationsModule,
     RoleModule,
     ErrorModule,
-    BrowserAnimationsModule,
     MatButtonModule,
-    MatCheckboxModule,
-    MatIconModule,
     MatDialogModule,
     MatFormFieldModule,
+    MatSelectModule,
     MatInputModule,
     MatSelectModule,
     ReactiveFormsModule,
@@ -83,7 +83,9 @@ import {BugDialogComponent} from './bug/bug-dialog/bug-dialog.component';
     PermissionsDialogComponent,
     UsersCellComponent,
     UserDetailsComponent,
-    BugsCellComponent,
+    BugEditComponent,
+    StatusDialogComponent,
+
     BugEditComponent,
     BugDialogComponent
   ],

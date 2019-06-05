@@ -47,6 +47,16 @@ public class BugResource {
                 .build();
     }
 
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response modifyStatus(BugDTO bug) {
+        return Response
+                .status(200)
+                .entity(bugFacade.modifyStatus(bug))
+                .build();
+        //return Response.ok(userFacade.getAll()).build();
+    }
+
     @GET
     @Path(value = "/getBug/{id}")
     @Produces(MediaType.APPLICATION_JSON)

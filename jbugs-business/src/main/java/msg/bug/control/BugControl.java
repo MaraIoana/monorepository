@@ -49,10 +49,16 @@ public class BugControl {
         return result;
     }
 
+    public BugDTO modifyStatus(final BugDTO bugDTO) {
+        Bug bug = bugConverter.convertDTOtoEntity(bugDTO);
+        BugDTO result = bugConverter.convertEntityToDTO(bugDao.modifyStatus(bug));
+        return result;
+    }
+
+
     public BugDTO getBug(Long ID) {
         Bug bug = bugDao.getBug(ID);
         return bugConverter.convertEntityToDTO(bug);
-
     }
 
 
@@ -61,6 +67,5 @@ public class BugControl {
         BugDTO result = bugConverter.convertEntityToDTO(bugDao.UpdateBug(updateBug));
 
         return result;
-
     }
 }
