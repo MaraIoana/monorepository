@@ -153,7 +153,7 @@ public class UserControl {
 
     public UserDataDTO getUserData(String username){
         UserDataDTO userDataDTO = userConverter.entityToUserDataDto(userDao.getUser(username));
-        userDataDTO.setHasTasks(userDao.hasTasks(username));
+        userDataDTO.setTasks(userDao.getTasks(username));
 
         return userDataDTO;
     }
@@ -164,17 +164,20 @@ public class UserControl {
     }
 
     public UserDataDTO deactivate(String username){
+        if(!userDao.getTasks(username).isEmpty()){
+            throw new BusinessException(MessageCatalog.HAS_TASKS);
+        }
         return userConverter.entityToUserDataDto(userDao.deactivate(username));
     }
 
-    public UserDataDTO decrementCounter(String username){
+    public UserDataDTO incrementUser(String username){
         if(!userDao.isActive(username)){
             throw new BusinessException(MessageCatalog.NOT_ACTIVE_USER);
         }
 
-        UserEntity userEntity = userDao.decrementCounter(username);
+        UserEntity userEntity = userDao.incrementUser(username);
 
-        if(userEntity.getCounter() == 0){
+        if(userEntity.getCounter() == 5){
             throw new BusinessException(MessageCatalog.TOO_MANY_ATTEMPTS);
         }
 

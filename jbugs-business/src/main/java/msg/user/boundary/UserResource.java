@@ -90,6 +90,7 @@ public class UserResource {
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("/deactivate")
     public Response deactivate(UserDataDTO userDataDTO){
         return Response
@@ -101,11 +102,11 @@ public class UserResource {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/decrement")
-    public Response decrementUser(UserDataDTO userDataDTO){
+    @Path("/increment")
+    public Response incrementUser(UserDataDTO userDataDTO){
         return Response
                 .status(200)
-                .entity(userFacade.decrementUser(userDataDTO.getUsername()))
+                .entity(userFacade.incrementUser(userDataDTO.getUsername()))
                 .build();
     }
 

@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {UserDetailsComponent} from "../user-details/user-details.component";
 import {MatDialog} from "@angular/material";
 import {UserService} from "../../services/user.service";
+import {UserData} from "../../../models/UserData.model";
 
 @Component({
   selector: 'app-users-cell',
@@ -12,17 +13,19 @@ import {UserService} from "../../services/user.service";
 export class UsersCellComponent implements OnInit {
 
   private rowData;
+  private gridApi;
 
   constructor(private router:Router,
               private dialog:MatDialog) { }
 
   agInit(params){
+    this.gridApi = params.api;
     this.rowData = params.data;
   }
 
   ngOnInit() {
-
   }
+
 
   onEdit(){
     this.router.navigate(["dashboard/users/edit", this.rowData.username]);
@@ -34,8 +37,10 @@ export class UsersCellComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result=>{
-      if(result)
+      if(result) {
         console.log(result.message);
+      }
+
     })
   }
 }
