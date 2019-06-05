@@ -22,4 +22,13 @@ export class BugService {
   public addBug(bug: Bug) {
     return this.backendService.post('http://localhost:8080/jbugs/jbugs-api/bugs', bug);
   }
+
+  public modifyStatus(b: Bug): Observable<Bug[]> {
+    console.log(b);
+    return this.backendService.put('http://localhost:8080/jbugs/jbugs-api/bugs', {
+      'id': b.id,
+      'status': b.status,
+      'severity': b.severity
+    });
+  }
 }

@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RolesComponent } from './roles/roles.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {RolesComponent} from './roles/roles.component';
 import {AgGridModule} from "ag-grid-angular";
 import {FormsModule} from "@angular/forms";
 import {MatCardModule, MatCheckboxModule} from "@angular/material";

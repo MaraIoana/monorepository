@@ -31,6 +31,13 @@ public class BugDAO {
         return newBug;
     }
 
+    public Bug modifyStatus(Bug bug) {
+        Bug modify = findBugById(bug.getId());
+        modify.setStatus(bug.getStatus());
+        em.merge(modify);
+        return modify;
+    }
+
     public Bug getBug(Long id) {
         return em.createNamedQuery(Bug.BUG_FIND_BY_ID, Bug.class).
                 setParameter("id", id)
