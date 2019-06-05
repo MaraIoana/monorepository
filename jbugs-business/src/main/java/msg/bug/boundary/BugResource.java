@@ -37,6 +37,16 @@ public class BugResource {
         //return Response.ok(userFacade.getAll()).build();
     }
 
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response createBug(BugDTO bugDTO) {
+        return Response
+                .status(200)
+                .entity(bugFacade.createBug(bugDTO))
+                .build();
+    }
+
     @GET
     @Path(value = "/getBug/{id}")
     @Produces(MediaType.APPLICATION_JSON)

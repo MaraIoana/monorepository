@@ -18,4 +18,8 @@ export class BugService {
   public updateBug(bug: Bug) {
     return this.backendService.put('http://localhost:8080/jbugs/jbugs-api/bugs/edit', bug);
   }
+
+  public addBug(bug: Bug) {
+    return this.backendService.post('http://localhost:8080/jbugs/jbugs-api/bugs', bug);
+  }
 }

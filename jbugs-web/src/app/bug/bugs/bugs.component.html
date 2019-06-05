@@ -1,3 +1,4 @@
+<button (click)="openCreateDialog()">Add a new bug</button>
 <h3>bugs</h3>
 <!--<div>-->
 <!--  <li *ngFor="let bug of bugList"> {{bug.title}},{{bug.description}},{{bug.severity}}-->
@@ -17,3 +18,7 @@
   (gridReady)="onGridReady($event)"
 >
 </ag-grid-angular>
+
+<router-outlet></router-outlet>
+
+

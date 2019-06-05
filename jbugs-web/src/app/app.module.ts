@@ -1,12 +1,11 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {UserModule} from "./user/user.module";
 import {HttpClientModule} from "@angular/common/http";
 import {UserManagementComponent} from './user/user-management/user-management.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SummaryPipe} from "./summary.pipe";
 import {LoginComponent} from './login/login.component';
 import {UserEditComponent} from './user/user-edit/user-edit.component';
@@ -16,23 +15,25 @@ import {AgGridModule} from 'ag-grid-angular';
 import {UserAddComponent} from './user/user-add/user-add.component';
 import {RoleModule} from "./role/role.module";
 import {ErrorModule} from "./error/error.module";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {RolesCellComponent} from './role/customs/roles-cell/roles-cell.component';
+import {PermissionsDialogComponent} from './role/customs/permissions-dialog/permissions-dialog.component';
+import {UsersCellComponent} from './user/customs/users-cell/users-cell.component';
+import {UserDetailsComponent} from './user/customs/user-details/user-details.component';
+import {BugsCellComponent} from './bug/customs/bugs-cell/bugs-cell.component';
+import {BugEditComponent} from './bug/customs/bug-edit/bug-edit.component';
 import {
+  MatDatepickerModule,
   MatDialogModule,
-  MatIconModule,
-  MatFormField,
   MatFormFieldModule,
+  MatIconModule,
   MatInputModule,
+  MatNativeDateModule,
   MatSelectModule
 } from "@angular/material";
-import { RolesCellComponent } from './role/customs/roles-cell/roles-cell.component';
-import { PermissionsDialogComponent } from './role/customs/permissions-dialog/permissions-dialog.component';
-import { UsersCellComponent } from './user/customs/users-cell/users-cell.component';
-import { UserDetailsComponent } from './user/customs/user-details/user-details.component';
-import { BugsCellComponent } from './bug/customs/bugs-cell/bugs-cell.component';
-import { BugEditComponent } from './bug/customs/bug-edit/bug-edit.component';
+import {BugDialogComponent} from './bug/bug-dialog/bug-dialog.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,8 @@ import { BugEditComponent } from './bug/customs/bug-edit/bug-edit.component';
     UserAddComponent,
     UserEditComponent,
     RolesCellComponent,
+    PermissionsDialogComponent,
+    BugDialogComponent,
     PermissionsDialogComponent,
     UsersCellComponent,
     UserDetailsComponent,
@@ -67,7 +70,12 @@ import { BugEditComponent } from './bug/customs/bug-edit/bug-edit.component';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatSelectModule,
+    MatNativeDateModule
   ],
   providers: [],
   entryComponents:[
@@ -76,12 +84,14 @@ import { BugEditComponent } from './bug/customs/bug-edit/bug-edit.component';
     UsersCellComponent,
     UserDetailsComponent,
     BugsCellComponent,
-    BugEditComponent
+    BugEditComponent,
+    BugDialogComponent
   ],
   bootstrap: [AppComponent],
 
 })
-export class AppModule { }
+export class AppModule {
+}
 
 
 

@@ -14,7 +14,7 @@ export class BugsCellComponent implements OnInit {
 
   private gridApi;
 
-  constructor(private dialog:MatDialog) { }
+  constructor(private dialog:MatDialog, private bugservice:BugService) { }
 
   agInit(params){
     this.rowData = params.data;
@@ -34,6 +34,7 @@ export class BugsCellComponent implements OnInit {
       if(result){
         this.rowData = result.data;
         this.gridApi.refreshCells();
+        this.bugservice.updateBug(result.data);
       }
     })
   }

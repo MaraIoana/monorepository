@@ -26,6 +26,11 @@ public class BugDAO {
        return em.createNamedQuery(Bug.BUG_FIND_ALL, Bug.class).getResultList();
     }
 
+    public Bug createBug(Bug newBug) {
+        em.persist(newBug);
+        return newBug;
+    }
+
     public Bug getBug(Long id) {
         return em.createNamedQuery(Bug.BUG_FIND_BY_ID, Bug.class).
                 setParameter("id", id)

@@ -10,6 +10,7 @@ import java.util.Date;
  */
 public class BugDTO {
 
+    private Long id;
     private String title;
     private String description;
     private String version;
@@ -19,7 +20,24 @@ public class BugDTO {
     private String severity;
     private Long  createdBy;
     private Long  assignedTo;
-    private Long id;
+
+
+    public BugDTO() { }
+
+    @Override
+    public String toString() {
+        return "BugDTO{" +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", version='" + version + '\'' +
+                ", date=" + date +
+                ", status='" + status + '\'' +
+                ", fixedVersion='" + fixedVersion + '\'' +
+                ", severity='" + severity + '\'' +
+                ", createdBy=" + createdBy +
+                ", assignedTo=" + assignedTo +
+                '}';
+    }
 
     public Long getId() {
         return id;
@@ -29,7 +47,6 @@ public class BugDTO {
         this.id = id;
     }
 
-    public BugDTO() { }
 
     public String getTitle() {
         return title;

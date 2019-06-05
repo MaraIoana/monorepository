@@ -14,29 +14,6 @@ import javax.ejb.Stateless;
 @Stateless
 public class BugConverter {
 
-    /**
-     * Converts a {@link BugDTO} to {@link Bug}.
-     *
-     * @param bugDTO the dto.
-     * @return the output un-managed Entity.
-     */
-//    public Bug convertDTOtoEntity(BugDTO bugDTO){
-//        final Bug b = new Bug();
-//
-//        b.setTitle(bugDTO.getTitle());
-//        b.setDescription(bugDTO.getDescription());
-//        b.setVersion(bugDTO.getVersion());
-//        b.setDate(bugDTO.getDate());
-//        String status=bugDTO.getStatus().toString();
-//        b.setStatus(status);
-//        b.setFixedVersion(bugDTO.getFixedVersion());
-//        b.setSeverity(bugDTO.getSeverity());
-//        b.setCreatedBy(bugDTO.getCreatedBy());
-//        b.setAssignedTo(bugDTO.getAssignedTo());
-//
-//        return b;
-//    }
-
 
     /**
      * Converts a {@link Bug} to {@link BugDTO}.
@@ -44,7 +21,7 @@ public class BugConverter {
      * @param bug the input entity.
      * @return the output un-managed dto.
      */
-    public BugDTO convertEntitytoDTO(Bug bug){
+    public BugDTO convertEntityToDTO(Bug bug){
         final BugDTO b = new BugDTO();
 
         b.setTitle(bug.getTitle());
@@ -60,7 +37,7 @@ public class BugConverter {
         b.setSeverity(severity);
         b.setCreatedBy(bug.getCreatedBy());
         b.setAssignedTo(bug.getAssignedTo());
-        b.setId(bug.getId());
+        //b.setId(bug.getId());
 
         return b;
     }
@@ -75,7 +52,7 @@ public class BugConverter {
         b.setFixedVersion(bug.getFixedVersion());
         b.setCreatedBy(bug.getCreatedBy());
         b.setAssignedTo(bug.getAssignedTo());
-        b.setId(bug.getId());
+        //b.setId(bug.getId());
         Severity severity = Severity.valueOf(bug.getSeverity());
         b.setSeverity(severity);
 
