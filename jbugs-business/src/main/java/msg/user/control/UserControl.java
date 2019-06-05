@@ -181,4 +181,8 @@ public class UserControl {
         return userConverter.entityToUserDataDto(userEntity);
 
     }
+
+    public UserDTO getUserWithId(int id){
+        return userConverter.convertEntityDTO(userDao.getUserWithId(id));
+    }
 }

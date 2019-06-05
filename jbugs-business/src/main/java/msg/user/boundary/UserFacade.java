@@ -84,4 +84,8 @@ public class UserFacade {
             return e.getExceptionMessage();
         }
     }
+
+    public UserDTO getUserWithId(int id){
+        return userControl.getUserWithId(id);
+    }
 }

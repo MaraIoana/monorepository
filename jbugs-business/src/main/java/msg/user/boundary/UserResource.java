@@ -7,6 +7,7 @@ import msg.user.entity.dto.UserRolesDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -114,6 +115,17 @@ public class UserResource {
         //userFacade = null;
         //userFacade.updateUser(userDTO)
         return Response.status(200).entity(userFacade.updateUser(userDTO)).build();
+
+    }
+
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/{id}")
+    public Response getUserWithId(@PathParam("id") int id) {
+        //userFacade = null;
+        //userFacade.updateUser(userDTO)
+        return Response.status(200).entity(userFacade.getUserWithId(id)).build();
 
     }
 

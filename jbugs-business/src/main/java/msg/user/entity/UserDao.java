@@ -103,7 +103,7 @@ public class UserDao {
 
     public UserEntity activateOrReset(String username){
         UserEntity userEntity = getUser(username);
-        userEntity.setCounter(5);
+        userEntity.setCounter(0);
 
         em.merge(userEntity);
 
@@ -113,7 +113,7 @@ public class UserDao {
     public UserEntity deactivate(String username){
         UserEntity userEntity = getUser(username);
         //todo check if user has tasks if needed
-        userEntity.setCounter(0);
+        userEntity.setCounter(5);
 
         em.merge(userEntity);
 
@@ -122,10 +122,10 @@ public class UserDao {
 
     public UserEntity decrementCounter(String username){
         UserEntity userEntity = getUser(username);
-        userEntity.setCounter(userEntity.getCounter() - 1);
+        userEntity.setCounter(userEntity.getCounter() + 1);
 
-        if(userEntity.getCounter() < 0){
-            userEntity.setCounter(0);
+        if(userEntity.getCounter() > 5){
+            userEntity.setCounter(5);
         }
 
         em.merge(userEntity);
@@ -138,4 +138,12 @@ public class UserDao {
                 .setParameter("username",username)
                 .getSingleResult() > 0;
     }
+
+    public UserEntity getUserWithId(int id){
+        return em.createNamedQuery(UserEntity.GET_USER_WITH_ID,UserEntity.class)
+                .setParameter("id",id)
+                .getSingleResult();
+    }
+
+
 }

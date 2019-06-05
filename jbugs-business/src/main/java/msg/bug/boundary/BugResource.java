@@ -47,4 +47,24 @@ public class BugResource {
                 .build();
     }
 
+    @GET
+    @Path(value = "/getBug/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getUser(@PathParam("id") Long id) {
+        return Response
+                .status(200)
+                .entity(bugFacade.getBug(id))
+                .build();
+    }
+
+    @PUT
+    //@Path("/edit")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateUser(BugDTO bugDTO) {
+        //userFacade = null;
+        //userFacade.updateUser(userDTO)
+        return Response.status(200).entity(bugFacade.updateBug(bugDTO)).build();
+
+    }
+
 }

@@ -14,8 +14,7 @@ export class UsersCellComponent implements OnInit {
   private rowData;
 
   constructor(private router:Router,
-              private dialog:MatDialog,
-              private userService:UserService) { }
+              private dialog:MatDialog) { }
 
   agInit(params){
     this.rowData = params.data;
@@ -35,7 +34,7 @@ export class UsersCellComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result=>{
-      if(result.message)
+      if(result)
         console.log(result.message);
     })
   }

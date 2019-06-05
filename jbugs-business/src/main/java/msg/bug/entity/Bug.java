@@ -14,11 +14,15 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "bugs")
-@NamedQuery(name = Bug.BUG_FIND_ALL, query =  "select b from Bug b")
-
+@NamedQueries({
+        @NamedQuery(name = Bug.BUG_FIND_ALL, query = "select b from Bug b"),
+        @NamedQuery(name = Bug.BUG_FIND_BY_ID, query = "select b from Bug b where b.id = :id")
+})
 public class Bug extends BaseEntity<Long>{
 
    public static final String BUG_FIND_ALL = "Bug.findAll";
+    public static final String BUG_FIND_BY_ID = "Bug.ByID";
+    public static final String ID = "id";
 
     @Column(name = "title",nullable = false)
     private String title;

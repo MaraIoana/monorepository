@@ -33,10 +33,10 @@ export class UserDetailsComponent implements OnInit {
   }
 
   checkButtons(){
-    if(this.user.counter === 0){
+    if(this.user.counter >= 5){
       this.activateButton = true;
     }
-    if(this.user.counter!==0 && !this.user.hasTasks){
+    if(this.user.counter < 5 && !this.user.hasTasks){
       this.deactivateButton = true;
     }
   }

@@ -1,5 +1,4 @@
 package msg.bug.control;
-
 import msg.bug.entity.Bug;
 import msg.bug.entity.BugDAO;
 import msg.bug.entity.dto.BugConverter;
@@ -48,5 +47,20 @@ public class BugControl {
                 NotificationType.BUG_UPDATED,
                 new NotificationParamsBugUpdated(bugDTO.toString(), "New Bug"));
         return result;
+    }
+
+    public BugDTO getBug(Long ID) {
+        Bug bug = bugDao.getBug(ID);
+        return bugConverter.convertEntitytoDTO(bug);
+
+    }
+
+
+    public BugDTO updateBug(BugDTO bugDTO) {
+        Bug updateBug = bugConverter.convertDTOtoEntity(bugDTO);
+        BugDTO result = bugConverter.convertEntitytoDTO(bugDao.UpdateBug(updateBug));
+
+        return result;
+
     }
 }

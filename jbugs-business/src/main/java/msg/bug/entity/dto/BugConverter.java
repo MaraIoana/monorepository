@@ -4,7 +4,10 @@ import msg.bug.entity.Bug;
 import msg.bug.entity.Severity;
 import msg.bug.entity.Status;
 
+
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
+
 /**
  * Document me.
  *
@@ -59,6 +62,24 @@ public class BugConverter {
         b.setSeverity(severity);
         b.setCreatedBy(bug.getCreatedBy());
         b.setAssignedTo(bug.getAssignedTo());
+        b.setId(bug.getId());
+
+        return b;
+    }
+
+    public Bug convertDTOtoEntity(BugDTO bug) {
+        Bug b = new Bug();
+
+        b.setTitle(bug.getTitle());
+        b.setDescription(bug.getDescription());
+        b.setVersion(bug.getVersion());
+        b.setDate(bug.getDate());
+        b.setFixedVersion(bug.getFixedVersion());
+        b.setCreatedBy(bug.getCreatedBy());
+        b.setAssignedTo(bug.getAssignedTo());
+        b.setId(bug.getId());
+        Severity severity = Severity.valueOf(bug.getSeverity());
+        b.setSeverity(severity);
 
         return b;
     }
