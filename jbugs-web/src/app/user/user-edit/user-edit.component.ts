@@ -77,7 +77,7 @@ export class UserEditComponent implements OnInit {
          this.user = user;
          for (let i = 0; i < this.user.roles.length; i++) {
            this.roles.forEach((role) => {
-             this.setRole(this.roles[i], role);
+             this.setRole(this.user.roles[i], role);
            });
          }
        });
@@ -98,8 +98,8 @@ export class UserEditComponent implements OnInit {
      }
 
   setRole(role: any, userRole: any) {
-    if (role == userRole) {
-      role.checked = true;
+    if (role == userRole.name) {
+      userRole.checked = true;
     }
   }
 
