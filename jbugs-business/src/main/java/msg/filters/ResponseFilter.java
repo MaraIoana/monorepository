@@ -6,12 +6,12 @@ package msg.filters;
  * @author msg systems AG; User Name.
  * @since 19.1.2
  */
-import java.io.IOException;
-import java.util.logging.Logger;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.logging.Logger;
 
 @WebFilter(filterName = "AddHeaderFilter", urlPatterns = {"/*"})
 public class ResponseFilter implements Filter {

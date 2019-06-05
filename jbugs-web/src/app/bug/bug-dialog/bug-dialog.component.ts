@@ -13,6 +13,8 @@ import {addUser} from "../../models/addUser.model";
 export class BugDialogComponent implements OnInit {
   public bugNew: Bug = {};
   form: FormGroup;
+  private rowData;
+  private username: String;
   selectedValue: string;
   private userList: addUser[];
   selectedUsername: String;
@@ -38,7 +40,11 @@ export class BugDialogComponent implements OnInit {
   }
 
 
-  submit(form: FormGroup) {
-    console.log("sadas");
+  submit() {
+    console.log("sth");
+    // this.dialogRef.close({
+    //   'message':'ADD',
+    //   'data':this.rowData;
+    // });
   }
 }

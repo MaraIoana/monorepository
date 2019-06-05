@@ -1,13 +1,8 @@
 package msg.user.entity;
 
-import msg.exeptions.BusinessException;
-import msg.role.entity.RoleEntity;
-import msg.user.entity.dto.UserDataDTO;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.xml.registry.infomodel.User;
 import java.util.List;
 
 /**
@@ -140,9 +135,14 @@ public class UserDao {
     }
 
     public UserEntity getUserWithId(int id){
-        return em.createNamedQuery(UserEntity.GET_USER_WITH_ID,UserEntity.class)
+        List<UserEntity> users = em.createNamedQuery(UserEntity.GET_USER_WITH_ID, UserEntity.class)
                 .setParameter("id",id)
-                .getSingleResult();
+                .getResultList();
+        if (users.size() != 0) {
+            return users.get(0);
+        } else {
+            return new UserEntity();
+        }
     }
 
 

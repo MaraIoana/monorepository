@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material";
 import {BugEditComponent} from "../bug-edit/bug-edit.component";
 import {BugService} from "../../services/bug.service";
@@ -34,7 +34,7 @@ export class BugsCellComponent implements OnInit {
       if(result){
         this.rowData = result.data;
         this.gridApi.refreshCells();
-        this.bugservice.updateBug(result.data);
+        this.bugservice.updateBug(result.data).subscribe();
       }
     })
   }

@@ -11,7 +11,6 @@ import {addUser} from "../../../models/addUser.model";
 export class BugEditComponent implements OnInit {
 
   private rowData;
-
   private username;
 
   private userList:addUser[];

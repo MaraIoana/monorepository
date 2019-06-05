@@ -101,9 +101,15 @@ export class BugsComponent implements OnInit {
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
+    let dialogRef = this.dialog.open(BugDialogComponent);
 
-    //this.dialog.open(BugDialogComponent);
-    const dialogRef = this.dialog.open(BugDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.rowData = result.data;
+        this.gridApi.refreshCells();
+        //this.bugservice.updateBug(result.data).subscribe();
+      }
+    })
   }
 
   onGridReady(params) {
