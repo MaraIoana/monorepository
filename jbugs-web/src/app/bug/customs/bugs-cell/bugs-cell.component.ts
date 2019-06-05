@@ -34,7 +34,7 @@ export class BugsCellComponent implements OnInit {
       if(result){
         this.rowData = result.data;
         this.gridApi.refreshCells();
-        this.bugservice.updateBug(result.data);
+        this.bugservice.updateBug(result.data).subscribe();
       }
     })
   }
