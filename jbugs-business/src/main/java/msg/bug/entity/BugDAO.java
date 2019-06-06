@@ -64,4 +64,16 @@ public class BugDAO {
 
         return updateBug;
     }
+
+    public Long getUserId(String username){
+        return em.createNamedQuery(Bug.GET_USER_ID,Long.class)
+                .setParameter("username",username)
+                .getSingleResult();
+    }
+
+    public String getUsername(Long id){
+        return em.createNamedQuery(Bug.GET_USERNAME,String.class)
+                .setParameter("id",id)
+                .getSingleResult();
+    }
 }

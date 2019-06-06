@@ -76,7 +76,6 @@ public class UserConverter {
 
     public UserInputDTO convertEntityDTOO(UserEntity userEntity){
         final UserInputDTO u = new UserInputDTO();
-        u.setId(userEntity.getId());
         u.setFirstName(userEntity.getFirstName());
         u.setLastName(userEntity.getLastName());
         u.setEmail(userEntity.getEmail());

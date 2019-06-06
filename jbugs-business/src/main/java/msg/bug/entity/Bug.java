@@ -18,7 +18,9 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(name = Bug.BUG_FIND_ALL, query = "select b from Bug b"),
         @NamedQuery(name = Bug.MODIFY_STATUS, query = "select b from Bug b where b.id=:id"),
-        @NamedQuery(name = Bug.BUG_FIND_BY_ID, query = "select b from Bug b where b.id = :id")
+        @NamedQuery(name = Bug.BUG_FIND_BY_ID, query = "select b from Bug b where b.id = :id"),
+        @NamedQuery(name = Bug.GET_USER_ID,query = "select u.id from UserEntity u where u.username=:username"),
+        @NamedQuery(name = Bug.GET_USERNAME,query = "select u.username from UserEntity u where u.id=:id")
 }
 )
 public class Bug extends BaseEntity<Long>{
@@ -31,6 +33,8 @@ public class Bug extends BaseEntity<Long>{
 //    private Long id;
     public static final String BUG_FIND_BY_ID = "Bug.ByID";
     public static final String ID = "id";
+    public static final String GET_USER_ID = "getUserId";
+    public static final String GET_USERNAME = "getUsername";
 
     @Column(name = "title",nullable = false)
     private String title;

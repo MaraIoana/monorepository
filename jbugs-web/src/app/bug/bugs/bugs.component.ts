@@ -64,12 +64,13 @@ export class BugsComponent implements OnInit {
     //this.dialog.open(BugDialogComponent);
     const dialogRef = this.dialog.open(BugDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        this.bugService.addBug(result).subscribe(response=>{
-          console.log(response);
-        });
-        this.gridApi.refreshCells();
-      }
+      // if(result){
+      //   this.bugService.addBug(result).subscribe(response=>{
+      //     console.log(response);
+      //   });
+      //   this.gridApi.refreshCells();
+      // }
+      console.log(result);
     });
   }
 
