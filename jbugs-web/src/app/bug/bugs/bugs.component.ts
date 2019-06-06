@@ -30,7 +30,7 @@ export class BugsComponent implements OnInit {
       {headerName: 'Title', field: 'title',sortable:true,filter:true,width:100},
       {headerName: 'Description', field: 'description',sortable:true,filter:true,width:200,cellClass:"cell-wrap-text"},
       {headerName: 'Version', field: 'version',sortable:true,filter:true,width:100},
-      {headerName: 'Date', field: 'date',sortable:true,filter:true,width:200},
+      {headerName: 'Target Date', field: 'date', sortable: true, filter: true, width: 200},
       {headerName: 'Status', field: 'status',sortable:true,filter:true,width:100},
       {headerName: 'Fixed Version', field: 'fixedVersion',sortable:true,filter:true,width:150},
       {headerName: 'Severity', field: 'severity',sortable:true,filter:true,width:100},
