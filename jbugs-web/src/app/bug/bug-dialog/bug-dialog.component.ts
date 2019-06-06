@@ -29,10 +29,7 @@ export class BugDialogComponent implements OnInit {
   }
 
   save() {
-    this.dialogRef.close({
-      'data':this.bugNew,
-      'assignedUser':this.selectedUsername
-    });
+    this.dialogRef.close(this.bugNew);
   }
 
   close() {
