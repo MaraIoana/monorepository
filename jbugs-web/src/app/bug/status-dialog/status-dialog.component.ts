@@ -55,20 +55,20 @@ export class StatusDialogComponent implements OnInit {
 
   visibleRadioButtons() {
 
-    if (this.rowData === "NEW") {
+    if (this.rowData.status === "NEW") {
       this.inprogress = false;
       this.rejected = false;
-    } else if (this.rowData === "REJECTED") {
+    } else if (this.rowData.status === "REJECTED") {
       this.closed = false;
-    } else if (this.rowData === "INPROGRESS") {
+    } else if (this.rowData.status === "INPROGRESS") {
       this.rejected = false;
       this.info = false;
       this.fixed = false;
-    } else if (this.rowData === "INFONEEDED") {
+    } else if (this.rowData.status === "INFONEEDED") {
       this.inprogress = false;
-    } else if (this.rowData === "FIXED") {
+    } else if (this.rowData.status === "FIXED") {
       this.closed = false;
-    } else if (this.rowData === "CLOSED")
+    } else if (this.rowData.status === "CLOSED")
       this.nulll = false;
     this.title = true;
   }

@@ -12,7 +12,7 @@
   class="ag-theme-balham-dark shadow p-3 mb-5 bg-dark rounded"
   [rowData]="bugList"
   [columnDefs]="columnDefs"
-  [rowSelection]="rowSelection"
+  [rowSelection]="false"
   rowHeight="33"
   (selectionChanged)="onSelectionChanged()"
   (gridReady)="onGridReady($event)"
