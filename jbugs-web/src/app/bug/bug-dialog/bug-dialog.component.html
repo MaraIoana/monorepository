@@ -127,6 +127,16 @@
         </mat-select>
       </mat-form-field>
     </mat-form-field>
+
+    <mat-form-field>-->
+      <input matInput
+             [matDatepicker]="picker"
+             name="date"
+             placeholder="Choose a target date">
+<!--             [(ngModel)]="bugNew.date"-->
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-select [(ngModel)]="bugNew.assignedTo" name="assignedTo" placeholder="Assigned user"
       >

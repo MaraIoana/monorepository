@@ -20,7 +20,16 @@ export class BugService {
   }
 
   public addBug(bug: Bug) {
-    return this.backendService.post('http://localhost:8080/jbugs/jbugs-api/bugs', bug);
+    return this.backendService.post('http://localhost:8080/jbugs/jbugs-api/bugs', {
+      'title':bug.title,
+      'description':bug.description,
+      'version':bug.version,
+      'status':bug.status,
+      'fixedVersion':bug.fixedVersion,
+      'severity':bug.severity,
+      'assignedTo':bug.assignedTo,
+      'createdBy':1
+    });
   }
 
   public modifyStatus(b: Bug): Observable<Bug[]> {
