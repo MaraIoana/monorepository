@@ -22,4 +22,6 @@ public class MessageCatalog {
             = new ExceptionMessage("USER-03", "User is not active. Please contact support ");
     public static final ExceptionMessage TOO_MANY_ATTEMPTS
             = new ExceptionMessage("USER-04", "User has been blocked. Please contact support");
+    public static final ExceptionMessage HAS_TASKS
+            = new ExceptionMessage("USER-05", "Can't deactivate user with assigned tasks");
 }

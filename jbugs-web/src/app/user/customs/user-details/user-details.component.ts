@@ -15,6 +15,8 @@ export class UserDetailsComponent implements OnInit {
   private deactivateButton:boolean = false;
   private activateButton:boolean = false;
 
+  private hasTasks:boolean = false;
+
   constructor(public dialogRef:MatDialogRef<UserDetailsComponent>,
               @Inject(MAT_DIALOG_DATA) public data:any,private userService:UserService) { }
 
@@ -36,9 +38,14 @@ export class UserDetailsComponent implements OnInit {
     if(this.user.counter >= 5){
       this.activateButton = true;
     }
-    if(this.user.counter < 5 && !this.user.hasTasks){
+    if(this.user.counter < 5 && !this.user.tasks.length){
       this.deactivateButton = true;
     }
+    if(this.user.tasks.length){
+      this.hasTasks = true;
+    }
+    else
+      this.hasTasks = false;
   }
 
   activate(){

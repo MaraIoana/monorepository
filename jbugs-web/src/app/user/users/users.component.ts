@@ -28,7 +28,6 @@ export class UsersComponent implements OnInit {
       {headerName: 'Mobile', field: 'mobileNumber',sortable:true,filter:true,width:150,cellClass:"cell-wrap-text"},
       {headerName: 'Username', field: 'username',sortable:true,filter:true,width:100,cellClass:"cell-wrap-text"},
       {width:110,cellRendererFramework:UsersCellComponent}
-
     ];
     this.rowSelection="single";
 

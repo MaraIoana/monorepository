@@ -1,10 +1,8 @@
 <h3>bugs</h3>
-<button (click)="openCreateDialog()">Add a new bug</button>
-<!--<div>-->
-<!--  <li *ngFor="let bug of bugList"> {{bug.title}},{{bug.description}},{{bug.severity}}-->
-
-<!--</div>-->
-
+<button mat-raised-button name="createButton" (click)="openCreateDialog()">
+  <i class="material-icons">add</i>
+    Create
+</button>
 <div class="test-header"><span id="selectedRow"></span></div>
 <ag-grid-angular
   id="myGrid"
@@ -12,7 +10,7 @@
   class="ag-theme-balham-dark shadow p-3 mb-5 bg-dark rounded"
   [rowData]="bugList"
   [columnDefs]="columnDefs"
-  [rowSelection]="rowSelection"
+  [rowSelection]="false"
   rowHeight="33"
   (selectionChanged)="onSelectionChanged()"
   (gridReady)="onGridReady($event)"
@@ -22,11 +20,6 @@
 >
 </ag-grid-angular>
 
-<!--todo disable button if drept != BUG_CLOSE-->
-
-<div>
-  <button mat-raised-button (click)="openDialog()">Modify status</button>
-</div>
 
 
 

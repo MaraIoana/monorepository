@@ -5,6 +5,8 @@ import msg.bug.entity.Severity;
 import msg.bug.entity.Status;
 
 import javax.ejb.Stateless;
+import java.util.Date;
+
 /**
  * Bug Converter.
  *

@@ -28,7 +28,7 @@ import {
   MatDatepickerModule,
   MatDialogModule,
   MatFormFieldModule,
-  MatInputModule,
+  MatInputModule, MatListModule,
   MatNativeDateModule,
   MatSelectModule
 } from "@angular/material";
@@ -77,7 +77,8 @@ import {AddHeader} from "./services/add-header.service";
     MatFormFieldModule,
     MatDatepickerModule,
     MatSelectModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatListModule
   ],
   providers: [
     {

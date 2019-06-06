@@ -16,7 +16,7 @@ public class UserDataDTO {
     private String mobileNumber;
     private String username;
     private int counter;
-    private boolean hasTasks;
+    private List<String> tasks;
 
     public String getFirstName() {
         return firstName;
@@ -66,11 +66,11 @@ public class UserDataDTO {
         this.counter = counter;
     }
 
-    public boolean isHasTasks() {
-        return hasTasks;
+    public List<String> getTasks() {
+        return tasks;
     }
 
-    public void setHasTasks(boolean hasTasks) {
-        this.hasTasks = hasTasks;
+    public void setTasks(List<String> tasks) {
+        this.tasks = tasks;
     }
 }

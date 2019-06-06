@@ -5,17 +5,31 @@
       <input matInput
              [(ngModel)]="data.title"
              name="title"
+             required
              value="{{data.title}}"
+             #title=ngModel
       >
+      <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+        <div *ngIf="title.errors.required">The field is required</div>
+      </div>
     </mat-form-field>
     <mat-form-field class="example-full-width" floatLabel="always">
       <mat-label>Description</mat-label>
       <textarea matInput
                 [(ngModel)]="data.description"
                 name="description"
+                minlength="250"
+                required
+                #description=ngModel
       >
+
+
         {{data.description}}
       </textarea>
+      <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
+        <div *ngIf="description.errors.required">The field is required</div>
+        <div *ngIf="description.errors.minlength">Description should be 250 character long</div>
+      </div>
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-label>Version</mat-label>
@@ -23,7 +37,16 @@
              [(ngModel)]="data.version"
              name="version"
              value="{{data.version}}"
+             required
+             pattern="[a-zA-Z0-9.]{1,}"
+             #version=ngModel
       >
+      <div class="alert alert-danger" *ngIf="version.touched && version.invalid">
+        <div *ngIf="version.errors.pattern">Version can contain alphanumeric character and dot only</div>
+        <div *ngIf="version.errors.required">The field is required</div>
+
+      </div>
+
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-label>FixedVersion</mat-label>
@@ -31,7 +54,14 @@
              [(ngModel)]="data.fixedVersion"
              name="fixedVersion"
              value="{{data.fixedVersion}}"
+             required
+             pattern="[a-zA-Z0-9.]{1,}"
+             #fixedVersion=ngModel
       >
+      <div class="alert alert-danger" *ngIf="fixedVersion.touched && fixedVersion.invalid">
+        <div *ngIf="fixedVersion.errors.pattern">Version can contain alphanumeric character and dot only</div>
+        <div *ngIf="fixedVersion.errors.required">The field is required</div>
+      </div>
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-label>Severity</mat-label>
@@ -50,9 +80,9 @@
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-select
-        [(value)]="username"
+        [(value)]="data.assignedTo"
       >
-        <mat-option *ngFor="let user of userList" [(value)]="user.username">
+        <mat-option *ngFor="let user of userList" [(value)]="user.id">
           {{user.username}}
         </mat-option>
       </mat-select>
