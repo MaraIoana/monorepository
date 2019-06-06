@@ -14,6 +14,6 @@
 
   <label [hidden]="nulll" class="alert alert-info">Cannot modify status for this bug</label>
 
-  <button mat-button [hidden]="nulll" (click)="onNoClick()">Update</button>
+  <button mat-button [hidden]="!nulll" (click)="onNoClick()">Update</button>
   <button mat-button (click)="close()">Close</button>
 </div>

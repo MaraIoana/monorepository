@@ -13,7 +13,6 @@ import {addUser} from "../../models/addUser.model";
 export class BugDialogComponent implements OnInit {
   public bugNew: Bug = {};
   form: FormGroup;
-  selectedValue: string;
   private userList: addUser[];
   selectedUsername: String;
   title = new FormControl();

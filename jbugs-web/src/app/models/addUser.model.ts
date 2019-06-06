@@ -1,4 +1,5 @@
 export interface addUser {
+  id? :number;
   firstName ? : string;
   lastName ? : string;
   mobileNumber ? : string;

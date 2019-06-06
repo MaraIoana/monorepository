@@ -128,9 +128,9 @@
       </mat-form-field>
     </mat-form-field>
     <mat-form-field class="example-full-width">
-      <mat-select [(ngModel)]="selectedUsername" name="selectedUser" placeholder="Assigned user"
+      <mat-select [(ngModel)]="bugNew.assignedTo" name="assignedTo" placeholder="Assigned user"
       >
-        <mat-option *ngFor="let user of userList" [(value)]="user.username">
+        <mat-option *ngFor="let user of userList" [(value)]="user.id">
           {{user.username}}
         </mat-option>
       </mat-select>
