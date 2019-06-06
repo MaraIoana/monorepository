@@ -4,6 +4,8 @@ import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {Bug} from "../../models/bug.model";
 import {UserService} from "../../user/services/user.service";
 import {addUser} from "../../models/addUser.model";
+import {PermissionService} from "../../role/services/permission.service";
+
 
 @Component({
   selector: 'app-bug-dialog',
@@ -14,10 +16,11 @@ export class BugDialogComponent implements OnInit {
   public bugNew: Bug = {};
   form: FormGroup;
   private userList: addUser[];
-  selectedUsername: String;
   title = new FormControl();
 
-  constructor(private userService: UserService,
+
+  constructor(private permissionService: PermissionService,
+    private userService: UserService,
               private formBuilder: FormBuilder, private dialogRef: MatDialogRef<BugDialogComponent>) {
   }
 
@@ -29,6 +32,10 @@ export class BugDialogComponent implements OnInit {
   }
 
   save() {
+    this.bugNew.createdByUser=this.permissionService.getUsername();
+    var date = this.bugNew.date;
+    var d = new Date(date).getUTCDate();
+    console.log(d);
     this.dialogRef.close(this.bugNew);
   }
 

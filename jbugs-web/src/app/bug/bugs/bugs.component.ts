@@ -65,6 +65,7 @@ export class BugsComponent implements OnInit {
     const dialogRef = this.dialog.open(BugDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       if(result){
+        console.log(result.toString());
         this.bugService.addBug(result).subscribe(response=>{
           console.log(response);
         });
