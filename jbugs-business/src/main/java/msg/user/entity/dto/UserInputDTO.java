@@ -13,12 +13,22 @@ import java.util.List;
  * @since 1.0
  */
 public class UserInputDTO {
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;
     private String mobileNumber;
     private String username;
     private List<String> roles=new ArrayList<>();
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;

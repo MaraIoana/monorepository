@@ -28,13 +28,11 @@ import {
   MatDatepickerModule,
   MatDialogModule,
   MatFormFieldModule,
-  MatInputModule,
+  MatInputModule, MatListModule,
   MatNativeDateModule,
   MatSelectModule
 } from "@angular/material";
 import {BugDialogComponent} from './bug/bug-dialog/bug-dialog.component';
-import {BugsComponent} from "./bug/bugs/bugs.component";
-
 
 @NgModule({
   declarations: [
@@ -76,7 +74,8 @@ import {BugsComponent} from "./bug/bugs/bugs.component";
     MatFormFieldModule,
     MatDatepickerModule,
     MatSelectModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatListModule
   ],
   providers: [],
   entryComponents:[

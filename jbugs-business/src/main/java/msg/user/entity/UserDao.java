@@ -89,11 +89,10 @@ public class UserDao {
                 .getSingleResult();
     }
 
-    public boolean hasTasks(String username){
-        long count =  em.createNamedQuery(UserEntity.HAS_TASKS,Long.class)
+    public List<String> getTasks(String username){
+        return em.createNamedQuery(UserEntity.GET_TASKS,String.class)
                 .setParameter("username",username)
-                .getSingleResult();
-        return (count>0);
+                .getResultList();
     }
 
     public UserEntity activateOrReset(String username){
@@ -107,7 +106,6 @@ public class UserDao {
 
     public UserEntity deactivate(String username){
         UserEntity userEntity = getUser(username);
-        //todo check if user has tasks if needed
         userEntity.setCounter(5);
 
         em.merge(userEntity);
@@ -115,7 +113,7 @@ public class UserDao {
         return userEntity;
     }
 
-    public UserEntity decrementCounter(String username){
+    public UserEntity incrementUser(String username){
         UserEntity userEntity = getUser(username);
         userEntity.setCounter(userEntity.getCounter() + 1);
 
@@ -131,7 +129,7 @@ public class UserDao {
     public boolean isActive(String username){
         return em.createNamedQuery(UserEntity.IS_ACTIVE,Integer.class)
                 .setParameter("username",username)
-                .getSingleResult() > 0;
+                .getSingleResult() < 5;
     }
 
     public UserEntity getUserWithId(int id){
