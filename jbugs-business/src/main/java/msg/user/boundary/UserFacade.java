@@ -5,6 +5,7 @@ package msg.user.boundary;
 
 import msg.exeptions.BusinessException;
 import msg.permission.entity.Permission;
+import msg.user.MessageCatalog;
 import msg.user.control.UserControl;
 import msg.user.entity.dto.UserDTO;
 import msg.user.entity.dto.UserDataDTO;
@@ -66,7 +67,13 @@ public class UserFacade {
 
 
     public Object authenticateUser(UserLoginDTO userLoginDTO) {
-        return userControl.authenticateUser(userLoginDTO);
+        try {
+            return userControl.authenticateUser(userLoginDTO);
+        }
+        catch (BusinessException e){
+            return e.getExceptionMessage();
+        }
+
     }
 
     public UserDataDTO getUserData(String username) {

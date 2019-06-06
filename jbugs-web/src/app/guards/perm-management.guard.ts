@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {Observable} from 'rxjs';
+import {PermissionService} from "../role/services/permission.service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,19 +10,15 @@ export class PermManagementGuard implements CanActivate {
 
   permissions: string[];
 
-  constructor(private router: Router) {
-    if (this.router.getCurrentNavigation().extras.replaceUrl) {
-      this.router.navigateByUrl("/error", {state: {message: 'Thats not cute!'}});
-    } else {
-      this.permissions = this.router.getCurrentNavigation().previousNavigation.extras.state.permissions;
-    }
+  constructor(private router: Router,
+              private permissionService: PermissionService) {
+    this.permissions = permissionService.getPermissionsForCurrentUser();
   }
 
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
     return this.hasPermissionManagement();
   }
 
@@ -29,6 +26,7 @@ export class PermManagementGuard implements CanActivate {
     if (this.permissions.includes("PERMISSION_MANAGEMENT")) {
       return true;
     } else {
+      this.router.navigate(['/dashboard'],{state : { 'message':"Permission not allowed"}});
       return false;
     }
   }
