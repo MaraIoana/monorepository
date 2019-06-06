@@ -39,8 +39,4 @@ export class BugDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-
-  submit(form: FormGroup) {
-    console.log("sadas");
-  }
 }

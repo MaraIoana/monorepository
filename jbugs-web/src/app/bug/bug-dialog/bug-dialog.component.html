@@ -88,6 +88,7 @@
       <mat-label>Title</mat-label>
       <input matInput
              [(ngModel)]="bugNew.title"
+             required
              name="title"
       >
     </mat-form-field>
@@ -95,6 +96,8 @@
       <mat-label>Description</mat-label>
       <textarea matInput
                 [(ngModel)]="bugNew.description"
+                minlength="50"
+                required
                 name="description"
       >
       </textarea>
@@ -103,6 +106,7 @@
       <mat-label>Version</mat-label>
       <input matInput
              [(ngModel)]="bugNew.version"
+             required
              name="version"
       >
     </mat-form-field>
@@ -110,6 +114,7 @@
       <mat-label>FixedVersion</mat-label>
       <input matInput
              [(ngModel)]="bugNew.fixedVersion"
+             required
              name="fixedVersion"
       >
     </mat-form-field>
@@ -119,6 +124,7 @@
         <mat-select
           [(ngModel)]="bugNew.severity"
           name="severity"
+          required
         >
           <mat-option value="CRITICAL">CRITICAL</mat-option>
           <mat-option value="HIGH">HIGH</mat-option>
@@ -130,7 +136,7 @@
     <mat-form-field class="example-full-width">
       <mat-select [(ngModel)]="bugNew.assignedTo" name="assignedTo" placeholder="Assigned user"
       >
-        <mat-option *ngFor="let user of userList" [(value)]="user.id">
+        <mat-option *ngFor="let user of userList" value="user.id">
           {{user.username}}
         </mat-option>
       </mat-select>
