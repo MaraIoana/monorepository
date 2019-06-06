@@ -147,29 +147,40 @@ public class UserControl {
 
     public UserOutputDto authenticateUser(UserLoginDTO userLoginDTO) {
         UserEntity user = userDao.findUserByUsername(userLoginDTO.getUsername());
-        if(user != null && user.getPassword().equals(userLoginDTO.getPassword())){
-            Set<PermissionEntity> permissions = new HashSet<>();
-            List<String> permissionsList = new ArrayList<>();
-            for(RoleEntity r : user.getRoles()){
-                permissions.addAll(r.getPermissions());
+        if(user != null){
+            if(user.getPassword().equals(userLoginDTO.getPassword())) {
+                if(user.getCounter() < 5) {
+                    userDao.activateOrReset(user.getUsername());
+                    Set<PermissionEntity> permissions = new HashSet<>();
+                    List<String> permissionsList = new ArrayList<>();
+                    for (RoleEntity r : user.getRoles()) {
+                        permissions.addAll(r.getPermissions());
+                    }
+                    Algorithm algorithm = Algorithm.HMAC256("jbugs");
+                    String token = JWT.create()
+                            .withIssuer("auth0")
+                            .withClaim("username", user.getUsername())
+                            .withArrayClaim("permissions", permissions
+                                    .stream()
+                                    .map(PermissionEntity::getType).toArray(String[]::new))
+                            .sign(algorithm);
+                    for (PermissionEntity p : permissions) {
+                        permissionsList.add(p.getType());
+                    }
+                    return new UserOutputDto(user.getUsername(), permissionsList, token);
+                }
+                else{
+                    throw new BusinessException(MessageCatalog.NOT_ACTIVE_USER);
+                }
             }
-            Algorithm algorithm = Algorithm.HMAC256("jbugs");
-            String token = JWT.create()
-                    .withIssuer("auth0")
-                    .withClaim("username", user.getUsername())
-                    .withArrayClaim("permissions", permissions
-                            .stream()
-                            .map(PermissionEntity::getType).toArray(String[]::new))
-                    .sign(algorithm);
-            for(PermissionEntity p : permissions){
-                permissionsList.add(p.getType());
+            else {
+                throw new BusinessException(MessageCatalog.INVALID_CREDENTIALS);
             }
-            return new UserOutputDto(user.getUsername(), permissionsList, token);
-
         } else {
             throw new BusinessException(MessageCatalog.INVALID_CREDENTIALS);
         }
     }
+
 
     public UserDataDTO getUserData(String username){
         UserDataDTO userDataDTO = userConverter.entityToUserDataDto(userDao.getUser(username));
