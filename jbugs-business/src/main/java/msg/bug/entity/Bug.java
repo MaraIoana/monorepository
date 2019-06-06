@@ -42,6 +42,7 @@ public class Bug extends BaseEntity<Long>{
     private String version;
 
     @Column(name ="targetDate")
+    @Temporal(TemporalType.DATE)
     private Date date;
 
     @Column(name = "status",nullable = false)
