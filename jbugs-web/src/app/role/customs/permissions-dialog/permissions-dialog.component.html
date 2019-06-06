@@ -27,12 +27,9 @@
         </label>
       </div>
     </div>
+      <button mat-button (click)="savePermission()" [disabled]="!validForm"><i class="material-icons">add_box</i>Add</button>
+      <button mat-button (click)="deletePermission()" [disabled]="!isSelected"><i class="material-icons">delete</i>Delete</button>
   </form>
-
-  <mat-dialog-actions>
-    <button mat-button (click)="savePermission()" [disabled]="!validForm"><i class="material-icons">add_box</i>Add</button>
-    <button mat-button (click)="deletePermission()" [disabled]="!isSelected"><i class="material-icons">delete</i>Delete</button>
-  </mat-dialog-actions>
 </mat-dialog-content>
 
 <mat-dialog-actions>
