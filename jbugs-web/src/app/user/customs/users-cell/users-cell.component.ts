@@ -40,7 +40,6 @@ export class UsersCellComponent implements OnInit {
       if(result) {
         console.log(result.message);
       }
-
     })
   }
 }

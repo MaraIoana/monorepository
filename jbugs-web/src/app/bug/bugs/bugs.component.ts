@@ -15,12 +15,10 @@ export class BugsComponent implements OnInit {
 
   private gridApi;
   private gridColumnApi;
-  private rowSelection;
   private columnDefs;
   private paginationPageSize;
   private paginationNoFormatter;
   public bugList: Bug[];
-  private bugStatus: Bug = {};
 
   private rowData;
   @Output()
@@ -37,50 +35,11 @@ export class BugsComponent implements OnInit {
       {headerName: 'Fixed Version', field: 'fixedVersion',sortable:true,filter:true,width:150},
       {headerName: 'Severity', field: 'severity',sortable:true,filter:true,width:100},
       {width:110,cellRendererFramework:BugsCellComponent}
-    //   {headerName: 'Created by', field: 'createdByUser',sortable:true,filter:true},
-    //   {headerName: 'Assigned to', field: 'assignedTo',sortable:true,filter:true},
      ];
-    this.rowSelection="single";
     this.paginationPageSize = 25;
     this.paginationNoFormatter = function (params) {
       return "[" + params.value.toLocaleString() + "]";
     };
-  }
-
-  agInit(params) {
-    this.rowData = params.data;
-
-  }
-
-  openDialog(): void {
-    let selectedRows = this.gridApi.getSelectedRows();
-    let status = "";
-    let idBug;
-    selectedRows.forEach(function (selectedRow, index) {
-      if (index !== 0) {
-        status += ", ";
-      }
-      status = selectedRow.status;
-      idBug = selectedRow.id;
-    });
-
-    const dialogRef = this.dialog.open(StatusDialogComponent, {
-      width: '250px',
-      data: status
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('Statusul s-a modificat in !!!!!' + result + " !!!!!!!!!!");
-      console.log("bug.status====== " + this.bugStatus);
-
-
-      this.bugStatus.severity = "NULL";
-      this.bugStatus.status = result;
-      console.log("bug.status====== " + this.bugStatus.status);
-      this.bugStatus.id = idBug;
-      console.log("bug.id====== " + this.bugStatus.id);
-      this.bugService.modifyStatus(this.bugStatus).subscribe();
-    });
   }
 
   ngOnInit() {
@@ -104,6 +63,12 @@ export class BugsComponent implements OnInit {
 
     //this.dialog.open(BugDialogComponent);
     const dialogRef = this.dialog.open(BugDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        console.log(result);
+        this.gridApi.refreshCells();
+      }
+    });
   }
 
   onGridReady(params) {

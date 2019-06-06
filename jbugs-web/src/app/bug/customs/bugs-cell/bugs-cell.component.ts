@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog} from "@angular/material";
 import {BugEditComponent} from "../bug-edit/bug-edit.component";
 import {BugService} from "../../services/bug.service";
+import {StatusDialogComponent} from "../../status-dialog/status-dialog.component";
+import {Bug} from "../../../models/bug.model";
 
 @Component({
   selector: 'app-bugs-cell',
@@ -46,6 +48,21 @@ export class BugsCellComponent implements OnInit {
     //   if(result.message)
     //     console.log(result.message);
     // })
+  }
+
+  onStatusEdit(){
+    let dialogRef = this.dialog.open(StatusDialogComponent, {
+      width: '250px',
+      data: this.rowData
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.rowData.status = result;
+        this.bugservice.modifyStatus(this.rowData).subscribe();
+        this.gridApi.refreshCells();
+      }
+    });
   }
 
 }

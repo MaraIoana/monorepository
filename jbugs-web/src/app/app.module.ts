@@ -33,8 +33,6 @@ import {
   MatSelectModule
 } from "@angular/material";
 import {BugDialogComponent} from './bug/bug-dialog/bug-dialog.component';
-import {BugsComponent} from "./bug/bugs/bugs.component";
-
 
 @NgModule({
   declarations: [
