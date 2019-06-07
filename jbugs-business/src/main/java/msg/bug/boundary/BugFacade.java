@@ -33,7 +33,6 @@ public class BugFacade {
         return bugControl.getAll();
     }
 
-    @PermitAll
     @RolesAllowed(Permission.USER_MANAGEMENT)
     public Object createBug(BugDTO bug) {
         return this.bugControl.createBug(bug);

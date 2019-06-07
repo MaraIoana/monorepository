@@ -36,7 +36,6 @@ public class UserFacade {
      *
      * @param user the input User DTO. mandatory
      */
-    @PermitAll
     @RolesAllowed(Permission.USER_MANAGEMENT)
     public Object createUser(UserInputDTO user){
         try{
@@ -47,7 +46,6 @@ public class UserFacade {
         }
     }
 
-    @PermitAll
     @RolesAllowed(Permission.USER_MANAGEMENT)
     public Object updateUser(UserInputDTO user) {
         return this.userControl.updateUser(user);
