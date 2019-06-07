@@ -84,7 +84,7 @@
 
         [(value)]="data.assignedTo"
       >
-        <mat-option *ngFor="let user of userList" [(value)]="user.id">
+        <mat-option *ngFor="let user of userList" [(value)]="user.username">
           {{user.username}}
         </mat-option>
       </mat-select>

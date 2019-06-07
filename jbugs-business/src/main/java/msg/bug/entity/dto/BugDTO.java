@@ -18,8 +18,8 @@ public class BugDTO {
     private String status;
     private String fixedVersion;
     private String severity;
-    private Long  createdBy;
-    private Long  assignedTo;
+    private String createdBy;
+    private String assignedTo;
 
 
     public BugDTO() { }
@@ -88,19 +88,19 @@ public class BugDTO {
         this.fixedVersion = fixedVersion;
     }
 
-    public Long getCreatedBy() {
+    public String getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(Long createdBy) {
+    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
 
-    public Long getAssignedTo() {
+    public String getAssignedTo() {
         return assignedTo;
     }
 
-    public void setAssignedTo(Long assignedTo) {
+    public void setAssignedTo(String assignedTo) {
         this.assignedTo = assignedTo;
     }
 

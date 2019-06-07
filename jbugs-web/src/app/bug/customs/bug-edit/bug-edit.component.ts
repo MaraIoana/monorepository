@@ -12,8 +12,6 @@ export class BugEditComponent implements OnInit {
 
   private rowData;
 
-  private username;
-
   private userList:addUser[];
 
   constructor(public dialogRef:MatDialogRef<BugEditComponent>,
@@ -25,13 +23,9 @@ export class BugEditComponent implements OnInit {
     this.userService.getAllUsers().subscribe(data=>{
       this.userList = data;
     });
-    this.userService.getUserWithId(this.data.assignedTo).subscribe(data=>{
-      this.username = data.username;
-    })
   }
 
   save(){
-    console.log(this.username);
     this.dialogRef.close({
       'message':'EDIT',
       'data':this.rowData

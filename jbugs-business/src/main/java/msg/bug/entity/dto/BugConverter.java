@@ -1,9 +1,11 @@
 package msg.bug.entity.dto;
 
 import msg.bug.entity.Bug;
+import msg.bug.entity.BugDAO;
 import msg.bug.entity.Severity;
 import msg.bug.entity.Status;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.util.Date;
 
@@ -15,6 +17,9 @@ import java.util.Date;
  */
 @Stateless
 public class BugConverter {
+
+    @EJB
+    private BugDAO bugDAO;
 
     /**
      * Converts a {@link BugDTO} to {@link Bug}.
@@ -39,8 +44,12 @@ public class BugConverter {
         String severity = bugDTO.getSeverity();
         b.setSeverity(Severity.valueOf(severity));
 
-        b.setCreatedBy(bugDTO.getCreatedBy());
-        b.setAssignedTo(bugDTO.getAssignedTo());
+
+        Long createdBy = bugDAO.getUserId(bugDTO.getCreatedBy());
+        b.setCreatedBy(createdBy);
+
+        Long assignedTo = bugDAO.getUserId(bugDTO.getAssignedTo());
+        b.setAssignedTo(assignedTo);
 
         return b;
     }
@@ -67,8 +76,18 @@ public class BugConverter {
 
         String severity=bug.getSeverity().toString();
         b.setSeverity(severity);
-        b.setCreatedBy(bug.getCreatedBy());
-        b.setAssignedTo(bug.getAssignedTo());
+
+
+        if(bug.getAssignedTo() != null){
+            String assignedTo = bugDAO.getUsername(bug.getAssignedTo());
+            b.setAssignedTo(assignedTo);
+        }
+        if(bug.getCreatedBy()!=null){
+            String createdBy = bugDAO.getUsername(bug.getCreatedBy());
+            b.setCreatedBy(createdBy);
+        }
+
+
 
         return b;
     }

@@ -9,6 +9,9 @@ import {LoginComponent} from "./login/login.component";
 import {UserAddComponent} from "./user/user-add/user-add.component";
 import {RolesComponent} from "./role/roles/roles.component";
 import {RoutingErrorComponent} from "./error/routing-error/routing-error.component";
+import {PermManagementGuard} from "./guards/perm-management.guard";
+import {BugManagementGuard} from "./guards/bug-management.guard";
+import {UserManagementGuard} from "./guards/user-management.guard";
 
 const routes: Routes = [
   {
@@ -27,7 +30,7 @@ const routes: Routes = [
     children: [
       {
         path: 'users',
-        canActivate: [],
+        canActivate: [UserManagementGuard],
         children: [
           {
             path: '',
@@ -54,12 +57,12 @@ const routes: Routes = [
       },
       {
         path: 'bugs',
-        canActivate: [],
+        canActivate: [BugManagementGuard],
         component: BugsComponent
       },
       {
         path:'roles',
-        canActivate: [],
+        canActivate: [PermManagementGuard],
         children:[
           {
             path:'',

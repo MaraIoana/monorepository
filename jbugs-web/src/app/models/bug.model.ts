@@ -7,6 +7,6 @@ export interface Bug{
   status?: string;
   fixedVersion?: string;
   severity?: string;
-  createdByUser?: bigint;
-  assignedTo?: bigint;
+  createdBy?: string;
+  assignedTo?: string;
 }
