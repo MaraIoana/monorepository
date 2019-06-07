@@ -41,15 +41,6 @@ export class BugsCellComponent implements OnInit {
     })
   }
 
-  onDetail(){
-   // let dialogRef = this.dialog.open();
-
-    // dialogRef.afterClosed().subscribe(result=>{
-    //   if(result.message)
-    //     console.log(result.message);
-    // })
-  }
-
   onStatusEdit(){
     let dialogRef = this.dialog.open(StatusDialogComponent, {
       width: '250px',
@@ -63,6 +54,10 @@ export class BugsCellComponent implements OnInit {
         this.gridApi.refreshCells();
       }
     });
+  }
+
+  onDownloadPDF(){
+
   }
 
 }
