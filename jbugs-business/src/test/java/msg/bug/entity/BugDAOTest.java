@@ -43,6 +43,7 @@ public class BugDAOTest {
         List<Bug> bugs = new ArrayList<>();
         when(em.createNamedQuery(Bug.BUG_FIND_ALL, Bug.class)).thenReturn(query);
         when(em.createNamedQuery(Bug.BUG_FIND_BY_ID, Bug.class)).thenReturn(query);
+        when(em.createNamedQuery(Bug.BUG_FIND_BY_ID, Bug.class)).thenReturn(query);
         when(query.setParameter(anyString(), any())).thenReturn(query);
         when(query.getResultList()).thenReturn(bugs);
     }
@@ -57,6 +58,13 @@ public class BugDAOTest {
 
         List<Bug> bugs = bugDAO.getAll();
         Assert.assertEquals(0, bugs.size());
+    }
+
+    @Test
+    public void getBug() {
+
+        Bug bug = bugDAO.getBug(20L);
+        Assert.assertEquals(null, bug);
     }
 
     @Test
