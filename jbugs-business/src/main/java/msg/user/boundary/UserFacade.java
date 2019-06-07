@@ -9,6 +9,7 @@ import msg.user.control.UserControl;
 import msg.user.entity.dto.UserDTO;
 import msg.user.entity.dto.UserDataDTO;
 import msg.user.entity.dto.UserInputDTO;
+import msg.user.entity.dto.UserLoginDTO;
 import msg.user.entity.dto.UserRolesDTO;
 
 import javax.annotation.security.PermitAll;
@@ -64,8 +65,8 @@ public class UserFacade {
     }
 
 
-    public Object authenticateUser(UserInputDTO userInputDTO) {
-       return userControl.authenticateUser(userInputDTO);
+    public Object authenticateUser(UserLoginDTO userLoginDTO) {
+        return userControl.authenticateUser(userLoginDTO);
     }
 
     public UserDataDTO getUserData(String username) {

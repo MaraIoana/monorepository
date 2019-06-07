@@ -9,10 +9,13 @@ import msg.exeptions.BusinessException;
 import msg.notifications.boundary.NotificationFacade;
 import msg.notifications.boundary.notificationParams.NotificationParamsWelcomeUser;
 import msg.notifications.entity.NotificationType;
+import msg.permission.entity.Permission;
+import msg.permission.entity.PermissionEntity;
 import msg.role.entity.RoleEntity;
 import msg.user.MessageCatalog;
 import msg.user.entity.UserDao;
 import msg.user.entity.UserEntity;
+import msg.user.entity.dto.*;
 import msg.user.entity.dto.*;
 import msg.user.entity.dto.UserConverter;
 import msg.user.entity.dto.UserInputDTO;
@@ -20,7 +23,11 @@ import msg.user.entity.dto.UserRolesDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.management.relation.Role;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -137,15 +144,28 @@ public class UserControl {
         return userConverter.entityToUserRolesDto(userDao.getUser(username));
     }
 
-    public String authenticateUser(UserInputDTO userInputDTO) {
-        UserEntity byEmail = userDao.findByEmail(userInputDTO.getEmail());
-        if (byEmail != null) {
-            Algorithm algorithm = Algorithm.HMAC256("abcd");
-            return JWT.create().withIssuer("auth0")
-                    .withClaim("username",byEmail.getUsername())
-                    .withArrayClaim("roles",byEmail.getRoles()
+
+    public UserOutputDto authenticateUser(UserLoginDTO userLoginDTO) {
+        UserEntity user = userDao.findUserByUsername(userLoginDTO.getUsername());
+        if(user != null && user.getPassword().equals(userLoginDTO.getPassword())){
+            Set<PermissionEntity> permissions = new HashSet<>();
+            List<String> permissionsList = new ArrayList<>();
+            for(RoleEntity r : user.getRoles()){
+                permissions.addAll(r.getPermissions());
+            }
+            Algorithm algorithm = Algorithm.HMAC256("jbugs");
+            String token = JWT.create()
+                    .withIssuer("auth0")
+                    .withClaim("username", user.getUsername())
+                    .withArrayClaim("permissions", permissions
                             .stream()
-                            .map(RoleEntity::getType).toArray(String[]::new)) .sign(algorithm);
+                            .map(PermissionEntity::getType).toArray(String[]::new))
+                    .sign(algorithm);
+            for(PermissionEntity p : permissions){
+                permissionsList.add(p.getType());
+            }
+            return new UserOutputDto(user.getUsername(), permissionsList, token);
+
         } else {
             throw new BusinessException(MessageCatalog.INVALID_CREDENTIALS);
         }

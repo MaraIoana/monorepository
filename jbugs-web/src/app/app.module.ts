@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {UserModule} from "./user/user.module";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {UserManagementComponent} from './user/user-management/user-management.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SummaryPipe} from "./summary.pipe";
@@ -33,6 +33,9 @@ import {
   MatSelectModule
 } from "@angular/material";
 import {BugDialogComponent} from './bug/bug-dialog/bug-dialog.component';
+import {BugsComponent} from "./bug/bugs/bugs.component";
+
+import {AddHeader} from "./services/add-header.service";
 
 @NgModule({
   declarations: [
@@ -77,7 +80,13 @@ import {BugDialogComponent} from './bug/bug-dialog/bug-dialog.component';
     MatNativeDateModule,
     MatListModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AddHeader,
+      multi: true
+    }
+  ],
   entryComponents:[
     RolesCellComponent,
     PermissionsDialogComponent,

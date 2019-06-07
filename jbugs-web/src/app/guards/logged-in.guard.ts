@@ -3,6 +3,7 @@ import {Injectable} from "@angular/core";
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
 
 import {Observable} from "rxjs";
+import {PermissionService} from "../role/services/permission.service";
 
 @Injectable({
 
@@ -14,15 +15,13 @@ export class LoggedInGuard implements CanActivate {
 
   private permissions: string[];
 
-  constructor(public router: Router) {
+  constructor(public router: Router,
+              public permissionService: PermissionService) {
 
     //todo Depending on how the session is created, here you should extract permissions from active user
     //     //todo After that, this Guard should be set in app-routing.module.ts
-    if (this.router.getCurrentNavigation().extras.replaceUrl) {
-      this.router.navigateByUrl("/error", {state: {message: 'Thats not cute!'}});
-    } else {
-      this.permissions = this.router.getCurrentNavigation().extras.state.permissions;
-    }
+    //this.permissions = this.permissionService.getPermissionsForCurrentUser();
+
   }
 
 
@@ -42,15 +41,12 @@ export class LoggedInGuard implements CanActivate {
 
 
     //ToDo if authService.isLoggedIn && hasRoles(user)
-
-    return this.hasRoles();
-  }
-
-  hasRoles() {
-    if (this.permissions && this.permissions.length) {
+    if(localStorage.getItem('auth_token')!==null)
       return true;
-    } else {
+    else {
+      this.router.navigate(['/login'])
       return false;
     }
   }
+
 }

@@ -72,6 +72,11 @@ const routes: Routes = [
   {
     path: 'error',
     component: RoutingErrorComponent
+  },
+  {
+    path: '**',
+    redirectTo: '/login',
+    pathMatch: 'full'
   }
 ];
 

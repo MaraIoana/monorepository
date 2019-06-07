@@ -1,15 +1,18 @@
-<form #form='ngForm'>
+<form #form='ngForm' >
   <div class="form-group">
-    <label for="username"> Username </label>
-    <input class="form-control"
+    <div *ngIf="submitted" class="alert alert-danger">Username or password is incorrect</div>
+    <label> Username </label>
+    <input (click)="submitted=false"
+           class="form-control"
            type="text"
            id="username"
            name="username"
            required
            #username="ngModel"
            ngModel>
+
     <div class="alert alert-danger" *ngIf="username.touched && username.invalid">
-      <div *ngIf="username.errors.required">The field is required</div>
+      <div *ngIf="username.errors.required">The username is required.</div>
       <div *ngIf="username.errors.pattern">The pattern is invalid.</div>
     </div>
 
@@ -17,20 +20,22 @@
 
   <div class="form-group">
     <label> Password </label>
-    <input class="form-control"
+    <input (click)="submitted = false"
+           class="form-control"
            type="password"
            id="password"
            name="password"
            required
            #password="ngModel"
            ngModel>
-    <div *ngIf="password.touched && password.invalid" class="alert alert-danger">Last name is required</div>
+    <div *ngIf="password.touched && password.invalid" class="alert alert-danger">Password is required.</div>
   </div>
 
-  <button (click)="login(form)" [disabled]="form.invalid" class="btn btn-primary">Login</button>
+  <button (click)="onSubmit(form)" [disabled]="form.invalid" class="btn btn-primary">Login</button>
 
   <div id="loginMessage">
 
   </div>
-</form>
 
+
+</form>

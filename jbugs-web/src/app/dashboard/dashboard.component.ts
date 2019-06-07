@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {LoginService} from "../login/services/login.service";
 import {Router} from "@angular/router";
+import {PermissionService} from "../role/services/permission.service";
 
 
 @Component({
@@ -23,9 +25,12 @@ export class DashboardComponent implements OnInit {
 
   private permissions: string[];
 
-  constructor(private router: Router) {
-    this.permissions = this.router.getCurrentNavigation().extras.state.permissions;
-    console.log(this.router.getCurrentNavigation().extras.state.permissions);
+  constructor(private router:Router,
+              private permissionService: PermissionService,
+              private authService: LoginService) {
+    this.permissions = permissionService.getPermissionsForCurrentUser();
+    //this.permissions= this.router.getCurrentNavigation().extras.state.permissions;
+    //console.log(this.router.getCurrentNavigation().extras.state.permissions);
   }
 
   ngOnInit() {
@@ -81,5 +86,9 @@ export class DashboardComponent implements OnInit {
       this.isMine = false;
     } else
       this.isMine = true;
+  }
+
+  logout(){
+    this.authService.logout();
   }
 }

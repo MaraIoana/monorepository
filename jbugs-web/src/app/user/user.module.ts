@@ -15,7 +15,7 @@ import {RouterModule} from "@angular/router";
     RbtnDirective
   ],
   providers: [
-    BackendService
+    BackendService,
   ],
   imports: [
     CommonModule,
