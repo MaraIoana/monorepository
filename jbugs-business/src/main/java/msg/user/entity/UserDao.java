@@ -49,10 +49,15 @@ public class UserDao {
      */
     // TODO: 22.05.2019 exception handling need to be implemented if user not found
     public UserEntity findUserByUsername(String username) {
-        UserEntity user = em.createNamedQuery(UserEntity.USER_FIND_BY_USERNAME, UserEntity.class)
-                .setParameter(UserEntity.USERNAME, username)
-                .getSingleResult();
-        return (user);
+        if(existUsername(username)) {
+            UserEntity user = em.createNamedQuery(UserEntity.USER_FIND_BY_USERNAME, UserEntity.class)
+                    .setParameter(UserEntity.USERNAME, username)
+                    .getSingleResult();
+            return (user);
+        }
+        else{
+            return null;
+        }
     }
 
     /**

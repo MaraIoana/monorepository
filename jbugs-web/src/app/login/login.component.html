@@ -199,37 +199,47 @@
 
 <!--          </div>-->
 <!--        </form>-->
-        <form >
+        <form #form='ngForm'>
 
 
           <div class="input-group form-group">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-user"></i></span>
             </div>
-            <input type="text"
+            <input (click)="submitted=false"
+                   type="text"
                    name="username"
                    class="form-control"
                    placeholder="username"
-                   required
+                   required="Username is required."
+                   #username="ngModel"
+                   ngModel>
             >
-
+            <div></div>
           </div>
 
           <div class="input-group form-group">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-key"></i></span>
             </div>
-            <input type="password"
+            <input (click)="submitted=false"
+                   type="password"
                    class="form-control"
                    placeholder="password"
                    name="password"
                    required
+                   #password="ngModel"
+                    ngModel>
             >
+
           </div>
 
-
-
-<!--          <button  type="button" (click)="login(username,password)" class="btn float-right login_btn">Login</button>-->
+     <button  type="button" (click)="onSubmit(form)"  [disabled]="form.invalid" class="btn center login_btn">Login</button>
+          <br>
+          <br>
+          <div *ngIf="password.touched && password.invalid" class="alert alert-danger">Password is required.</div>
+          <div *ngIf="username.touched && username.invalid" class="alert alert-danger">Username is required.</div>
+          <div *ngIf="submitted" class="alert alert-danger">Username or password is incorrect</div>
 
         </form>
       </div>
