@@ -12,6 +12,7 @@ import {PermissionService} from "../role/services/permission.service";
 })
 export class LoginComponent implements OnInit {
   submitted = false;
+  touched = false;
   user: LoginUser = {};
 
   constructor(private router: Router,
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.submitted = false;
+    this.touched = true;
     this.authService.logout();
   }
 
@@ -32,7 +34,6 @@ export class LoginComponent implements OnInit {
       result => {
           if(result.message){
             this.submitted = true;
-            alert(result.message);
           }
           else {
             localStorage.setItem('auth_token', result.token);

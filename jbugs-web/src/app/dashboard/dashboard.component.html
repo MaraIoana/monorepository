@@ -6,6 +6,30 @@
 
   <button (click)="logout()" class="btn btn-primary">Logout</button>
 </nav>
-<!--<div class="alert alert-danger" id="errorMessage"></div>-->
+
+<ul class="tab-bar">
+  <li data-num="1" class="tab wave dark"
+      routerLinkActive="active current"
+      routerLink="users"
+      [hidden]="userManagement">
+  <i class="material-icons">face</i>  Users</li>
+
+
+  <li data-num="2" class="tab wave dark"
+      routerLinkActive="active current"
+      routerLink="bugs"
+      [hidden]="bugManagement && bugClose">
+    <i class="material-icons">bug_report</i>  Bugs</li>
+
+
+  <li data-num="3" class="tab wave dark"
+      routerLinkActive="active current"
+      routerLink="roles"
+      [hidden]="permissionManagement" >
+    <i class="material-icons">recent_actors</i>  Roles</li>
+  <div class="indicator"></div>
+</ul>
+
+
 <router-outlet></router-outlet>
 

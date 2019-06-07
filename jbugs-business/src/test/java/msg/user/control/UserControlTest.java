@@ -3,6 +3,7 @@
 // =================================================================================================
 package msg.user.control;
 
+import msg.exeptions.BusinessException;
 import msg.notifications.boundary.NotificationFacade;
 import msg.user.entity.UserDao;
 import msg.user.entity.dto.UserConverter;
@@ -44,9 +45,9 @@ public class UserControlTest {
     @Test
     public void getAll() {
 
-        Assert.assertEquals(2,userDao.getAll().size());
-    }
+        Assert.assertEquals(0, userDao.getAll().size());
 
+    }
     @Test
     public void testCreateUserWithSuccess(){
         UserInputDTO user = createTestInputDTO();
@@ -62,9 +63,9 @@ public class UserControlTest {
     public void updateCreateUserWithSuccess() {
         UserInputDTO user = createTestUpdateDTO();
 
-        Mockito.when(userConverter.convertDTOToEntity(Mockito.any())).thenCallRealMethod();
-        // Mockito.when(userDao.findUserByUsername(Mockito.any())).thenCallRealMethod();
-//        Mockito.doNothing().when(notificationFacade).createNotification(Mockito.any(), Mockito.any());
+        //       Mockito.when(userConverter.convertDTOToEntity(Mockito.any())).thenCallRealMethod();
+//        Mockito.when(userDao.findUserByUsername(Mockito.any())).thenCallRealMethod();
+//       Mockito.doNothing().when(notificationFacade).createNotification(Mockito.any(), Mockito.any());
         System.out.println(user.getUsername());
         this.userControl.updateUser(user);
 
@@ -72,7 +73,7 @@ public class UserControlTest {
 
 
 
-/*
+
     @Test(expected = BusinessException.class)
     public void testCreateUserWhenEmailAddressAlreadyExists(){
         UserInputDTO user = createTestInputDTO();
@@ -82,7 +83,7 @@ public class UserControlTest {
         this.userControl.createUser(user);
     }
 
-    @Test
+   /* @Test
     public void testCreateUserNotificationSent(){
         UserInputDTO user = createTestInputDTO();
 

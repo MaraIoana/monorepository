@@ -64,7 +64,7 @@ public class BugControl {
 
     public BugDTO updateBug(BugDTO bugDTO) {
         Bug updateBug = bugConverter.convertDTOtoEntity(bugDTO);
-        BugDTO result = bugConverter.convertEntityToDTO(bugDao.UpdateBug(updateBug));
+        BugDTO result = bugConverter.convertEntityToDTO(bugDao.updateBug(updateBug));
 
         return result;
     }

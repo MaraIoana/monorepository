@@ -145,7 +145,7 @@ public class UserControl {
     }
 
 
-    public UserOutputDto authenticateUser(UserLoginDTO userLoginDTO) {
+    public Object authenticateUser(UserLoginDTO userLoginDTO) {
         UserEntity user = userDao.findUserByUsername(userLoginDTO.getUsername());
         if(user != null){
             if(user.getPassword().equals(userLoginDTO.getPassword())) {
@@ -174,7 +174,9 @@ public class UserControl {
                 }
             }
             else {
-                throw new BusinessException(MessageCatalog.INVALID_CREDENTIALS);
+                userDao.incrementUser(user.getUsername());
+                return MessageCatalog.INVALID_CREDENTIALS;
+                //throw new BusinessException(MessageCatalog.INVALID_CREDENTIALS);
             }
         } else {
             throw new BusinessException(MessageCatalog.INVALID_CREDENTIALS);
