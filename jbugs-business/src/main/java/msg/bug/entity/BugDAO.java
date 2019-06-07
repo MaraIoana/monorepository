@@ -46,7 +46,7 @@ public class BugDAO {
         return (bug);
     }
 
-    public Bug UpdateBug(Bug bug) {
+    public Bug updateBug(Bug bug) {
         Bug updateBug = findBugById(bug.getId());
         updateBug.setTitle(bug.getTitle());
         updateBug.setDescription(bug.getDescription());
