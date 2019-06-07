@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {MatRadioChange} from "@angular/material";
+import {PermissionService} from "../../role/services/permission.service";
 
 @Component({
   selector: 'app-status-dialog',
@@ -17,6 +18,7 @@ export class StatusDialogComponent implements OnInit {
   private rejected;
   private nulll;
   private title;
+  private permissionService: PermissionService;
 
   private statusValue;
 
@@ -67,6 +69,7 @@ export class StatusDialogComponent implements OnInit {
     } else if (this.rowData.status === "INFONEEDED") {
       this.inprogress = false;
     } else if (this.rowData.status === "FIXED") {
+
       this.closed = false;
     } else if (this.rowData.status === "CLOSED")
       this.nulll = false;
