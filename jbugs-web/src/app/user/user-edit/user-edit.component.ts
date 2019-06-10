@@ -48,7 +48,7 @@ export class UserEditComponent implements OnInit {
     this.user.lastName = form.value.lastName;
     this.user.email = form.value.email;
     this.user.mobileNumber = form.value.mobileNumber;
-    alert(this.user.roles);
+    //alert(this.user.roles);
     //only for test
     //todo remove this line
     //this.userService.updateUser(this.user);
