@@ -40,7 +40,9 @@ export class PermissionService {
 
   public getPermissionsForCurrentUser(){
     let token = localStorage.getItem('auth_token');
-    return this.decode(token).permissions;
+    let decodetoken = this.decode(token);
+    console.log(decodetoken)
+    return decodetoken.permissions;
   }
 
   public getToken(){
@@ -49,7 +51,8 @@ export class PermissionService {
 
   public getUsername(){
     let token = localStorage.getItem('auth_token');
-    return this.decode(token).username;
+    let decodetoken = this.decode(token);
+    return decodetoken.username;
   }
 
 }

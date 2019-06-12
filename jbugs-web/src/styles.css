@@ -113,11 +113,18 @@ body {
 
 body {
   padding: 20px;
-  background-color: #cccccc;
+  background-color: #000000;
 }
 
+form label {
+  color: red
+}
 .mdc-tab-bar{
   width: 200px;
+}
+
+form title {
+  color: red
 }
 
 .ag-row-hover {
@@ -127,6 +134,11 @@ body {
 
 .ag-column-hover {
   background-color: #27285e;
+
+}
+
+.ngForm.div.label {
+  color: #710909;
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
