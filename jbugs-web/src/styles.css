@@ -127,6 +127,14 @@ form title {
   color: red
 }
 
+h1 {
+  color: red;
+}
+
+.div.h1 {
+  color: red;
+}
+
 .ag-row-hover {
   /* putting in !important so it overrides the theme's styling as it hovers the row also */
   background-color: #064560 !important;
