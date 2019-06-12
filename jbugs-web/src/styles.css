@@ -124,11 +124,19 @@ form label {
   width: 200px;
 }
 
+mat-label {
+  color: red;
+}
+
 form title {
   color: red
 }
 
 h1 {
+  color: red;
+}
+
+h2 {
   color: red;
 }
 
