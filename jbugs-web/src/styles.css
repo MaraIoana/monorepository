@@ -161,5 +161,16 @@ h3 {
 .ngForm.div.label {
   color: #710909;
 }
+.ag-grid-angular{
+  margin-top: -49px;
+  margin-left: 1250px;
+  margin-right: 1250px;
+  align:center;
+  position: center;
+}
+.container {
+  /* ... */
+  justify-items: center;
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
